@@ -15,8 +15,8 @@ public class FoodDao extends AbstractDAO<Food> {
 		return get(id);
 	}
 
-	public void save(Food food) {
-		persist(food);
+	public Food save(Food food) {
+		return persist(food);
 	}
 
 }

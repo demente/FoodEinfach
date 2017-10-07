@@ -8,12 +8,14 @@ import io.dropwizard.setup.Environment;
 import my.superfood.dao.FoodDao;
 import my.superfood.healthchecks.DatabaseConnectionHealthCheck;
 import my.superfood.model.Food;
+import my.superfood.model.MineralAmount;
+import my.superfood.model.VitaminAmount;
 import my.superfood.resources.FoodResource;
 
 public class FoodApplication extends Application<FoodConfiguration> {
 
 	private final HibernateBundle<FoodConfiguration> hibernateBundle = new HibernateBundle<FoodConfiguration>(
-			Food.class) {
+			Food.class, MineralAmount.class, VitaminAmount.class) {
 		public DataSourceFactory getDataSourceFactory(FoodConfiguration configuration) {
 			return configuration.getDataSourceFactory();
 		}

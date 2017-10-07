@@ -20,6 +20,7 @@ public class Food {
 	@NotNull
 	@Column(nullable = false)
 	String name;
+
 	Integer weightPerServing;
 	@Embedded
 	NutritionalInformation nutritionPerHundredGrams;

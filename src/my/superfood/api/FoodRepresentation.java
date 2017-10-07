@@ -1,5 +1,7 @@
 package my.superfood.api;
 
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -19,6 +21,10 @@ public class FoodRepresentation {
 	Long carbohydrates;
 	@JsonProperty
 	Long fiber;
+	@JsonProperty
+	List<VitaminRepresentation> vitamins;
+	@JsonProperty
+	List<MineralRepresentation> minerals;
 
 	public String getName() {
 		return name;
@@ -66,6 +72,22 @@ public class FoodRepresentation {
 
 	public void setFiber(Long fiber) {
 		this.fiber = fiber;
+	}
+
+	public List<VitaminRepresentation> getVitamins() {
+		return vitamins;
+	}
+
+	public void setVitamins(List<VitaminRepresentation> vitamins) {
+		this.vitamins = vitamins;
+	}
+
+	public List<MineralRepresentation> getMinerals() {
+		return minerals;
+	}
+
+	public void setMinerals(List<MineralRepresentation> minerals) {
+		this.minerals = minerals;
 	}
 
 }

@@ -12,6 +12,7 @@ import io.dropwizard.hibernate.UnitOfWork;
 import my.superfood.api.FoodRepresentation;
 import my.superfood.dao.FoodDao;
 import my.superfood.mapper.FoodMapper;
+import my.superfood.model.Food;
 
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -26,14 +27,15 @@ public class FoodResource {
 
 	@POST
 	@UnitOfWork
-	public void getFood(FoodRepresentation food) {
-		foodDao.save(FoodMapper.INSTANCE.foodRepresentationToFood(food));
+	public Long saveFood(FoodRepresentation food) {
+		Food persistedFood = foodDao.save(FoodMapper.INSTANCE.toFood(food));
+		return persistedFood.getId();
 	}
 
 	@GET
 	@UnitOfWork
 	public FoodRepresentation getFood(@QueryParam("id") Long id) {
-		return FoodMapper.INSTANCE.foodToFoodRepresentation(foodDao.findById(id));
+		return FoodMapper.INSTANCE.toFoodRepresentation(foodDao.findById(id));
 	}
 
 }
