@@ -22,6 +22,8 @@ public class FoodRepresentation {
 	@JsonProperty
 	Long fiber;
 	@JsonProperty
+	Long calories;
+	@JsonProperty
 	List<VitaminRepresentation> vitamins;
 	@JsonProperty
 	List<MineralRepresentation> minerals;
@@ -88,6 +90,14 @@ public class FoodRepresentation {
 
 	public void setMinerals(List<MineralRepresentation> minerals) {
 		this.minerals = minerals;
+	}
+
+	public Long getCalories() {
+		return calories;
+	}
+
+	public void setCalories(Long calories) {
+		this.calories = calories;
 	}
 
 }

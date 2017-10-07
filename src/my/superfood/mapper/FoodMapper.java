@@ -17,6 +17,7 @@ public interface FoodMapper {
 			@Mapping(source = "nutritionPerHundredGrams.fat", target = "fat"),
 			@Mapping(source = "nutritionPerHundredGrams.carbohydrates", target = "carbohydrates"),
 			@Mapping(source = "nutritionPerHundredGrams.fiber", target = "fiber"),
+			@Mapping(source = "nutritionPerHundredGrams.calories", target = "calories"),
 			@Mapping(source = "nutritionPerHundredGrams.vitamins", target = "vitamins"),
 			@Mapping(source = "nutritionPerHundredGrams.minerals", target = "minerals") })
 	FoodRepresentation toFoodRepresentation(Food food);
@@ -25,6 +26,7 @@ public interface FoodMapper {
 			@Mapping(source = "fat", target = "nutritionPerHundredGrams.fat"),
 			@Mapping(source = "carbohydrates", target = "nutritionPerHundredGrams.carbohydrates"),
 			@Mapping(source = "fiber", target = "nutritionPerHundredGrams.fiber"),
+			@Mapping(source = "calories", target = "nutritionPerHundredGrams.calories"),
 			@Mapping(source = "vitamins", target = "nutritionPerHundredGrams.vitamins"),
 			@Mapping(source = "minerals", target = "nutritionPerHundredGrams.minerals") })
 	Food toFood(FoodRepresentation food);

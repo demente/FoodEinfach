@@ -13,6 +13,7 @@ public class NutritionalInformation {
 	Long fat;
 	Long carbohydrates;
 	Long fiber;
+	Long calories;
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "food_id")
@@ -68,6 +69,14 @@ public class NutritionalInformation {
 
 	public void setMinerals(List<MineralAmount> minerals) {
 		this.minerals = minerals;
+	}
+
+	public Long getCalories() {
+		return calories;
+	}
+
+	public void setCalories(Long calories) {
+		this.calories = calories;
 	}
 
 }
