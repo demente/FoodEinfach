@@ -7,6 +7,7 @@ Data structure for testing
 	"protein": 1,
 	"fat": 2,
 	"carbohydrates": 3,
+	"calories": 100,
 	"fiber": 4,
 	"vitamins": [
 		{"name": "A",
