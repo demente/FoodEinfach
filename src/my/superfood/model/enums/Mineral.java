@@ -1,5 +1,6 @@
 package my.superfood.model.enums;
 
 public enum Mineral {
-	Ca, Cl, Fe, Mg, P, Zn;
+	Ca, Na, Cl, Fe, Mg, P, Zn;
+
 }

@@ -1,5 +1,5 @@
 package my.superfood.model.enums;
 
 public enum Vitamin {
-	A, B3, B6, B12, C, D, E;
+	A, E, C, B1, B2, B3, B6, B12, PP;
 }
