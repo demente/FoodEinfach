@@ -25,7 +25,7 @@ public interface FoodMapper {
 			@Mapping(source = "nutritionPerHundredGrams.minerals", target = "minerals") })
 	FoodRepresentation toFoodRepresentation(Food food);
 
-    FoodShortRepresentation toFoodShortRepresentation(Food food);
+	FoodShortRepresentation toFoodShortRepresentation(Food food);
 
 	@Mappings({ @Mapping(source = "protein", target = "nutritionPerHundredGrams.protein"),
 			@Mapping(source = "fat", target = "nutritionPerHundredGrams.fat"),
@@ -36,9 +36,11 @@ public interface FoodMapper {
 			@Mapping(source = "minerals", target = "nutritionPerHundredGrams.minerals") })
 	Food toFood(FoodRepresentation food);
 
-    List<FoodRepresentation> toFoodRepresentationList(List<Food> food);
+	Food toFood(FoodShortRepresentation food);
 
-    List<Food> toFoodList(List<FoodRepresentation> foodRepresentation);
+	List<FoodRepresentation> toFoodRepresentationList(List<Food> food);
 
-    List<FoodShortRepresentation> toFoodShortRepresentationList(List<Food> food);
+	List<Food> toFoodList(List<FoodRepresentation> foodRepresentation);
+
+	List<FoodShortRepresentation> toFoodShortRepresentationList(List<Food> food);
 }
