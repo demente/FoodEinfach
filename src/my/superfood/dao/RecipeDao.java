@@ -19,4 +19,8 @@ public class RecipeDao extends AbstractDAO<Recipe> {
 		return persist(recipe);
 	}
 
+	public void delete(Long id) {
+		currentSession().delete(get(id));
+	}
+
 }
