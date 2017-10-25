@@ -18,4 +18,11 @@ public class RecipeResource {
 		this.recipeDao = recipeDao;
 	}
 
+    // @GET
+    // @UnitOfWork
+    // @Path("/{recipe_id}/food")
+    // public List<FoodRepresentation> findByRecipeId(@PathParam("recipe_id") Long recipeId) {
+    // return FoodMapper.INSTANCE.toFoodRepresentationList(recipeDao.findFoodInRecipe(recipeId));
+    // }
+
 }

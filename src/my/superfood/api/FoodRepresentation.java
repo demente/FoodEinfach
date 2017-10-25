@@ -27,8 +27,18 @@ public class FoodRepresentation {
 	List<VitaminRepresentation> vitamins;
 	@JsonProperty
 	List<MineralRepresentation> minerals;
+    @JsonProperty
+    String category;
 
-	public String getName() {
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getName() {
 		return name;
 	}
 
