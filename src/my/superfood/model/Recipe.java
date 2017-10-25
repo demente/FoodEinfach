@@ -22,55 +22,67 @@ public class Recipe {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
 
+	String name;
+
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "recipe_id")
 	List<Ingredient> ingredients;
 
-    String instructions; // TODO: to be later changed to a proper entity
+	String instructions; // TODO: to be later changed to a proper entity
 
-    @ElementCollection()
-    List<MealType> type;
+	@ElementCollection()
+	List<MealType> type;
 
-    Long preparationTime; // in minutes
+	Long preparationTime; // in minutes
 
-    public Long getId() {
-        return id;
-    }
+	Long portions; // number of portions or servings
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public List<Ingredient> getIngredients() {
-        return ingredients;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setIngredients(List<Ingredient> ingredients) {
-        this.ingredients = ingredients;
-    }
+	public List<Ingredient> getIngredients() {
+		return ingredients;
+	}
 
-    public String getInstructions() {
-        return instructions;
-    }
+	public void setIngredients(List<Ingredient> ingredients) {
+		this.ingredients = ingredients;
+	}
 
-    public void setInstructions(String instructions) {
-        this.instructions = instructions;
-    }
+	public String getInstructions() {
+		return instructions;
+	}
 
-    public List<MealType> getType() {
-        return type;
-    }
+	public void setInstructions(String instructions) {
+		this.instructions = instructions;
+	}
 
-    public void setType(List<MealType> type) {
-        this.type = type;
-    }
+	public List<MealType> getType() {
+		return type;
+	}
 
-    public Long getPreparationTime() {
-        return preparationTime;
-    }
+	public void setType(List<MealType> type) {
+		this.type = type;
+	}
 
-    public void setPreparationTime(Long preparationTime) {
-        this.preparationTime = preparationTime;
-    }
+	public Long getPreparationTime() {
+		return preparationTime;
+	}
+
+	public void setPreparationTime(Long preparationTime) {
+		this.preparationTime = preparationTime;
+	}
+
+	public Long getPortions() {
+		return portions;
+	}
+
+	public void setPortions(Long portions) {
+		this.portions = portions;
+	}
 
 }
