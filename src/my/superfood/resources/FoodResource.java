@@ -37,39 +37,21 @@ public class FoodResource {
 		return persistedFood.getId();
 	}
 
-    @DELETE
-	public void deleteFood(Long id){
-        foodDao.delete(id);
+	@DELETE
+	public void deleteFood(Long id) {
+		foodDao.delete(id);
 	}
-
-    // @GET
-    // @UnitOfWork
-    // public List<FoodRepresentation> findAll() {
-    // return FoodMapper.INSTANCE.toFoodRepresentationList(foodDao.findAll());
-    // }
 
 	@GET
 	@UnitOfWork
-    @Path("/{id}")
-    public FoodRepresentation findById(@PathParam("id") Long id) {
+	@Path("/{id}")
+	public FoodRepresentation findById(@PathParam("id") Long id) {
 		return FoodMapper.INSTANCE.toFoodRepresentation(foodDao.findById(id));
 	}
 
-    @GET
-    @UnitOfWork
-    public List<FoodShortRepresentation> findByName(@QueryParam("name") String name) {
-        return FoodMapper.INSTANCE.toFoodShortRepresentationList(foodDao.findByName(name));
-    }
-
-    // @GET
-    // @UnitOfWork
-    // public List<FoodRepresentation> findByParameters(@QueryParam("name") String name, @QueryParam("category")
-    // FoodCategory category) {
-    // if (name != null) {
-    // return FoodMapper.INSTANCE.toFoodRepresentationList(foodDao.findByName(name));
-    // }
-    // return FoodMapper.INSTANCE.toFoodRepresentationList(foodDao.findBySearchParameters(new
-    // FoodSearchParameters(category)));
-    // }
-
+	@GET
+	@UnitOfWork
+	public List<FoodShortRepresentation> findByName(@QueryParam("name") String name) {
+		return FoodMapper.INSTANCE.toFoodShortRepresentationList(foodDao.findByName(name));
+	}
 }
