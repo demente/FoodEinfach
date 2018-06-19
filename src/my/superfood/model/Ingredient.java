@@ -28,7 +28,7 @@ public class Ingredient {
     @JoinColumn(name = "recipe_id")
     Recipe recipe;
     @Enumerated(EnumType.STRING)
-    Metric metric;
+    Unit unit;
 
     public Long getId() {
         return id;
@@ -62,12 +62,12 @@ public class Ingredient {
         this.recipe = recipe;
     }
 
-    public Metric getMetric() {
-        return metric;
+    public Unit getUnit() {
+        return unit;
     }
 
-    public void setMetric(Metric metric) {
-        this.metric = metric;
+    public void setUnit(Unit unit) {
+        this.unit = unit;
     }
 
 }
