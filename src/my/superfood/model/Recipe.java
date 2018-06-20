@@ -34,7 +34,7 @@ public class Recipe {
 
     private Long preparationTime; // in minutes
 
-    private Long portions; // number of portions or servings
+    private Long servings; // number of servings or servings
 
     public Long getId() {
         return id;
@@ -76,12 +76,12 @@ public class Recipe {
         this.preparationTime = preparationTime;
     }
 
-    public Long getPortions() {
-        return portions;
+    public Long getServings() {
+        return servings;
     }
 
-    public void setPortions(Long portions) {
-        this.portions = portions;
+    public void setServings(Long servings) {
+        this.servings = servings;
     }
 
 }
