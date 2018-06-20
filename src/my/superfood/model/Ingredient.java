@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import my.superfood.model.enums.Metric;
+import my.superfood.model.enums.Unit;
 
 @Entity
 @Table(name = "ingredient")
