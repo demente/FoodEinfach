@@ -1,5 +1,9 @@
 package my.superfood.model;
 
+import my.superfood.model.enums.FoodCategory;
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -11,65 +15,58 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.NamedQueries;
-import org.hibernate.annotations.NamedQuery;
-
-import my.superfood.model.enums.FoodCategory;
-
 @Entity
 @Table(name = "food")
-@NamedQueries({ @NamedQuery(name = "foodByRecipeId",
-                            query = "SELECT f FROM Food f join Ingredient i on f.id=i.food.id where i.recipe.id=:recipeId"),
-                @NamedQuery(name = "foodByName",
-                            query = "SELECT f FROM Food f where name like concat(:name,'%')") })
+@NamedQueries({@NamedQuery(name = "foodByRecipeId",
+        query = "SELECT f FROM Food f join Ingredient i on f.id=i.food.id where i.recipe.id=:recipeId"),
+        @NamedQuery(name = "foodByName",
+                query = "SELECT f FROM Food f where name like concat(:name,'%')")})
 public class Food {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long id;
-
-	@NotNull
-	@Column(nullable = false)
-	String name;
-
-	Integer weightPerServing;
-	@Embedded
-	NutritionalInformation nutritionPerHundredGrams;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    @NotNull
+    @Column(nullable = false)
+    private String name;
+    @Embedded
+    private NutritionalInformation nutritionPerHundredGrams;
+    private Integer weightPerServing;
 
     @Enumerated(EnumType.STRING)
-    FoodCategory category;
+    private FoodCategory category;
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public Integer getWeightPerServing() {
-		return weightPerServing;
-	}
+    public Integer getWeightPerServing() {
+        return weightPerServing;
+    }
 
-	public void setWeightPerServing(Integer weightPerServing) {
-		this.weightPerServing = weightPerServing;
-	}
+    public void setWeightPerServing(Integer weightPerServing) {
+        this.weightPerServing = weightPerServing;
+    }
 
-	public NutritionalInformation getNutritionPerHundredGrams() {
-		return nutritionPerHundredGrams;
-	}
+    public NutritionalInformation getNutritionPerHundredGrams() {
+        return nutritionPerHundredGrams;
+    }
 
-	public void setNutritionPerHundredGrams(NutritionalInformation nutritionPerHundredGrams) {
-		this.nutritionPerHundredGrams = nutritionPerHundredGrams;
-	}
+    public void setNutritionPerHundredGrams(NutritionalInformation nutritionPerHundredGrams) {
+        this.nutritionPerHundredGrams = nutritionPerHundredGrams;
+    }
 
     public FoodCategory getCategory() {
         return category;

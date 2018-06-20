@@ -18,33 +18,33 @@ import my.superfood.resources.RecipeResource;
 
 public class FoodApplication extends Application<FoodConfiguration> {
 
-	private final HibernateBundle<FoodConfiguration> hibernateBundle = new HibernateBundle<FoodConfiguration>(
-			Food.class, MineralAmount.class, VitaminAmount.class, Ingredient.class, Recipe.class) {
-		public DataSourceFactory getDataSourceFactory(FoodConfiguration configuration) {
-			return configuration.getDataSourceFactory();
-		}
-	};
+    private final HibernateBundle<FoodConfiguration> hibernateBundle = new HibernateBundle<FoodConfiguration>(
+            Food.class, MineralAmount.class, VitaminAmount.class, Ingredient.class, Recipe.class) {
+        public DataSourceFactory getDataSourceFactory(FoodConfiguration configuration) {
+            return configuration.getDataSourceFactory();
+        }
+    };
 
-	public static void main(String[] args) throws Exception {
-		new FoodApplication().run(args);
-	}
+    public static void main(String[] args) throws Exception {
+        new FoodApplication().run(args);
+    }
 
-	@Override
-	public void initialize(Bootstrap<FoodConfiguration> bootstrap) {
-		super.initialize(bootstrap);
-		bootstrap.addBundle(hibernateBundle);
-	}
+    @Override
+    public void initialize(Bootstrap<FoodConfiguration> bootstrap) {
+        super.initialize(bootstrap);
+        bootstrap.addBundle(hibernateBundle);
+    }
 
-	@Override
-	public void run(FoodConfiguration conf, Environment environment) throws Exception {
+    @Override
+    public void run(FoodConfiguration conf, Environment environment) throws Exception {
 
-		final FoodDao foodDao = new FoodDao(hibernateBundle.getSessionFactory());
-		RecipeDao recipeDao = new RecipeDao(hibernateBundle.getSessionFactory());
-		environment.jersey().register(new FoodResource(foodDao));
-		environment.jersey().register(new RecipeResource(recipeDao));
+        final FoodDao foodDao = new FoodDao(hibernateBundle.getSessionFactory());
+        RecipeDao recipeDao = new RecipeDao(hibernateBundle.getSessionFactory());
+        environment.jersey().register(new FoodResource(foodDao));
+        environment.jersey().register(new RecipeResource(recipeDao));
 
-		environment.healthChecks().register("database", new DatabaseConnectionHealthCheck(null));
+        environment.healthChecks().register("database", new DatabaseConnectionHealthCheck(null));
 
-	}
+    }
 
 }

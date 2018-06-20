@@ -1,82 +1,82 @@
 package my.superfood.model;
 
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import java.util.List;
 
 @Embeddable
 public class NutritionalInformation {
-	Long protein;
-	Long fat;
-	Long carbohydrates;
-	Long fiber;
-	Long calories;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name = "food_id")
-	List<VitaminAmount> vitamins;
+    private Long protein;
+    private Long fat;
+    private Long carbohydrates;
+    private Long fiber;
+    private Long calories;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name = "food_id")
-	List<MineralAmount> minerals;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "food_id")
+    private List<VitaminAmount> vitamins;
 
-	public Long getProtein() {
-		return protein;
-	}
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "food_id")
+    private List<MineralAmount> minerals;
 
-	public void setProtein(Long protein) {
-		this.protein = protein;
-	}
+    public Long getProtein() {
+        return protein;
+    }
 
-	public Long getFat() {
-		return fat;
-	}
+    public void setProtein(Long protein) {
+        this.protein = protein;
+    }
 
-	public void setFat(Long fat) {
-		this.fat = fat;
-	}
+    public Long getFat() {
+        return fat;
+    }
 
-	public Long getCarbohydrates() {
-		return carbohydrates;
-	}
+    public void setFat(Long fat) {
+        this.fat = fat;
+    }
 
-	public void setCarbohydrates(Long carbohydrates) {
-		this.carbohydrates = carbohydrates;
-	}
+    public Long getCarbohydrates() {
+        return carbohydrates;
+    }
 
-	public Long getFiber() {
-		return fiber;
-	}
+    public void setCarbohydrates(Long carbohydrates) {
+        this.carbohydrates = carbohydrates;
+    }
 
-	public void setFiber(Long fiber) {
-		this.fiber = fiber;
-	}
+    public Long getFiber() {
+        return fiber;
+    }
 
-	public List<VitaminAmount> getVitamins() {
-		return vitamins;
-	}
+    public void setFiber(Long fiber) {
+        this.fiber = fiber;
+    }
 
-	public void setVitamins(List<VitaminAmount> vitamins) {
-		this.vitamins = vitamins;
-	}
+    public List<VitaminAmount> getVitamins() {
+        return vitamins;
+    }
 
-	public List<MineralAmount> getMinerals() {
-		return minerals;
-	}
+    public void setVitamins(List<VitaminAmount> vitamins) {
+        this.vitamins = vitamins;
+    }
 
-	public void setMinerals(List<MineralAmount> minerals) {
-		this.minerals = minerals;
-	}
+    public List<MineralAmount> getMinerals() {
+        return minerals;
+    }
 
-	public Long getCalories() {
-		return calories;
-	}
+    public void setMinerals(List<MineralAmount> minerals) {
+        this.minerals = minerals;
+    }
 
-	public void setCalories(Long calories) {
-		this.calories = calories;
-	}
+    public Long getCalories() {
+        return calories;
+    }
+
+    public void setCalories(Long calories) {
+        this.calories = calories;
+    }
 
 }

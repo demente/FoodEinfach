@@ -1,18 +1,18 @@
 package my.superfood.api;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class FoodShortRepresentation {
 
     @JsonProperty
-    Long id;
+    private Long id;
     @JsonProperty
-    String name;
+    private String name;
     @JsonProperty
-    String category;
+    private String category;
 
     public Long getId() {
         return id;
@@ -37,6 +37,5 @@ public class FoodShortRepresentation {
     public void setCategory(String category) {
         this.category = category;
     }
-
 
 }

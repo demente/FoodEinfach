@@ -1,41 +1,41 @@
 package my.superfood.api;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class IngredientRepresentation {
 
-	@JsonProperty
-	FoodShortRepresentation food;
-	@JsonProperty
-	Long amount;
-	@JsonProperty
-	String metric;
+    @JsonProperty
+    private FoodShortRepresentation food;
+    @JsonProperty
+    private Long amount;
+    @JsonProperty
+    private String unit;
 
-	public FoodShortRepresentation getFood() {
-		return food;
-	}
+    public FoodShortRepresentation getFood() {
+        return food;
+    }
 
-	public void setFood(FoodShortRepresentation food) {
-		this.food = food;
-	}
+    public void setFood(FoodShortRepresentation food) {
+        this.food = food;
+    }
 
-	public Long getAmount() {
-		return amount;
-	}
+    public Long getAmount() {
+        return amount;
+    }
 
-	public void setAmount(Long amount) {
-		this.amount = amount;
-	}
+    public void setAmount(Long amount) {
+        this.amount = amount;
+    }
 
-	public String getMetric() {
-		return metric;
-	}
+    public String getUnit() {
+        return unit;
+    }
 
-	public void setMetric(String metric) {
-		this.metric = metric;
-	}
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
 
 }

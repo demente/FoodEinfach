@@ -1,5 +1,7 @@
 package my.superfood.model;
 
+import my.superfood.model.enums.Unit;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -10,25 +12,23 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import my.superfood.model.enums.Unit;
-
 @Entity
 @Table(name = "ingredient")
 public class Ingredient {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-	Long amount;
-	@ManyToOne
-	@JoinColumn(name = "food_id")
-	Food food;
+    private Long amount;
+    @ManyToOne
+    @JoinColumn(name = "food_id")
+    private Food food;
     @ManyToOne
     @JoinColumn(name = "recipe_id")
-    Recipe recipe;
+    private Recipe recipe;
     @Enumerated(EnumType.STRING)
-    Unit unit;
+    private Unit unit;
 
     public Long getId() {
         return id;
