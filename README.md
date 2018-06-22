@@ -1,22 +1,22 @@
 # FoodEinfach
 Data structure for testing
 
-{
-	"name": "apple",
-	"weightPerServing": 100,
-	"protein": 1,
-	"fat": 2,
-	"carbohydrates": 3,
-	"calories": 100,
-	"fiber": 4,
-	"vitamins": [
-		{"name": "A",
-		"amount": 2
-		}
-	]
-	,
-	"minerals": [
-		{"name": "Ca",
-		"amount": 2
-		}]
-}
+`food: {
+	name: 'Apple',
+	type: 'Fruit',
+	weightPerServing: {weight: '10', unit: 'g'},
+	nutritionalInformation: { 
+	kcal: 100,
+	protein: 10
+	carbohydrates: {total: 10, sugars: 5, fibre: 4}
+	fat: {saturated: 10, non-saturated: 0},
+	},
+	vitamins: {
+		{name: "A", amount: 10, unit: 'mg', daily: '100'},
+		{name: "B2", amount: 10, unit: 'mg', daily: '100'}
+	},
+	minerals: {
+		{name: "Ca", amount: 10, unit: 'mg', daily: '100'}
+	},
+	}
+}`
