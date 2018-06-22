@@ -1,6 +1,6 @@
 package my.superfood.mapper;
 
-import my.superfood.dto.RecipeRepresentation;
+import my.superfood.dto.RecipeDto;
 import my.superfood.model.Recipe;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -10,8 +10,7 @@ public interface RecipeMapper {
 
     RecipeMapper INSTANCE = Mappers.getMapper(RecipeMapper.class);
 
-    Recipe toRecipe(RecipeRepresentation recipe);
+    RecipeDto toRecipeDto(Recipe recipe);
 
-    RecipeRepresentation toRecipeRepresentation(Recipe recipe);
-
+    Recipe toRecipe(RecipeDto recipe);
 }

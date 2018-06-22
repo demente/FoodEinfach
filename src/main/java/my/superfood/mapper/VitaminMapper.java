@@ -5,7 +5,7 @@ import my.superfood.model.VitaminAmount;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(uses= {WeightMapper.class})
 public interface VitaminMapper {
 
     VitaminMapper INSTANCE = Mappers.getMapper(VitaminMapper.class);
