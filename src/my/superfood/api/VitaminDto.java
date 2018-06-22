@@ -3,12 +3,14 @@ package my.superfood.api;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import my.superfood.model.enums.Vitamin;
 
-public class VitaminRepresentation {
+public class VitaminDto {
 
     @JsonProperty
     private Vitamin name;
     @JsonProperty
-    private Long amount;
+    private WeightDto amount;
+    @JsonProperty
+    private WeightDto dailyNorm;
 
     public Vitamin getName() {
         return name;
@@ -18,12 +20,19 @@ public class VitaminRepresentation {
         this.name = name;
     }
 
-    public Long getAmount() {
+    public WeightDto getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
+    public void setAmount(WeightDto amount) {
         this.amount = amount;
     }
 
+    public WeightDto getDailyNorm() {
+        return dailyNorm;
+    }
+
+    public void setDailyNorm(WeightDto dailyNorm) {
+        this.dailyNorm = dailyNorm;
+    }
 }
