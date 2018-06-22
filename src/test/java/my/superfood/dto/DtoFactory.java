@@ -1,4 +1,4 @@
-package my.superfood.builder;
+package my.superfood.dto;
 
 import my.superfood.dto.FoodDto;
 import net.karneim.pojobuilder.GeneratePojoBuilder;

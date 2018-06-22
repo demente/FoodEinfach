@@ -1,4 +1,4 @@
-package my.superfood.builder;
+package my.superfood.model;
 
 import my.superfood.model.Food;
 import net.karneim.pojobuilder.GeneratePojoBuilder;
