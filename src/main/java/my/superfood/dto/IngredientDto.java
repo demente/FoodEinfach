@@ -8,11 +8,21 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class IngredientDto {
 
     @JsonProperty
+    private Long id;
+    @JsonProperty
     private FoodDto food;
     @JsonProperty
     private Long amount;
     @JsonProperty
     private String unit;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public FoodDto getFood() {
         return food;

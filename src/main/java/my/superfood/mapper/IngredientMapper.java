@@ -1,19 +1,16 @@
 package my.superfood.mapper;
 
-import my.superfood.dto.IngredientRepresentation;
+import my.superfood.dto.IngredientDto;
 import my.superfood.model.Ingredient;
 import org.mapstruct.Mapper;
-
-import java.util.List;
 
 @Mapper(uses = {FoodMapper.class})
 public interface IngredientMapper {
 
-    Ingredient toIngredient(IngredientRepresentation ingredient);
+    IngredientDto toIngredientDto(Ingredient ingredient);
 
-    IngredientRepresentation toIngredientRepresentation(Ingredient ingredient);
+    Ingredient toIngredient(IngredientDto ingredientDto);
 
-    List<IngredientRepresentation> toIngredientRepresentationList(List<Ingredient> ingredients);
 
-    List<Ingredient> toIngredientList(List<IngredientRepresentation> ingredients);
+
 }
