@@ -1,6 +1,6 @@
 package my.superfood.model.enums;
 
-public enum FoodCategory {
+public enum FoodType {
     VEGETABLE,
     FRUIT,
     MEAT,
