@@ -1,6 +1,6 @@
 package my.superfood.model;
 
-import my.superfood.model.enums.FoodCategory;
+import my.superfood.model.enums.FoodType;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
 
@@ -31,10 +31,10 @@ public class Food {
     private String name;
     @Embedded
     private NutritionalInformation nutritionPerHundredGrams;
-    private Integer weightPerServing;
+    private Weight weightPerServing;
 
     @Enumerated(EnumType.STRING)
-    private FoodCategory category;
+    private FoodType type;
 
     public Long getId() {
         return id;
@@ -52,11 +52,11 @@ public class Food {
         this.name = name;
     }
 
-    public Integer getWeightPerServing() {
+    public Weight getWeightPerServing() {
         return weightPerServing;
     }
 
-    public void setWeightPerServing(Integer weightPerServing) {
+    public void setWeightPerServing(Weight weightPerServing) {
         this.weightPerServing = weightPerServing;
     }
 
@@ -68,12 +68,12 @@ public class Food {
         this.nutritionPerHundredGrams = nutritionPerHundredGrams;
     }
 
-    public FoodCategory getCategory() {
-        return category;
+    public FoodType getType() {
+        return type;
     }
 
-    public void setCategory(FoodCategory category) {
-        this.category = category;
+    public void setType(FoodType type) {
+        this.type = type;
     }
 
 }

@@ -9,10 +9,12 @@ import java.util.List;
 @Embeddable
 public class NutritionalInformation {
 
-    private Long protein;
-    private Long fat;
-    private Long carbohydrates;
-    private Long fiber;
+    private Weight protein;
+    private Weight saturatedFat;
+    private Weight nonSaturatedFat;
+    private Weight carbohydrates;
+    private Weight sugar;
+    private Weight fibre;
     private Long calories;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
@@ -23,36 +25,60 @@ public class NutritionalInformation {
     @JoinColumn(name = "food_id")
     private List<MineralAmount> minerals;
 
-    public Long getProtein() {
+    public Weight getProtein() {
         return protein;
     }
 
-    public void setProtein(Long protein) {
+    public void setProtein(Weight protein) {
         this.protein = protein;
     }
 
-    public Long getFat() {
-        return fat;
+    public Weight getSaturatedFat() {
+        return saturatedFat;
     }
 
-    public void setFat(Long fat) {
-        this.fat = fat;
+    public void setSaturatedFat(Weight saturatedFat) {
+        this.saturatedFat = saturatedFat;
     }
 
-    public Long getCarbohydrates() {
+    public Weight getNonSaturatedFat() {
+        return nonSaturatedFat;
+    }
+
+    public void setNonSaturatedFat(Weight nonSaturatedFat) {
+        this.nonSaturatedFat = nonSaturatedFat;
+    }
+
+    public Weight getCarbohydrates() {
         return carbohydrates;
     }
 
-    public void setCarbohydrates(Long carbohydrates) {
+    public void setCarbohydrates(Weight carbohydrates) {
         this.carbohydrates = carbohydrates;
     }
 
-    public Long getFiber() {
-        return fiber;
+    public Weight getSugar() {
+        return sugar;
     }
 
-    public void setFiber(Long fiber) {
-        this.fiber = fiber;
+    public void setSugar(Weight sugar) {
+        this.sugar = sugar;
+    }
+
+    public Weight getFibre() {
+        return fibre;
+    }
+
+    public void setFibre(Weight fibre) {
+        this.fibre = fibre;
+    }
+
+    public Long getCalories() {
+        return calories;
+    }
+
+    public void setCalories(Long calories) {
+        this.calories = calories;
     }
 
     public List<VitaminAmount> getVitamins() {
@@ -70,13 +96,4 @@ public class NutritionalInformation {
     public void setMinerals(List<MineralAmount> minerals) {
         this.minerals = minerals;
     }
-
-    public Long getCalories() {
-        return calories;
-    }
-
-    public void setCalories(Long calories) {
-        this.calories = calories;
-    }
-
 }

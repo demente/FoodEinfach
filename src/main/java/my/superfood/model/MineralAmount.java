@@ -19,7 +19,7 @@ public class MineralAmount implements Serializable {
 
     @Enumerated(EnumType.STRING)
     private Mineral name;
-    private Long amount;
+    private Weight amount;
 
     public Long getId() {
         return id;
@@ -37,11 +37,11 @@ public class MineralAmount implements Serializable {
         this.name = name;
     }
 
-    public Long getAmount() {
+    public Weight getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
+    public void setAmount(Weight amount) {
         this.amount = amount;
     }
 

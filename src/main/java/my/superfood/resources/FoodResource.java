@@ -1,9 +1,8 @@
 package my.superfood.resources;
 
 import io.dropwizard.hibernate.UnitOfWork;
-import my.superfood.dto.FoodDto;
-import my.superfood.dto.FoodShortRepresentation;
 import my.superfood.dao.FoodDao;
+import my.superfood.dto.FoodDto;
 import my.superfood.mapper.FoodMapper;
 import my.superfood.model.Food;
 
@@ -45,12 +44,12 @@ public class FoodResource {
     @UnitOfWork
     @Path("/{id}")
     public FoodDto findById(@PathParam("id") Long id) {
-        return FoodMapper.INSTANCE.toFoodRepresentation(foodDao.findById(id));
+        return FoodMapper.INSTANCE.toFoodDto(foodDao.findById(id));
     }
 
     @GET
     @UnitOfWork
-    public List<FoodShortRepresentation> findByName(@QueryParam("name") String name) {
-        return FoodMapper.INSTANCE.toFoodShortRepresentationList(foodDao.findByName(name));
+    public List<FoodDto> findByName(@QueryParam("name") String name) {
+        return FoodMapper.INSTANCE.toFoodDtoList(foodDao.findByName(name));
     }
 }

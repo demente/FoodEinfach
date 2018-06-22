@@ -1,5 +1,6 @@
 package my.superfood.model;
 
+import my.superfood.dto.WeightDto;
 import my.superfood.model.enums.Vitamin;
 
 import javax.persistence.Entity;
@@ -14,12 +15,12 @@ import java.io.Serializable;
 @Entity
 public class VitaminAmount implements Serializable {
 
-    @Enumerated(EnumType.STRING)
-    Vitamin name;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long amount;
+    @Enumerated(EnumType.STRING)
+    private Vitamin name;
+    private WeightDto amount;
 
     public Long getId() {
         return id;
@@ -37,11 +38,11 @@ public class VitaminAmount implements Serializable {
         this.name = name;
     }
 
-    public Long getAmount() {
+    public WeightDto getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
+    public void setAmount(WeightDto amount) {
         this.amount = amount;
     }
 

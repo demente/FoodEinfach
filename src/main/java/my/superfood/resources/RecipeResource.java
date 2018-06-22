@@ -1,7 +1,7 @@
 package my.superfood.resources;
 
 import io.dropwizard.hibernate.UnitOfWork;
-import my.superfood.dto.RecipeRepresentation;
+import my.superfood.dto.RecipeDto;
 import my.superfood.dao.RecipeDao;
 import my.superfood.mapper.RecipeMapper;
 import my.superfood.model.Recipe;
@@ -28,7 +28,7 @@ public class RecipeResource {
 
     @POST
     @UnitOfWork
-    public Long save(RecipeRepresentation recipe) {
+    public Long save(RecipeDto recipe) {
         Recipe persistedRecipe = recipeDao.save(RecipeMapper.INSTANCE.toRecipe(recipe));
         return persistedRecipe.getId();
     }
@@ -41,8 +41,8 @@ public class RecipeResource {
     @GET
     @UnitOfWork
     @Path("/{id}")
-    public RecipeRepresentation findById(@PathParam("id") Long id) {
-        return RecipeMapper.INSTANCE.toRecipeRepresentation(recipeDao.findById(id));
+    public RecipeDto findById(@PathParam("id") Long id) {
+        return RecipeMapper.INSTANCE.toRecipeDto(recipeDao.findById(id));
     }
 
 }
