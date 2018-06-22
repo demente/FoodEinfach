@@ -5,20 +5,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class IngredientRepresentation {
+public class IngredientDto {
 
     @JsonProperty
-    private FoodShortRepresentation food;
+    private FoodDto food;
     @JsonProperty
     private Long amount;
     @JsonProperty
     private String unit;
 
-    public FoodShortRepresentation getFood() {
+    public FoodDto getFood() {
         return food;
     }
 
-    public void setFood(FoodShortRepresentation food) {
+    public void setFood(FoodDto food) {
         this.food = food;
     }
 

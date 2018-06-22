@@ -2,6 +2,8 @@ package my.superfood.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+
 public class NutritionalInformationDto {
 
     @JsonProperty
@@ -18,6 +20,10 @@ public class NutritionalInformationDto {
     private WeightDto sugar;
     @JsonProperty
     private WeightDto fibre;
+    @JsonProperty
+    private List<VitaminDto> vitamins;
+    @JsonProperty
+    private List<MineralDto> minerals;
 
     public Long getCalories() {
         return calories;
@@ -73,5 +79,21 @@ public class NutritionalInformationDto {
 
     public void setFibre(WeightDto fibre) {
         this.fibre = fibre;
+    }
+
+    public List<VitaminDto> getVitamins() {
+        return vitamins;
+    }
+
+    public void setVitamins(List<VitaminDto> vitamins) {
+        this.vitamins = vitamins;
+    }
+
+    public List<MineralDto> getMinerals() {
+        return minerals;
+    }
+
+    public void setMinerals(List<MineralDto> minerals) {
+        this.minerals = minerals;
     }
 }

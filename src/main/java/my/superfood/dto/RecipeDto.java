@@ -6,12 +6,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 @XmlRootElement
-public class RecipeRepresentation {
+public class RecipeDto {
 
     @JsonProperty
     private String name;
     @JsonProperty
-    private List<IngredientRepresentation> ingredients;
+    private List<IngredientDto> ingredients;
     @JsonProperty
     private String instructions;
     @JsonProperty
@@ -29,11 +29,11 @@ public class RecipeRepresentation {
         this.name = name;
     }
 
-    public List<IngredientRepresentation> getIngredients() {
+    public List<IngredientDto> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(List<IngredientRepresentation> ingredients) {
+    public void setIngredients(List<IngredientDto> ingredients) {
         this.ingredients = ingredients;
     }
 

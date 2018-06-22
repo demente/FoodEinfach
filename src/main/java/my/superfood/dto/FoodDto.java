@@ -3,11 +3,12 @@ package my.superfood.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.List;
 
 @XmlRootElement
 public class FoodDto {
 
+    @JsonProperty
+    private Long id;
     @JsonProperty
     private String name;
     @JsonProperty
@@ -16,10 +17,14 @@ public class FoodDto {
     private WeightDto weightPerServing;
     @JsonProperty
     private NutritionalInformationDto nutritionalInformation;
-    @JsonProperty
-    private List<VitaminDto> vitamins;
-    @JsonProperty
-    private List<MineralDto> minerals;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -51,21 +56,5 @@ public class FoodDto {
 
     public void setNutritionalInformation(NutritionalInformationDto nutritionalInformation) {
         this.nutritionalInformation = nutritionalInformation;
-    }
-
-    public List<VitaminDto> getVitamins() {
-        return vitamins;
-    }
-
-    public void setVitamins(List<VitaminDto> vitamins) {
-        this.vitamins = vitamins;
-    }
-
-    public List<MineralDto> getMinerals() {
-        return minerals;
-    }
-
-    public void setMinerals(List<MineralDto> minerals) {
-        this.minerals = minerals;
     }
 }
