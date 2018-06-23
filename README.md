@@ -20,3 +20,7 @@ Data structure for testing
 	},
 	}
 }`
+
+
+To run
+`java -jar target/FoodEinfach-0.0.1-SNAPSHOT.jar server food.yml`
