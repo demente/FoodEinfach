@@ -9,6 +9,8 @@ import java.util.List;
 public class RecipeDto {
 
     @JsonProperty
+    private Long id;
+    @JsonProperty
     private String name;
     @JsonProperty
     private List<IngredientDto> ingredients;
@@ -69,4 +71,11 @@ public class RecipeDto {
         this.servings = servings;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
