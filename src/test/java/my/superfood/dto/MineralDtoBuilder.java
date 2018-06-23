@@ -2,6 +2,8 @@ package my.superfood.dto;
 
 import javax.annotation.Generated;
 
+import static my.superfood.dto.WeightDtoBuilder.aWeightDto;
+
 @Generated("PojoBuilder")
 public class MineralDtoBuilder extends AbstractMineralDtoBuilder {
 
@@ -9,6 +11,6 @@ public class MineralDtoBuilder extends AbstractMineralDtoBuilder {
     }
 
     public static MineralDtoBuilder aMineralDto() {
-        return new MineralDtoBuilder();
+        return new MineralDtoBuilder().withAmount(aWeightDto().build());
     }
 }

@@ -6,6 +6,9 @@ import my.superfood.model.enums.Mineral;
 public class MineralDto {
 
     @JsonProperty
+    private Long id;
+
+    @JsonProperty
     private Mineral name;
 
     @JsonProperty
@@ -36,5 +39,13 @@ public class MineralDto {
 
     public void setDailyNorm(WeightDto dailyNorm) {
         this.dailyNorm = dailyNorm;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
