@@ -71,7 +71,6 @@
         </dependency>
     </dependencies>
 
-
     <build>
         <plugins>
             <plugin>
@@ -92,7 +91,6 @@
                             <version>${pojobuilder.version}</version>
                         </path>
                     </annotationProcessorPaths>
-
                 </configuration>
             </plugin>
             <plugin>
