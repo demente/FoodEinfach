@@ -1,5 +1,7 @@
 package my.superfood.model;
 
+import my.superfood.model.enums.Unit;
+
 import javax.annotation.Generated;
 
 @Generated("PojoBuilder")
@@ -9,6 +11,6 @@ public class IngredientBuilder extends AbstractIngredientBuilder {
     }
 
     public static IngredientBuilder anIngredient() {
-        return new IngredientBuilder();
+        return new IngredientBuilder().withUnit(Unit.GRAM);
     }
 }

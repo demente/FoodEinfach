@@ -10,7 +10,9 @@ public class IngredientDto {
     @JsonProperty
     private Long id;
     @JsonProperty
-    private FoodDto food;
+    private Long foodId;
+    @JsonProperty
+    private Long recipeId;
     @JsonProperty
     private Long amount;
     @JsonProperty
@@ -24,12 +26,20 @@ public class IngredientDto {
         this.id = id;
     }
 
-    public FoodDto getFood() {
-        return food;
+    public Long getFoodId() {
+        return foodId;
     }
 
-    public void setFood(FoodDto food) {
-        this.food = food;
+    public void setFoodId(Long foodId) {
+        this.foodId = foodId;
+    }
+
+    public Long getRecipeId() {
+        return recipeId;
+    }
+
+    public void setRecipeId(Long recipeId) {
+        this.recipeId = recipeId;
     }
 
     public Long getAmount() {
