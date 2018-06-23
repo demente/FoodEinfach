@@ -10,7 +10,7 @@ public interface VitaminMapper {
 
     VitaminMapper INSTANCE = Mappers.getMapper(VitaminMapper.class);
 
-    VitaminDto toVitaminRepresentation(VitaminAmount vitamin);
+    VitaminDto toVitaminDto(VitaminAmount vitamin);
 
     VitaminAmount toVitamin(VitaminDto vitamin);
 
