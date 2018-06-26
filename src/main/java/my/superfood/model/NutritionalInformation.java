@@ -1,7 +1,11 @@
 package my.superfood.model;
 
+import my.superfood.model.enums.Unit;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import java.util.List;
@@ -9,13 +13,27 @@ import java.util.List;
 @Embeddable
 public class NutritionalInformation {
 
-    private Weight protein;
-    private Weight saturatedFat;
-    private Weight nonSaturatedFat;
-    private Weight carbohydrates;
-    private Weight sugar;
-    private Weight fibre;
+    private Long protein;
+    private Long saturatedFat;
+    private Long nonSaturatedFat;
+    private Long carbohydrates;
+    private Long sugar;
+    private Long fibre;
     private Long calories;
+    @Enumerated(EnumType.STRING)
+    private Unit proteinUnit;
+    @Enumerated(EnumType.STRING)
+    private Unit saturatedFatUnit;
+    @Enumerated(EnumType.STRING)
+    private Unit nonSaturatedFatUnit;
+    @Enumerated(EnumType.STRING)
+    private Unit carbohydratesUnit;
+    @Enumerated(EnumType.STRING)
+    private Unit sugarUnit;
+    @Enumerated(EnumType.STRING)
+    private Unit fibreUnit;
+    @Enumerated(EnumType.STRING)
+    private Unit caloriesUnit;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "food_id")
@@ -25,51 +43,51 @@ public class NutritionalInformation {
     @JoinColumn(name = "food_id")
     private List<MineralAmount> minerals;
 
-    public Weight getProtein() {
+    public Long getProtein() {
         return protein;
     }
 
-    public void setProtein(Weight protein) {
+    public void setProtein(Long protein) {
         this.protein = protein;
     }
 
-    public Weight getSaturatedFat() {
+    public Long getSaturatedFat() {
         return saturatedFat;
     }
 
-    public void setSaturatedFat(Weight saturatedFat) {
+    public void setSaturatedFat(Long saturatedFat) {
         this.saturatedFat = saturatedFat;
     }
 
-    public Weight getNonSaturatedFat() {
+    public Long getNonSaturatedFat() {
         return nonSaturatedFat;
     }
 
-    public void setNonSaturatedFat(Weight nonSaturatedFat) {
+    public void setNonSaturatedFat(Long nonSaturatedFat) {
         this.nonSaturatedFat = nonSaturatedFat;
     }
 
-    public Weight getCarbohydrates() {
+    public Long getCarbohydrates() {
         return carbohydrates;
     }
 
-    public void setCarbohydrates(Weight carbohydrates) {
+    public void setCarbohydrates(Long carbohydrates) {
         this.carbohydrates = carbohydrates;
     }
 
-    public Weight getSugar() {
+    public Long getSugar() {
         return sugar;
     }
 
-    public void setSugar(Weight sugar) {
+    public void setSugar(Long sugar) {
         this.sugar = sugar;
     }
 
-    public Weight getFibre() {
+    public Long getFibre() {
         return fibre;
     }
 
-    public void setFibre(Weight fibre) {
+    public void setFibre(Long fibre) {
         this.fibre = fibre;
     }
 
@@ -79,6 +97,62 @@ public class NutritionalInformation {
 
     public void setCalories(Long calories) {
         this.calories = calories;
+    }
+
+    public Unit getProteinUnit() {
+        return proteinUnit;
+    }
+
+    public void setProteinUnit(Unit proteinUnit) {
+        this.proteinUnit = proteinUnit;
+    }
+
+    public Unit getSaturatedFatUnit() {
+        return saturatedFatUnit;
+    }
+
+    public void setSaturatedFatUnit(Unit saturatedFatUnit) {
+        this.saturatedFatUnit = saturatedFatUnit;
+    }
+
+    public Unit getNonSaturatedFatUnit() {
+        return nonSaturatedFatUnit;
+    }
+
+    public void setNonSaturatedFatUnit(Unit nonSaturatedFatUnit) {
+        this.nonSaturatedFatUnit = nonSaturatedFatUnit;
+    }
+
+    public Unit getCarbohydratesUnit() {
+        return carbohydratesUnit;
+    }
+
+    public void setCarbohydratesUnit(Unit carbohydratesUnit) {
+        this.carbohydratesUnit = carbohydratesUnit;
+    }
+
+    public Unit getSugarUnit() {
+        return sugarUnit;
+    }
+
+    public void setSugarUnit(Unit sugarUnit) {
+        this.sugarUnit = sugarUnit;
+    }
+
+    public Unit getFibreUnit() {
+        return fibreUnit;
+    }
+
+    public void setFibreUnit(Unit fibreUnit) {
+        this.fibreUnit = fibreUnit;
+    }
+
+    public Unit getCaloriesUnit() {
+        return caloriesUnit;
+    }
+
+    public void setCaloriesUnit(Unit caloriesUnit) {
+        this.caloriesUnit = caloriesUnit;
     }
 
     public List<VitaminAmount> getVitamins() {

@@ -84,4 +84,11 @@ public class Recipe {
         this.servings = servings;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

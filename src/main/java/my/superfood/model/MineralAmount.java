@@ -1,6 +1,7 @@
 package my.superfood.model;
 
 import my.superfood.model.enums.Mineral;
+import my.superfood.model.enums.Unit;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -19,7 +20,9 @@ public class MineralAmount implements Serializable {
 
     @Enumerated(EnumType.STRING)
     private Mineral name;
-    private Weight amount;
+    private Long amount;
+    @Enumerated(EnumType.STRING)
+    private Unit unit;
 
     public Long getId() {
         return id;
@@ -37,12 +40,19 @@ public class MineralAmount implements Serializable {
         this.name = name;
     }
 
-    public Weight getAmount() {
+    public Long getAmount() {
         return amount;
     }
 
-    public void setAmount(Weight amount) {
+    public void setAmount(Long amount) {
         this.amount = amount;
     }
 
+    public Unit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(Unit unit) {
+        this.unit = unit;
+    }
 }
