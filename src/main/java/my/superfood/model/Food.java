@@ -21,7 +21,7 @@ import javax.validation.constraints.NotNull;
 @NamedQueries({@NamedQuery(name = "foodByRecipeId",
         query = "SELECT f FROM Food f join Ingredient i on f.id=i.food.id where i.recipe.id=:recipeId"),
         @NamedQuery(name = "foodByName",
-                query = "SELECT f FROM Food f where lowercase(name) like concat(lowercase(:name),'%')")})
+                query = "SELECT f FROM Food f where lower(name) like concat(lower(:name),'%')")})
 public class Food {
 
     @Id
