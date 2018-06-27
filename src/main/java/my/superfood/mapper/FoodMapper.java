@@ -9,15 +9,21 @@ import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
-@Mapper(uses = {NutritionalInformationMapper.class, WeightMapper.class})
+@Mapper(uses = {NutritionalInformationMapper.class})
 public interface FoodMapper {
 
     FoodMapper INSTANCE = Mappers.getMapper(FoodMapper.class);
 
-    @Mappings({@Mapping(source = "nutritionPerHundredGrams", target = "nutritionalInformation")})
+    @Mappings({@Mapping(source = "nutritionPerHundredGrams", target = "nutritionalInformation"),
+            @Mapping(source = "weightPerServing", target = "weightPerServing.weight"),
+            @Mapping(source = "weightPerServingUnit", target = "weightPerServing.unit")
+    })
     FoodDto toFoodDto(Food food);
 
-    @Mappings({@Mapping(source = "nutritionalInformation", target = "nutritionPerHundredGrams")})
+    @Mappings({@Mapping(source = "nutritionalInformation", target = "nutritionPerHundredGrams"),
+            @Mapping(source = "weightPerServing.weight", target = "weightPerServing"),
+            @Mapping(source = "weightPerServing.unit", target = "weightPerServingUnit")
+    })
     Food toFood(FoodDto food);
 
     List<FoodDto> toFoodDtoList(List<Food> food);

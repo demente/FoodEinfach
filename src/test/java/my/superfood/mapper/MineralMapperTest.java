@@ -19,9 +19,6 @@ public class MineralMapperTest {
     @InjectMocks
     private MineralMapper mineralMapper = new MineralMapperImpl();
 
-    @Mock
-    private WeightMapper weightMapper;
-
     @Test
     public void mapsEntityToDto() {
         MineralAmount expected = aMineralAmount().build();
@@ -33,15 +30,6 @@ public class MineralMapperTest {
     }
 
     @Test
-    public void mapsToWeightDto() {
-        MineralAmount expected = aMineralAmount().build();
-
-        mineralMapper.toMineralDto(expected);
-
-        then(weightMapper).should().toWeightDto(expected.getAmount());
-    }
-
-    @Test
     public void mapsDtoToEntity() {
         MineralDto expected = aMineralDto().build();
 
@@ -49,14 +37,5 @@ public class MineralMapperTest {
 
         assertThat(expected.getId()).isEqualTo(actual.getId());
         assertThat(expected.getName()).isEqualTo(actual.getName());
-    }
-
-    @Test
-    public void mapsToWeight() {
-        MineralDto expected = aMineralDto().build();
-
-        mineralMapper.toMineral(expected);
-
-        then(weightMapper).should().toWeight(expected.getAmount());
     }
 }

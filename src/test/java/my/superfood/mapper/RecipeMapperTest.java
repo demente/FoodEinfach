@@ -14,7 +14,7 @@ import static my.superfood.model.RecipeBuilder.aRecipe;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(MockitoJUnitRunner.class)
-class RecipeMapperTest {
+public class RecipeMapperTest {
 
     @InjectMocks
     private RecipeMapper recipeMapper = new RecipeMapperImpl();

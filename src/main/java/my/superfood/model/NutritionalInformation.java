@@ -32,8 +32,6 @@ public class NutritionalInformation {
     private Unit sugarUnit;
     @Enumerated(EnumType.STRING)
     private Unit fibreUnit;
-    @Enumerated(EnumType.STRING)
-    private Unit caloriesUnit;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "food_id")
@@ -145,14 +143,6 @@ public class NutritionalInformation {
 
     public void setFibreUnit(Unit fibreUnit) {
         this.fibreUnit = fibreUnit;
-    }
-
-    public Unit getCaloriesUnit() {
-        return caloriesUnit;
-    }
-
-    public void setCaloriesUnit(Unit caloriesUnit) {
-        this.caloriesUnit = caloriesUnit;
     }
 
     public List<VitaminAmount> getVitamins() {

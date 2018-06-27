@@ -52,8 +52,4 @@ public class EntityFactory {
         return new VitaminAmount();
     }
 
-    @GeneratePojoBuilder(withGenerationGap = true)
-    public static Weight newWeight() {
-        return new Weight();
-    }
 }

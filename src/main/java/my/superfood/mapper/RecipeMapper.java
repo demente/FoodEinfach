@@ -1,6 +1,7 @@
 package my.superfood.mapper;
 
 import my.superfood.dto.RecipeDto;
+import my.superfood.model.Ingredient;
 import my.superfood.model.Recipe;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
