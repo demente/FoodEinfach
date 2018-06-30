@@ -11,11 +11,9 @@ public class NutritionalInformationDto {
     @JsonProperty
     private WeightDto protein;
     @JsonProperty
-    private WeightDto saturatedFat;
+    private WeightDto fat;
     @JsonProperty
-    private WeightDto nonSaturatedFat;
-    @JsonProperty
-    private WeightDto carbohydrate;
+    private WeightDto carbohydrates;
     @JsonProperty
     private WeightDto sugar;
     @JsonProperty
@@ -41,28 +39,20 @@ public class NutritionalInformationDto {
         this.protein = protein;
     }
 
-    public WeightDto getSaturatedFat() {
-        return saturatedFat;
+    public WeightDto getFat() {
+        return fat;
     }
 
-    public void setSaturatedFat(WeightDto saturatedFat) {
-        this.saturatedFat = saturatedFat;
+    public void setFat(WeightDto fat) {
+        this.fat = fat;
     }
 
-    public WeightDto getNonSaturatedFat() {
-        return nonSaturatedFat;
+    public WeightDto getCarbohydrates() {
+        return carbohydrates;
     }
 
-    public void setNonSaturatedFat(WeightDto nonSaturatedFat) {
-        this.nonSaturatedFat = nonSaturatedFat;
-    }
-
-    public WeightDto getCarbohydrate() {
-        return carbohydrate;
-    }
-
-    public void setCarbohydrate(WeightDto carbohydrate) {
-        this.carbohydrate = carbohydrate;
+    public void setCarbohydrates(WeightDto carbohydrates) {
+        this.carbohydrates = carbohydrates;
     }
 
     public WeightDto getSugar() {

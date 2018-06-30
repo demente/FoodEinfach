@@ -14,7 +14,7 @@ public class FoodDto {
     @JsonProperty
     private String type;
     @JsonProperty
-    private WeightDto weightPerServing;
+    private WeightDto weight;
     @JsonProperty
     private NutritionalInformationDto nutritionalInformation;
 
@@ -42,12 +42,12 @@ public class FoodDto {
         this.type = type;
     }
 
-    public WeightDto getWeightPerServing() {
-        return weightPerServing;
+    public WeightDto getWeight() {
+        return weight;
     }
 
-    public void setWeightPerServing(WeightDto weightPerServing) {
-        this.weightPerServing = weightPerServing;
+    public void setWeight(WeightDto weight) {
+        this.weight = weight;
     }
 
     public NutritionalInformationDto getNutritionalInformation() {
