@@ -7,20 +7,13 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(uses = {WeightMapper.class})
 public interface VitaminMapper {
 
     VitaminMapper INSTANCE = Mappers.getMapper(VitaminMapper.class);
 
-
-    @Mappings({
-            @Mapping(target = "amount.weight", source = "amount"),
-            @Mapping(target = "amount.unit", source = "unit")})
     VitaminDto toVitaminDto(VitaminAmount vitamin);
 
-    @Mappings({
-            @Mapping(target = "amount", source = "amount.weight"),
-            @Mapping(target = "unit", source = "amount.unit")})
     VitaminAmount toVitamin(VitaminDto vitamin);
 
 }

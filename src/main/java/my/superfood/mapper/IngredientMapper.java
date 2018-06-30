@@ -7,7 +7,7 @@ import org.mapstruct.Mapping;
 
 import java.util.List;
 
-@Mapper(uses = {FoodMapper.class})
+@Mapper(uses = {FoodMapper.class, WeightMapper.class})
 public interface IngredientMapper {
 
     @Mapping(target = "foodId", source = "food.id")
