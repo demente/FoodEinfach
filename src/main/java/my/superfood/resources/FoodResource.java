@@ -49,13 +49,6 @@ public class FoodResource {
 
     @GET
     @UnitOfWork
-    @Path("/{name}")
-    public List<FoodDto> findByName(@PathParam("name") String name) {
-        return FoodMapper.INSTANCE.toFoodDtoList(foodDao.findByName(name));
-    }
-
-    @GET
-    @UnitOfWork
     public List<FoodDto> findAll() {
         return FoodMapper.INSTANCE.toFoodDtoList(foodDao.findAll());
     }
