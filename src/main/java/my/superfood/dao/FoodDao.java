@@ -22,7 +22,7 @@ public class FoodDao extends AbstractDAO<Food> {
     }
 
     public List<Food> findAll() {
-        return findAll();
+        return list(currentSession().createNamedQuery("allFood", Food.class));
     }
 
     public void delete(Long id) {
