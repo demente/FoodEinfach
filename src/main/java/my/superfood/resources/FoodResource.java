@@ -49,7 +49,10 @@ public class FoodResource {
 
     @GET
     @UnitOfWork
-    public List<FoodDto> findAll() {
+    public List<FoodDto> findByCriteria(@QueryParam("name") String name) {
+        if (name != null) {
+            return FoodMapper.INSTANCE.toFoodDtoList(foodDao.findByName(name));
+        }
         return FoodMapper.INSTANCE.toFoodDtoList(foodDao.findAll());
     }
 }
