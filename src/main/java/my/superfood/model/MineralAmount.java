@@ -21,8 +21,6 @@ public class MineralAmount implements Serializable {
     @Enumerated(EnumType.STRING)
     private Mineral name;
     private Long amount;
-    @Enumerated(EnumType.STRING)
-    private Unit unit;
 
     public Long getId() {
         return id;
@@ -46,13 +44,5 @@ public class MineralAmount implements Serializable {
 
     public void setAmount(Long amount) {
         this.amount = amount;
-    }
-
-    public Unit getUnit() {
-        return unit;
-    }
-
-    public void setUnit(Unit unit) {
-        this.unit = unit;
     }
 }

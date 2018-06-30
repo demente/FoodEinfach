@@ -12,6 +12,6 @@ public class MineralAmountBuilder extends AbstractMineralAmountBuilder {
     }
 
     public static MineralAmountBuilder aMineralAmount() {
-        return new MineralAmountBuilder().withAmount(12L).withUnit(Unit.GRAM);
+        return new MineralAmountBuilder().withAmount(12L);
     }
 }

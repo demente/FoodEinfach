@@ -20,8 +20,6 @@ public class VitaminAmount implements Serializable {
     @Enumerated(EnumType.STRING)
     private Vitamin name;
     private Long amount;
-    @Enumerated(EnumType.STRING)
-    private Unit unit;
 
     public Long getId() {
         return id;
@@ -45,13 +43,5 @@ public class VitaminAmount implements Serializable {
 
     public void setAmount(Long amount) {
         this.amount = amount;
-    }
-
-    public Unit getUnit() {
-        return unit;
-    }
-
-    public void setUnit(Unit unit) {
-        this.unit = unit;
     }
 }

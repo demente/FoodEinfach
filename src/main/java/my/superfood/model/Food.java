@@ -15,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "food")
@@ -35,9 +36,7 @@ public class Food {
     private String name;
     @Embedded
     private NutritionalInformation nutritionPerHundredGrams;
-    private Long weightPerServing;
-    @Enumerated(EnumType.STRING)
-    private Unit weightPerServingUnit;
+    private Long weight;
     @Enumerated(EnumType.STRING)
     private FoodType type;
 
@@ -57,20 +56,12 @@ public class Food {
         this.name = name;
     }
 
-    public Long getWeightPerServing() {
-        return weightPerServing;
+    public Long getWeight() {
+        return weight;
     }
 
-    public void setWeightPerServing(Long weightPerServing) {
-        this.weightPerServing = weightPerServing;
-    }
-
-    public Unit getWeightPerServingUnit() {
-        return weightPerServingUnit;
-    }
-
-    public void setWeightPerServingUnit(Unit weightPerServingUnit) {
-        this.weightPerServingUnit = weightPerServingUnit;
+    public void setWeight(Long weight) {
+        this.weight = weight;
     }
 
     public NutritionalInformation getNutritionPerHundredGrams() {

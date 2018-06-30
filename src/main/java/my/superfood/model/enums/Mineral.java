@@ -7,6 +7,10 @@ public enum Mineral {
     Fe,
     Mg,
     P,
+    K,
+    Mn,
+    Se,
+    Cu,
     Zn;
 
 }
