@@ -14,7 +14,7 @@ public interface WeightMapper {
     default WeightDto toWeightDto(Long weight) {
         WeightDto dto = new WeightDto();
         dto.setWeight(weight);
-        dto.setUnit(MICROGRAM.getLabel());
+        dto.setUnit(MICROGRAM.name());
         return dto;
     }
 
