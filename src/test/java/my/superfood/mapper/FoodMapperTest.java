@@ -1,6 +1,7 @@
 package my.superfood.mapper;
 
 import my.superfood.dto.FoodDto;
+import my.superfood.dto.FoodInfoDto;
 import my.superfood.model.Food;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -64,6 +65,17 @@ public class FoodMapperTest {
         foodMapper.toFood(food);
 
         then(nutritionalInformationMapper).should().toNutritionalInformation(food.getNutritionalInformation());
+    }
+
+    @Test
+    public void mapsEntityToInfoDto() {
+        Food expected = aFood().build();
+
+        FoodInfoDto actual = foodMapper.toFoodInfoDto(expected);
+
+        assertThat(actual.getId()).isEqualTo(expected.getId());
+        assertThat(actual.getName()).isEqualTo(expected.getName());
+        assertThat(actual.getType()).isEqualTo(expected.getType().name());
     }
 
 }

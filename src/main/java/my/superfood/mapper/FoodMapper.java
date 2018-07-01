@@ -1,6 +1,7 @@
 package my.superfood.mapper;
 
 import my.superfood.dto.FoodDto;
+import my.superfood.dto.FoodInfoDto;
 import my.superfood.model.Food;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -25,4 +26,8 @@ public interface FoodMapper {
     List<FoodDto> toFoodDtoList(List<Food> food);
 
     List<Food> toFoodList(List<FoodDto> foodDto);
+
+    FoodInfoDto toFoodInfoDto(Food food);
+
+    List<FoodInfoDto> toFoodInfoDtoList(List<Food> foodList);
 }
