@@ -23,7 +23,7 @@ public interface WeightMapper {
             return null;
         }
 
-        Unit unit = Unit.getByLabel(weightDto.getUnit());
+        Unit unit = Unit.valueOf(weightDto.getUnit());
 
         if (unit == null) {
             return null;
