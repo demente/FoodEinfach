@@ -8,7 +8,7 @@ import static my.superfood.dto.VitaminDtoBuilder.aVitaminDto;
 import static my.superfood.model.VitaminAmountBuilder.aVitaminAmount;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class VitaminMapperTest {
+public class VitaminNameMapperTest {
 
     private VitaminMapper vitaminMapper = new VitaminMapperImpl();
 

@@ -1,24 +1,24 @@
 package my.superfood.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import my.superfood.model.enums.Vitamin;
+import my.superfood.model.enums.VitaminName;
 
 public class VitaminDto {
 
     @JsonProperty
     private Long id;
     @JsonProperty
-    private Vitamin name;
+    private VitaminName name;
     @JsonProperty
     private WeightDto amount;
     @JsonProperty
     private WeightDto dailyNorm;
 
-    public Vitamin getName() {
+    public VitaminName getName() {
         return name;
     }
 
-    public void setName(Vitamin name) {
+    public void setName(VitaminName name) {
         this.name = name;
     }
 

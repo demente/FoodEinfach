@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.then;
 
 @RunWith(MockitoJUnitRunner.class)
-public class MineralMapperTest {
+public class MineralNameMapperTest {
 
     @InjectMocks
     private MineralMapper mineralMapper = new MineralMapperImpl();

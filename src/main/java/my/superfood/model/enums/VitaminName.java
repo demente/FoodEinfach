@@ -1,6 +1,6 @@
 package my.superfood.model.enums;
 
-public enum Vitamin {
+public enum VitaminName {
     A,
     E,
     C,

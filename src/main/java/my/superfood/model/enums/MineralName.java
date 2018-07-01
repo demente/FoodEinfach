@@ -1,6 +1,6 @@
 package my.superfood.model.enums;
 
-public enum Mineral {
+public enum MineralName {
     Ca,
     Na,
     Cl,

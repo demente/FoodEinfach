@@ -1,7 +1,7 @@
 package my.superfood.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import my.superfood.model.enums.Mineral;
+import my.superfood.model.enums.MineralName;
 
 public class MineralDto {
 
@@ -9,7 +9,7 @@ public class MineralDto {
     private Long id;
 
     @JsonProperty
-    private Mineral name;
+    private MineralName name;
 
     @JsonProperty
     private WeightDto amount;
@@ -17,11 +17,11 @@ public class MineralDto {
     @JsonProperty
     private WeightDto dailyNorm;
 
-    public Mineral getName() {
+    public MineralName getName() {
         return name;
     }
 
-    public void setName(Mineral name) {
+    public void setName(MineralName name) {
         this.name = name;
     }
 
