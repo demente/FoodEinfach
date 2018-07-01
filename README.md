@@ -2,214 +2,277 @@
 Data structure for testing
 
 `{
- 	"id": 1,
- 	"name": "Butter",
- 	"type": null,
+ 	"id": 52741,
+ 	"name": "Salted butter",
+ 	"type": "DAIRY",
  	"weight": {
  		"weight": 5000000,
- 		"unit": "μg"
+ 		"unit": "MICROGRAM"
  	},
  	"nutritionalInformation": {
  		"calories": 717,
  		"protein": {
  			"weight": 850000,
- 			"unit": "μg"
+ 			"unit": "MICROGRAM"
  		},
  		"fat": {
  			"weight": 81110000,
- 			"unit": "μg"
+ 			"unit": "MICROGRAM"
  		},
- 		"carbohydrates": null,
+ 		"carbohydrates": {
+ 			"weight": 60000,
+ 			"unit": "MICROGRAM"
+ 		},
  		"sugar": {
  			"weight": 60000,
- 			"unit": "μg"
+ 			"unit": "MICROGRAM"
  		},
  		"fibre": {
  			"weight": 0,
- 			"unit": "μg"
+ 			"unit": "MICROGRAM"
  		},
  		"vitamins": [
  			{
- 				"id": 87961,
+ 				"id": 263881,
  				"name": "B5",
  				"amount": {
  					"weight": 110,
- 					"unit": "μg"
+ 					"unit": "MICROGRAM"
  				},
- 				"dailyNorm": null
+ 				"dailyNorm": {
+ 					"weight": 6000,
+ 					"unit": "MICROGRAM"
+ 				}
  			},
  			{
- 				"id": 96757,
+ 				"id": 272677,
  				"name": "D",
  				"amount": {
  					"weight": 0,
- 					"unit": "μg"
+ 					"unit": "MICROGRAM"
  				},
- 				"dailyNorm": null
+ 				"dailyNorm": {
+ 					"weight": 5,
+ 					"unit": "MICROGRAM"
+ 				}
  			},
  			{
- 				"id": 105553,
+ 				"id": 281473,
  				"name": "E",
  				"amount": {
  					"weight": 2320,
- 					"unit": "μg"
+ 					"unit": "MICROGRAM"
  				},
- 				"dailyNorm": null
+ 				"dailyNorm": {
+ 					"weight": 10000,
+ 					"unit": "MICROGRAM"
+ 				}
  			},
  			{
- 				"id": 114349,
+ 				"id": 290269,
  				"name": "A",
  				"amount": {
  					"weight": 684,
- 					"unit": "μg"
+ 					"unit": "MICROGRAM"
  				},
- 				"dailyNorm": null
+ 				"dailyNorm": {
+ 					"weight": 600,
+ 					"unit": "MICROGRAM"
+ 				}
  			},
  			{
- 				"id": 123145,
+ 				"id": 299065,
  				"name": "B12",
  				"amount": {
  					"weight": 0,
- 					"unit": "μg"
+ 					"unit": "MICROGRAM"
  				},
- 				"dailyNorm": null
+ 				"dailyNorm": {
+ 					"weight": 6,
+ 					"unit": "MICROGRAM"
+ 				}
  			},
  			{
- 				"id": 131941,
+ 				"id": 307861,
  				"name": "B6",
  				"amount": {
  					"weight": 3,
- 					"unit": "μg"
+ 					"unit": "MICROGRAM"
  				},
- 				"dailyNorm": null
+ 				"dailyNorm": {
+ 					"weight": 2000,
+ 					"unit": "MICROGRAM"
+ 				}
  			},
  			{
- 				"id": 140737,
+ 				"id": 316657,
  				"name": "B3",
  				"amount": {
  					"weight": 42,
- 					"unit": "μg"
+ 					"unit": "MICROGRAM"
  				},
- 				"dailyNorm": null
+ 				"dailyNorm": {
+ 					"weight": 18000,
+ 					"unit": "MICROGRAM"
+ 				}
  			},
  			{
- 				"id": 149533,
+ 				"id": 325453,
  				"name": "B2",
  				"amount": {
  					"weight": 34,
- 					"unit": "μg"
+ 					"unit": "MICROGRAM"
  				},
- 				"dailyNorm": null
+ 				"dailyNorm": {
+ 					"weight": 1600,
+ 					"unit": "MICROGRAM"
+ 				}
  			},
  			{
- 				"id": 158329,
+ 				"id": 334249,
  				"name": "B1",
  				"amount": {
  					"weight": 5,
- 					"unit": "μg"
+ 					"unit": "MICROGRAM"
  				},
- 				"dailyNorm": null
+ 				"dailyNorm": {
+ 					"weight": 1400,
+ 					"unit": "MICROGRAM"
+ 				}
  			},
  			{
- 				"id": 167125,
+ 				"id": 343045,
  				"name": "C",
  				"amount": {
  					"weight": 0,
- 					"unit": "μg"
+ 					"unit": "MICROGRAM"
  				},
- 				"dailyNorm": null
+ 				"dailyNorm": {
+ 					"weight": 75000,
+ 					"unit": "MICROGRAM"
+ 				}
  			}
  		],
  		"minerals": [
  			{
- 				"id": 79165,
+ 				"id": 255085,
  				"name": "Ca",
  				"amount": {
  					"weight": 24000,
- 					"unit": "μg"
+ 					"unit": "MICROGRAM"
  				},
- 				"dailyNorm": null
+ 				"dailyNorm": {
+ 					"weight": 1000000,
+ 					"unit": "MICROGRAM"
+ 				}
  			},
  			{
- 				"id": 87961,
+ 				"id": 263881,
  				"name": "Fe",
  				"amount": {
  					"weight": 20,
- 					"unit": "μg"
+ 					"unit": "MICROGRAM"
  				},
- 				"dailyNorm": null
+ 				"dailyNorm": {
+ 					"weight": 15000,
+ 					"unit": "MICROGRAM"
+ 				}
  			},
  			{
- 				"id": 96757,
+ 				"id": 272677,
  				"name": "Mg",
  				"amount": {
  					"weight": 2000,
- 					"unit": "μg"
+ 					"unit": "MICROGRAM"
  				},
- 				"dailyNorm": null
+ 				"dailyNorm": {
+ 					"weight": 350000,
+ 					"unit": "MICROGRAM"
+ 				}
  			},
  			{
- 				"id": 105553,
+ 				"id": 281473,
  				"name": "P",
  				"amount": {
  					"weight": 24000,
- 					"unit": "μg"
+ 					"unit": "MICROGRAM"
  				},
- 				"dailyNorm": null
+ 				"dailyNorm": {
+ 					"weight": 1000000,
+ 					"unit": "MICROGRAM"
+ 				}
  			},
  			{
- 				"id": 114349,
+ 				"id": 290269,
  				"name": "K",
  				"amount": {
  					"weight": 24000,
- 					"unit": "μg"
+ 					"unit": "MICROGRAM"
  				},
- 				"dailyNorm": null
+ 				"dailyNorm": {
+ 					"weight": 3500000,
+ 					"unit": "MICROGRAM"
+ 				}
  			},
  			{
- 				"id": 123145,
+ 				"id": 299065,
  				"name": "Na",
  				"amount": {
  					"weight": 643000,
- 					"unit": "μg"
+ 					"unit": "MICROGRAM"
  				},
- 				"dailyNorm": null
+ 				"dailyNorm": {
+ 					"weight": 2400000,
+ 					"unit": "MICROGRAM"
+ 				}
  			},
  			{
- 				"id": 131941,
+ 				"id": 307861,
  				"name": "Zn",
  				"amount": {
  					"weight": 90,
- 					"unit": "μg"
+ 					"unit": "MICROGRAM"
  				},
- 				"dailyNorm": null
+ 				"dailyNorm": {
+ 					"weight": 15000,
+ 					"unit": "MICROGRAM"
+ 				}
  			},
  			{
- 				"id": 140737,
+ 				"id": 316657,
  				"name": "Cu",
  				"amount": {
  					"weight": 0,
- 					"unit": "μg"
+ 					"unit": "MICROGRAM"
  				},
- 				"dailyNorm": null
+ 				"dailyNorm": {
+ 					"weight": 2000,
+ 					"unit": "MICROGRAM"
+ 				}
  			},
  			{
- 				"id": 149533,
+ 				"id": 325453,
  				"name": "Mn",
  				"amount": {
  					"weight": 0,
- 					"unit": "μg"
+ 					"unit": "MICROGRAM"
  				},
- 				"dailyNorm": null
+ 				"dailyNorm": {
+ 					"weight": 5000,
+ 					"unit": "MICROGRAM"
+ 				}
  			},
  			{
- 				"id": 158329,
+ 				"id": 334249,
  				"name": "Se",
  				"amount": {
  					"weight": 1,
- 					"unit": "μg"
+ 					"unit": "MICROGRAM"
  				},
- 				"dailyNorm": null
+ 				"dailyNorm": {
+ 					"weight": 35,
+ 					"unit": "MICROGRAM"
+ 				}
  			}
  		]
  	}
