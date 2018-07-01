@@ -12,8 +12,10 @@ public interface VitaminMapper {
 
     VitaminMapper INSTANCE = Mappers.getMapper(VitaminMapper.class);
 
-    VitaminDto toVitaminDto(VitaminAmount vitamin);
+    @Mappings({@Mapping(target = "name", source = "vitamin.name")})
+    VitaminDto toVitaminDto(VitaminAmount vitaminAmount);
 
-    VitaminAmount toVitamin(VitaminDto vitamin);
+    @Mappings({@Mapping(target = "vitamin.name", source = "name")})
+    VitaminAmount toVitamin(VitaminDto vitaminDto);
 
 }

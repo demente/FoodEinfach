@@ -52,4 +52,10 @@ public class EntityFactory {
         return new VitaminAmount();
     }
 
+    @GeneratePojoBuilder(withGenerationGap = true)
+    public static Vitamin newVitamin() {
+        return new Vitamin();
+    }
+
+
 }

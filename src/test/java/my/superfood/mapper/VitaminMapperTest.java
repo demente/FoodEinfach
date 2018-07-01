@@ -8,7 +8,7 @@ import static my.superfood.dto.VitaminDtoBuilder.aVitaminDto;
 import static my.superfood.model.VitaminAmountBuilder.aVitaminAmount;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class VitaminNameMapperTest {
+public class VitaminMapperTest {
 
     private VitaminMapper vitaminMapper = new VitaminMapperImpl();
 
@@ -18,7 +18,7 @@ public class VitaminNameMapperTest {
 
         VitaminAmount actual = vitaminMapper.toVitamin(expected);
 
-        assertThat(actual.getName()).isEqualTo(expected.getName());
+        assertThat(actual.getVitamin().getName()).isEqualTo(expected.getName());
         assertThat(actual.getId()).isEqualTo(expected.getId());
     }
 
@@ -28,7 +28,7 @@ public class VitaminNameMapperTest {
 
         VitaminDto actual = vitaminMapper.toVitaminDto(expected);
 
-        assertThat(actual.getName()).isEqualTo(expected.getName());
+        assertThat(actual.getName()).isEqualTo(expected.getVitamin().getName());
         assertThat(actual.getId()).isEqualTo(expected.getId());
     }
 
