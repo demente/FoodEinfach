@@ -2,12 +2,7 @@ package my.superfood.model;
 
 import my.superfood.model.enums.MineralName;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -17,8 +12,9 @@ public class MineralAmount implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Enumerated(EnumType.STRING)
-    private MineralName name;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "mineral_id")
+    private Mineral mineral;
     private Long amount;
 
     public Long getId() {
@@ -29,12 +25,12 @@ public class MineralAmount implements Serializable {
         this.id = id;
     }
 
-    public MineralName getName() {
-        return name;
+    public Mineral getMineral() {
+        return mineral;
     }
 
-    public void setName(MineralName name) {
-        this.name = name;
+    public void setMineral(Mineral mineral) {
+        this.mineral = mineral;
     }
 
     public Long getAmount() {

@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.then;
 
 @RunWith(MockitoJUnitRunner.class)
-public class MineralNameMapperTest {
+public class MineralMapperTest {
 
     @InjectMocks
     private MineralMapper mineralMapper = new MineralMapperImpl();
@@ -26,7 +26,7 @@ public class MineralNameMapperTest {
         MineralDto actual = mineralMapper.toMineralDto(expected);
 
         assertThat(expected.getId()).isEqualTo(actual.getId());
-        assertThat(expected.getName()).isEqualTo(actual.getName());
+        assertThat(expected.getMineral().getName()).isEqualTo(actual.getName());
     }
 
     @Test
@@ -36,6 +36,6 @@ public class MineralNameMapperTest {
         MineralAmount actual = mineralMapper.toMineral(expected);
 
         assertThat(expected.getId()).isEqualTo(actual.getId());
-        assertThat(expected.getName()).isEqualTo(actual.getName());
+        assertThat(expected.getName()).isEqualTo(actual.getMineral().getName());
     }
 }

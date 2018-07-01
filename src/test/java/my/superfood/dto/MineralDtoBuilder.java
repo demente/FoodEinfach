@@ -1,5 +1,7 @@
 package my.superfood.dto;
 
+import my.superfood.model.enums.MineralName;
+
 import javax.annotation.Generated;
 
 import static my.superfood.dto.WeightDtoBuilder.aWeightDto;
@@ -11,6 +13,6 @@ public class MineralDtoBuilder extends AbstractMineralDtoBuilder {
     }
 
     public static MineralDtoBuilder aMineralDto() {
-        return new MineralDtoBuilder().withAmount(aWeightDto().build());
+        return new MineralDtoBuilder().withAmount(aWeightDto().build()).withName(MineralName.Ca).withId(1L).withDailyNorm(aWeightDto().build());
     }
 }

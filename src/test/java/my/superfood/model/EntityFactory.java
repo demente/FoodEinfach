@@ -57,5 +57,10 @@ public class EntityFactory {
         return new Vitamin();
     }
 
+    @GeneratePojoBuilder(withGenerationGap = true)
+    public static Mineral newMineral() {
+        return new Mineral();
+    }
+
 
 }

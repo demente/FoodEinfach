@@ -12,7 +12,10 @@ public interface MineralMapper {
 
     MineralMapper INSTANCE = Mappers.getMapper(MineralMapper.class);
 
-    MineralAmount toMineral(MineralDto mineral);
+    @Mappings({@Mapping(target = "mineral.name", source = "name")})
+    MineralAmount toMineral(MineralDto mineralDto);
 
-    MineralDto toMineralDto(MineralAmount mineral);
+    @Mappings({@Mapping(target = "name", source = "mineral.name"),
+            @Mapping(target = "dailyNorm", source = "mineral.dailyNorm")})
+    MineralDto toMineralDto(MineralAmount mineralAmount);
 }
