@@ -4,6 +4,9 @@ import my.superfood.model.enums.FoodType;
 
 import javax.annotation.Generated;
 
+import static my.superfood.dto.NutritionalInformationDtoBuilder.aNutritionalInformationDto;
+import static my.superfood.dto.WeightDtoBuilder.aWeightDto;
+
 @Generated("PojoBuilder")
 public class FoodDtoBuilder extends AbstractFoodDtoBuilder {
 
@@ -11,6 +14,11 @@ public class FoodDtoBuilder extends AbstractFoodDtoBuilder {
     }
 
     public static FoodDtoBuilder aFoodDto() {
-        return new FoodDtoBuilder().withType(FoodType.FRUIT.name()).withName("Apple");
+        return new FoodDtoBuilder()
+                .withId(1L)
+                .withType(FoodType.FRUIT.name())
+                .withName("Apple")
+                .withWeight(aWeightDto().build())
+                .withNutritionalInformation(aNutritionalInformationDto().build());
     }
 }

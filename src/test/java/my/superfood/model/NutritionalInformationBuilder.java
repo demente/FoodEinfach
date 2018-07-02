@@ -9,6 +9,10 @@ public class NutritionalInformationBuilder extends AbstractNutritionalInformatio
     }
 
     public static NutritionalInformationBuilder aNutritionalInformation() {
-        return new NutritionalInformationBuilder();
+        return new NutritionalInformationBuilder().withCalories(100L)
+                                                  .withCarbohydrates(11L)
+                                                  .withProtein(20L)
+                                                  .withFat(5L)
+                                                  .withFibre(1000L);
     }
 }
