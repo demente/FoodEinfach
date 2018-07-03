@@ -23,20 +23,23 @@ import java.util.List;
 public class FoodResource {
 
     private final FoodDao foodDao;
+    private final FoodMapper foodMapper;
 
-    public FoodResource(FoodDao dao) {
+    public FoodResource(FoodDao dao, FoodMapper foodMapper) {
         this.foodDao = dao;
+        this.foodMapper = foodMapper;
     }
 
     @POST
     @UnitOfWork
     public Long saveFood(FoodDto food) {
-        Food persistedFood = foodDao.save(FoodMapper.INSTANCE.toFood(food));
+        Food persistedFood = foodDao.save(foodMapper.toFood(food));
         return persistedFood.getId();
     }
 
     @DELETE
-    public void deleteFood(Long id) {
+    @Path("/{id}")
+    public void deleteFood(@PathParam("id") Long id) {
         foodDao.delete(id);
     }
 
@@ -44,15 +47,15 @@ public class FoodResource {
     @UnitOfWork
     @Path("/{id}")
     public FoodDto findById(@PathParam("id") Long id) {
-        return FoodMapper.INSTANCE.toFoodDto(foodDao.findById(id));
+        return foodMapper.toFoodDto(foodDao.findById(id));
     }
 
     @GET
     @UnitOfWork
     public List<FoodDto> findByCriteria(@QueryParam("name") String name) {
         if (name != null) {
-            return FoodMapper.INSTANCE.toFoodDtoList(foodDao.findByName(name));
+            return foodMapper.toFoodDtoList(foodDao.findByName(name));
         }
-        return FoodMapper.INSTANCE.toFoodDtoList(foodDao.findAll());
+        return foodMapper.toFoodDtoList(foodDao.findAll());
     }
 }

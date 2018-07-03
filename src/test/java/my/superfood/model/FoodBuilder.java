@@ -14,6 +14,7 @@ public class FoodBuilder extends AbstractFoodBuilder {
 
     public static FoodBuilder aFood() {
         return new FoodBuilder()
+                .withId(1L)
                 .withName("Apple")
                 .withType(FoodType.FRUIT)
                 .withWeight(1L)

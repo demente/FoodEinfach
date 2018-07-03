@@ -8,6 +8,7 @@ import io.dropwizard.setup.Environment;
 import my.superfood.dao.FoodDao;
 import my.superfood.dao.RecipeDao;
 import my.superfood.healthchecks.DatabaseConnectionHealthCheck;
+import my.superfood.mapper.FoodMapper;
 import my.superfood.model.*;
 import my.superfood.resources.FoodInfoResource;
 import my.superfood.resources.FoodResource;
@@ -43,7 +44,7 @@ public class FoodApplication extends Application<FoodConfiguration> {
 
         final FoodDao foodDao = new FoodDao(hibernateBundle.getSessionFactory());
         RecipeDao recipeDao = new RecipeDao(hibernateBundle.getSessionFactory());
-        environment.jersey().register(new FoodResource(foodDao));
+        environment.jersey().register(new FoodResource(foodDao, FoodMapper.INSTANCE));
         environment.jersey().register(new FoodInfoResource(foodDao));
         environment.jersey().register(new RecipeResource(recipeDao));
 
