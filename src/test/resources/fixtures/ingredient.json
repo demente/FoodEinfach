@@ -1,0 +1,7 @@
+{
+  "id": 1,
+  "foodId": 2,
+  "recipeId": 3,
+  "amount": 100,
+  "unit": "GRAM"
+}

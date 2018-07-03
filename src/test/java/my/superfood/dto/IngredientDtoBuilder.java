@@ -11,6 +11,11 @@ public class IngredientDtoBuilder extends AbstractIngredientDtoBuilder {
     }
 
     public static IngredientDtoBuilder anIngredientDto() {
-        return new IngredientDtoBuilder().withUnit(Unit.GRAM.name());
+        return new IngredientDtoBuilder()
+                .withId(1L)
+                .withFoodId(2L)
+                .withRecipeId(3L)
+                .withAmount(100L)
+                .withUnit(Unit.GRAM.name());
     }
 }
