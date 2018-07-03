@@ -1,0 +1,12 @@
+{
+  "id": 1,
+  "name": "A",
+  "amount": {
+    "weight": 100,
+    "unit": "MICROGRAM"
+  },
+  "dailyNorm": {
+    "weight": 100,
+    "unit": "MICROGRAM"
+  }
+}

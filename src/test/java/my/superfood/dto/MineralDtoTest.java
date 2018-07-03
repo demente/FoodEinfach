@@ -2,37 +2,38 @@ package my.superfood.dto;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.dropwizard.jackson.Jackson;
+import my.superfood.assertions.DtoAssertions;
 import org.junit.Test;
 
 import static io.dropwizard.testing.FixtureHelpers.fixture;
-import static my.superfood.assertions.DtoAssertions.assertEqualNutritionalInformationDto;
 import static my.superfood.assertions.DtoAssertions.assertEqualWeightDto;
-import static my.superfood.dto.FoodDtoBuilder.aFoodDto;
+import static my.superfood.dto.FoodInfoDtoBuilder.aFoodInfoDto;
+import static my.superfood.dto.MineralDtoBuilder.aMineralDto;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class FoodDtoTest {
+public class MineralDtoTest {
 
     private static final ObjectMapper MAPPER = Jackson.newObjectMapper();
 
     @Test
     public void serializesToJSON() throws Exception {
         String expected = MAPPER.writeValueAsString(
-                MAPPER.readValue(fixture("fixtures/food.json"), FoodDto.class));
+                MAPPER.readValue(fixture("fixtures/mineral.json"), MineralDto.class));
 
-        assertThat(MAPPER.writeValueAsString(aFoodDto().build())).isEqualTo(expected);
+        assertThat(MAPPER.writeValueAsString(aMineralDto().build())).isEqualTo(expected);
     }
 
     @Test
     public void deserializesFromJSON() throws Exception {
-        FoodDto expected = aFoodDto().build();
+        MineralDto expected = aMineralDto().build();
 
-        FoodDto actual = MAPPER.readValue(fixture("fixtures/food.json"), FoodDto.class);
+        MineralDto actual = MAPPER.readValue(fixture("fixtures/mineral.json"), MineralDto.class);
 
         assertThat(actual.getId()).isEqualTo(expected.getId());
         assertThat(actual.getName()).isEqualTo(expected.getName());
-        assertThat(actual.getType()).isEqualTo(expected.getType());
-        assertEqualWeightDto(actual.getWeight(), expected.getWeight());
-        assertEqualNutritionalInformationDto(actual.getNutritionalInformation(), expected.getNutritionalInformation());
+        assertEqualWeightDto(actual.getAmount(), expected.getAmount());
+        assertEqualWeightDto(actual.getDailyNorm(), expected.getDailyNorm());
     }
+
 
 }
