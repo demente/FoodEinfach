@@ -41,4 +41,9 @@ public class DtoFactory {
     public static FoodDto newFoodDto() {
         return new FoodDto();
     }
+
+    @GeneratePojoBuilder(withGenerationGap = true)
+    public static FoodInfoDto newFoodInfoDto() {
+        return new FoodInfoDto();
+    }
 }
