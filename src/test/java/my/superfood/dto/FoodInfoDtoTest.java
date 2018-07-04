@@ -5,6 +5,7 @@ import io.dropwizard.jackson.Jackson;
 import org.junit.Test;
 
 import static io.dropwizard.testing.FixtureHelpers.fixture;
+import static my.superfood.assertions.DtoAssertions.assertEqualFoodInfoDto;
 import static my.superfood.dto.FoodInfoDtoBuilder.aFoodInfoDto;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -26,8 +27,7 @@ public class FoodInfoDtoTest {
 
         FoodInfoDto actual = MAPPER.readValue(fixture("fixtures/foodInfo.json"), FoodInfoDto.class);
 
-        assertThat(actual.getId()).isEqualTo(expected.getId());
-        assertThat(actual.getName()).isEqualTo(expected.getName());
-        assertThat(actual.getType()).isEqualTo(expected.getType());
+        assertEqualFoodInfoDto(actual, expected);
     }
+
 }

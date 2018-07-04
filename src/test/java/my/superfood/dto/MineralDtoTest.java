@@ -6,6 +6,7 @@ import my.superfood.assertions.DtoAssertions;
 import org.junit.Test;
 
 import static io.dropwizard.testing.FixtureHelpers.fixture;
+import static my.superfood.assertions.DtoAssertions.assertEqualMineralDto;
 import static my.superfood.assertions.DtoAssertions.assertEqualWeightDto;
 import static my.superfood.dto.FoodInfoDtoBuilder.aFoodInfoDto;
 import static my.superfood.dto.MineralDtoBuilder.aMineralDto;
@@ -29,10 +30,7 @@ public class MineralDtoTest {
 
         MineralDto actual = MAPPER.readValue(fixture("fixtures/mineral.json"), MineralDto.class);
 
-        assertThat(actual.getId()).isEqualTo(expected.getId());
-        assertThat(actual.getName()).isEqualTo(expected.getName());
-        assertEqualWeightDto(actual.getAmount(), expected.getAmount());
-        assertEqualWeightDto(actual.getDailyNorm(), expected.getDailyNorm());
+        assertEqualMineralDto(actual, expected);
     }
 
 

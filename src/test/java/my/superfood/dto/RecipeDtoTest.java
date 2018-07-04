@@ -5,6 +5,7 @@ import io.dropwizard.jackson.Jackson;
 import org.junit.Test;
 
 import static io.dropwizard.testing.FixtureHelpers.fixture;
+import static my.superfood.assertions.DtoAssertions.assertEqualRecipeDto;
 import static my.superfood.dto.FoodInfoDtoBuilder.aFoodInfoDto;
 import static my.superfood.dto.RecipeDtoBuilder.aRecipeDto;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -28,8 +29,7 @@ public class RecipeDtoTest {
 
         RecipeDto actual = MAPPER.readValue(fixture("fixtures/recipe.json"), RecipeDto.class);
 
-        assertThat(actual.getId()).isEqualTo(expected.getId());
-        assertThat(actual.getName()).isEqualTo(expected.getName());
-        assertThat(actual.getType()).isEqualTo(expected.getType());
+        assertEqualRecipeDto(actual, expected);
     }
+
 }
