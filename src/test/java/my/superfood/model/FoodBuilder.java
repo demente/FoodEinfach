@@ -20,4 +20,8 @@ public class FoodBuilder extends AbstractFoodBuilder {
                 .withWeight(1L)
                 .withNutritionPerHundredGrams(aNutritionalInformation().build());
     }
+
+    public static FoodBuilder aNewFood() {
+        return aFood().withId(null);
+    }
 }
