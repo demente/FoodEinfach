@@ -22,8 +22,6 @@ import java.math.BigDecimal;
 @NamedQueries({
         @NamedQuery(name = "allFood",
                 query = "SELECT f FROM Food f"),
-        @NamedQuery(name = "foodByRecipeId",
-                query = "SELECT f FROM Food f join Ingredient i on f.id=i.food.id where i.recipe.id=:recipeId"),
         @NamedQuery(name = "foodByName",
                 query = "SELECT f FROM Food f where lower(name) like concat(lower(:name),'%')")})
 public class Food {
