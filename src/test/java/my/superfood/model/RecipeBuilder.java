@@ -11,4 +11,8 @@ public class RecipeBuilder extends AbstractRecipeBuilder {
     public static RecipeBuilder aRecipe() {
         return new RecipeBuilder();
     }
+
+    public static RecipeBuilder aNewRecipe() {
+        return aRecipe().withId(null);
+    }
 }
