@@ -1,11 +1,7 @@
 package my.superfood.model;
 
-import my.superfood.model.enums.Unit;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import java.util.List;
