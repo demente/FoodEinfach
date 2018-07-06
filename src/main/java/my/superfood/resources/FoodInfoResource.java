@@ -2,10 +2,8 @@ package my.superfood.resources;
 
 import io.dropwizard.hibernate.UnitOfWork;
 import my.superfood.dao.FoodDao;
-import my.superfood.dto.FoodDto;
 import my.superfood.dto.FoodInfoDto;
 import my.superfood.mapper.FoodMapper;
-import my.superfood.model.Food;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -17,14 +15,16 @@ import java.util.List;
 public class FoodInfoResource {
 
     private final FoodDao foodDao;
+    private final FoodMapper foodMapper;
 
-    public FoodInfoResource(FoodDao dao) {
+    public FoodInfoResource(FoodDao dao, FoodMapper foodMapper) {
         this.foodDao = dao;
+        this.foodMapper = foodMapper;
     }
 
     @GET
     @UnitOfWork
     public List<FoodInfoDto> findAll() {
-        return FoodMapper.INSTANCE.toFoodInfoDtoList(foodDao.findAll());
+        return foodMapper.toFoodInfoDtoList(foodDao.findAll());
     }
 }

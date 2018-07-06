@@ -45,7 +45,7 @@ public class FoodApplication extends Application<FoodConfiguration> {
         final FoodDao foodDao = new FoodDao(hibernateBundle.getSessionFactory());
         RecipeDao recipeDao = new RecipeDao(hibernateBundle.getSessionFactory());
         environment.jersey().register(new FoodResource(foodDao, FoodMapper.INSTANCE));
-        environment.jersey().register(new FoodInfoResource(foodDao));
+        environment.jersey().register(new FoodInfoResource(foodDao, FoodMapper.INSTANCE));
         environment.jersey().register(new RecipeResource(recipeDao));
 
         environment.healthChecks().register("database", new DatabaseConnectionHealthCheck(null));
