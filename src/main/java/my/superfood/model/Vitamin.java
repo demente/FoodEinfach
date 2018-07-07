@@ -5,6 +5,9 @@ import my.superfood.model.enums.VitaminName;
 import javax.persistence.*;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "allVitamins",
+                query = "SELECT v FROM Vitamin v")})
 public class Vitamin {
 
     @Id
