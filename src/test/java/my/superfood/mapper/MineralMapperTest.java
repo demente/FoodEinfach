@@ -31,7 +31,7 @@ public class MineralMapperTest {
     public void mapsDtoToEntity() {
         MineralAmountDto expected = aMineralAmountDto().build();
 
-        MineralAmount actual = mineralMapper.toMineral(expected);
+        MineralAmount actual = mineralMapper.toMineralAmount(expected);
 
         assertThat(expected.getId()).isEqualTo(actual.getId());
         assertThat(expected.getName()).isEqualTo(actual.getMineral().getName());
