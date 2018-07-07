@@ -8,19 +8,9 @@ import javax.persistence.*;
 public class Vitamin {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
     @Enumerated(EnumType.STRING)
     private VitaminName name;
     private Long dailyNorm;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public VitaminName getName() {
         return name;

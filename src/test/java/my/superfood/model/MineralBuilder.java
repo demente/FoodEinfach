@@ -12,6 +12,6 @@ public class MineralBuilder extends AbstractMineralBuilder {
     }
 
     public static MineralBuilder aMineral() {
-        return new MineralBuilder().withId(1L).withName(MineralName.Ca).withDailyNorm(1000000L);
+        return new MineralBuilder().withName(MineralName.Ca).withDailyNorm(1000000L);
     }
 }

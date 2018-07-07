@@ -4,13 +4,14 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Table(name="vitamin_amount")
 public class VitaminAmount implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "vitamin_id")
+    @JoinColumn(name = "vitamin_name")
     private Vitamin vitamin;
     private Long amount;
 

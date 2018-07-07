@@ -12,6 +12,6 @@ public class VitaminBuilder extends AbstractVitaminBuilder {
     }
 
     public static VitaminBuilder aVitamin() {
-        return new VitaminBuilder().withId(1L).withName(VitaminName.A).withDailyNorm(600L);
+        return new VitaminBuilder().withName(VitaminName.A).withDailyNorm(600L);
     }
 }

@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Table(name="mineral_amount")
 public class MineralAmount implements Serializable {
 
     @Id
@@ -13,7 +14,7 @@ public class MineralAmount implements Serializable {
     private Long id;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "mineral_id")
+    @JoinColumn(name = "mineral_name")
     private Mineral mineral;
     private Long amount;
 
