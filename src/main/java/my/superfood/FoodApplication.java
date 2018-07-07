@@ -6,13 +6,16 @@ import io.dropwizard.hibernate.HibernateBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import my.superfood.dao.FoodDao;
+import my.superfood.dao.MineralDao;
 import my.superfood.dao.RecipeDao;
 import my.superfood.healthchecks.DatabaseConnectionHealthCheck;
 import my.superfood.mapper.FoodMapper;
+import my.superfood.mapper.MineralMapper;
 import my.superfood.mapper.RecipeMapper;
 import my.superfood.model.*;
 import my.superfood.resources.FoodInfoResource;
 import my.superfood.resources.FoodResource;
+import my.superfood.resources.MineralResource;
 import my.superfood.resources.RecipeResource;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 
@@ -45,9 +48,11 @@ public class FoodApplication extends Application<FoodConfiguration> {
 
         final FoodDao foodDao = new FoodDao(hibernateBundle.getSessionFactory());
         RecipeDao recipeDao = new RecipeDao(hibernateBundle.getSessionFactory());
+        MineralDao mineralDao = new MineralDao(hibernateBundle.getSessionFactory());
         environment.jersey().register(new FoodResource(foodDao, FoodMapper.INSTANCE));
         environment.jersey().register(new FoodInfoResource(foodDao, FoodMapper.INSTANCE));
         environment.jersey().register(new RecipeResource(recipeDao, RecipeMapper.INSTANCE));
+        environment.jersey().register(new MineralResource(mineralDao, MineralMapper.INSTANCE));
 
         environment.healthChecks().register("database", new DatabaseConnectionHealthCheck(null));
 
