@@ -1,1 +1,19 @@
-{}
+{
+  "id": 1,
+  "name": "Baked apples",
+  "ingredients": [
+    {
+      "id": 1,
+      "foodId": 2,
+      "recipeId": 3,
+      "amount": 100,
+      "unit": "GRAM"
+    }
+  ],
+  "instructions": "Cut the apples and put them in the oven.",
+  "type": [
+    "BREAKFAST"
+  ],
+  "preparationTime": 10,
+  "servings": 2
+}
