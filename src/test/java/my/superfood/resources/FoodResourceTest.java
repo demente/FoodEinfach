@@ -1,6 +1,7 @@
 package my.superfood.resources;
 
 import io.dropwizard.testing.junit.ResourceTestRule;
+import my.superfood.assertions.DtoAssertions;
 import my.superfood.dao.FoodDao;
 import my.superfood.dto.FoodDto;
 import my.superfood.dto.WeightDto;
@@ -20,6 +21,7 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 import static java.util.Arrays.asList;
+import static my.superfood.assertions.DtoAssertions.assertEqualFoodDto;
 import static my.superfood.dto.FoodDtoBuilder.aFoodDto;
 import static my.superfood.model.FoodBuilder.aFood;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -106,7 +108,7 @@ public class FoodResourceTest {
         given(foodDao.save(any(Food.class))).willReturn(aFood().withId(expectedId).build());
 
         Response response = resources.target("/food").request().post(Entity.json(aFoodDto().build()));
-        assertThat(response.getEntity().equals(expectedId));
+        assertThat(response.readEntity(Long.class)).isEqualTo(expectedId);
     }
 
     @Test
@@ -145,31 +147,5 @@ public class FoodResourceTest {
 
         assertEqualFoodDto(actual.get(0), expected);
 
-    }
-
-    private void assertEqualFoodDto(FoodDto expected, FoodDto actual) {
-        assertThat(actual.getId()).isEqualTo(expected.getId());
-        assertThat(actual.getName()).isEqualTo(expected.getName());
-        assertThat(actual.getType()).isEqualTo(expected.getType());
-        assertEqualWeightDto(actual.getWeight(), expected.getWeight());
-        assertThat(actual.getNutritionalInformation().getCalories()).isEqualTo(expected.getNutritionalInformation()
-                .getCalories());
-
-        assertEqualWeightDto(actual.getNutritionalInformation().getCarbohydrates(), expected.getNutritionalInformation()
-                .getCarbohydrates());
-        assertEqualWeightDto(actual.getNutritionalInformation().getFat(), expected.getNutritionalInformation()
-                .getFat());
-        assertEqualWeightDto(actual.getNutritionalInformation().getProtein(), expected.getNutritionalInformation()
-                .getProtein());
-        assertEqualWeightDto(actual.getNutritionalInformation().getSugar(), expected.getNutritionalInformation()
-                .getSugar());
-        assertEqualWeightDto(actual.getNutritionalInformation().getFibre(), expected.getNutritionalInformation()
-                .getFibre());
-    }
-
-
-    private void assertEqualWeightDto(WeightDto actual, WeightDto expected) {
-        assertThat(actual.getUnit()).isEqualTo(expected.getUnit());
-        assertThat(actual.getWeight()).isEqualTo(expected.getWeight());
     }
 }
