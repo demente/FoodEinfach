@@ -13,8 +13,8 @@ public class DtoFactory {
     }
 
     @GeneratePojoBuilder(withGenerationGap = true)
-    public static MineralDto newMineralDto() {
-        return new MineralDto();
+    public static MineralAmountDto newMineralAmountDto() {
+        return new MineralAmountDto();
     }
 
     @GeneratePojoBuilder(withGenerationGap = true)

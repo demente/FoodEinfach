@@ -1,13 +1,7 @@
 package my.superfood.assertions;
 
-import my.superfood.dto.FoodDto;
-import my.superfood.dto.FoodInfoDto;
-import my.superfood.dto.IngredientDto;
-import my.superfood.dto.MineralDto;
-import my.superfood.dto.NutritionalInformationDto;
-import my.superfood.dto.RecipeDto;
-import my.superfood.dto.VitaminDto;
-import my.superfood.dto.WeightDto;
+import my.superfood.dto.*;
+import my.superfood.dto.MineralAmountDto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -58,7 +52,7 @@ public class DtoAssertions {
         assertThat(actual.getAmount()).isEqualTo(expected.getAmount());
     }
 
-    public static void assertEqualMineralDto(MineralDto actual, MineralDto expected) {
+    public static void assertEqualMineralAmountDto(MineralAmountDto actual, MineralAmountDto expected) {
         assertThat(actual.getId()).isEqualTo(expected.getId());
         assertThat(actual.getName()).isEqualTo(expected.getName());
         assertEqualWeightDto(actual.getAmount(), expected.getAmount());

@@ -1,6 +1,6 @@
 package my.superfood.mapper;
 
-import my.superfood.dto.MineralDto;
+import my.superfood.dto.MineralAmountDto;
 import my.superfood.model.MineralAmount;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -13,9 +13,9 @@ public interface MineralMapper {
     MineralMapper INSTANCE = Mappers.getMapper(MineralMapper.class);
 
     @Mappings({@Mapping(target = "mineral.name", source = "name")})
-    MineralAmount toMineral(MineralDto mineralDto);
+    MineralAmount toMineral(MineralAmountDto mineralAmountDto);
 
     @Mappings({@Mapping(target = "name", source = "mineral.name"),
             @Mapping(target = "dailyNorm", source = "mineral.dailyNorm")})
-    MineralDto toMineralDto(MineralAmount mineralAmount);
+    MineralAmountDto toMineralAmountDto(MineralAmount mineralAmount);
 }

@@ -3,7 +3,7 @@ package my.superfood.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import my.superfood.model.enums.MineralName;
 
-public class MineralDto {
+public class MineralAmountDto {
 
     @JsonProperty
     private Long id;
