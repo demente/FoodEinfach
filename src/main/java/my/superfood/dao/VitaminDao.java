@@ -1,7 +1,6 @@
 package my.superfood.dao;
 
 import io.dropwizard.hibernate.AbstractDAO;
-import my.superfood.model.Food;
 import my.superfood.model.Vitamin;
 import org.hibernate.SessionFactory;
 
