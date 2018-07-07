@@ -4,11 +4,12 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name="vitamin_amount")
+@Table(name = "vitamin_amount")
 public class VitaminAmount implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "vitaminIdGenerator")
+    @SequenceGenerator(name = "vitaminIdGenerator", sequenceName = "vitamin_amount_id_seq", allocationSize = 1)
     private Long id;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "vitamin_name")

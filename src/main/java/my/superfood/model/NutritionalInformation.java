@@ -17,11 +17,11 @@ public class NutritionalInformation {
     private Long calories;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "food_id")
+    @JoinColumn(name = "food_id", nullable = false)
     private List<VitaminAmount> vitamins;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "food_id")
+    @JoinColumn(name = "food_id", nullable = false)
     private List<MineralAmount> minerals;
 
     public Long getProtein() {

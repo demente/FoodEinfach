@@ -1,16 +1,15 @@
 package my.superfood.model;
 
-import my.superfood.model.enums.MineralName;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name="mineral_amount")
+@Table(name = "mineral_amount")
 public class MineralAmount implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mineralIdGenerator")
+    @SequenceGenerator(name = "mineralIdGenerator", sequenceName = "mineral_amount_id_seq", allocationSize = 1)
     private Long id;
 
     @ManyToOne(cascade = CascadeType.ALL)
