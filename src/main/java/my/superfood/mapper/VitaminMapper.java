@@ -16,7 +16,8 @@ public interface VitaminMapper {
             @Mapping(target = "dailyNorm", source = "vitamin.dailyNorm")})
     VitaminDto toVitaminDto(VitaminAmount vitaminAmount);
 
-    @Mappings({@Mapping(target = "vitamin.name", source = "name")})
+    @Mappings({@Mapping(target = "vitamin.name", source = "name"),
+            @Mapping(target = "vitamin.dailyNorm", source = "dailyNorm")})
     VitaminAmount toVitamin(VitaminDto vitaminDto);
 
 }
