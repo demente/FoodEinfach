@@ -18,6 +18,12 @@ public class DtoFactory {
     }
 
     @GeneratePojoBuilder(withGenerationGap = true)
+    public static MineralDto newMineralDto() {
+        return new MineralDto();
+    }
+
+
+    @GeneratePojoBuilder(withGenerationGap = true)
     public static NutritionalInformationDto newNutritionalInformationDto() {
         return new NutritionalInformationDto();
     }

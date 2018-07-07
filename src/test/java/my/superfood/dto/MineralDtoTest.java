@@ -5,28 +5,30 @@ import io.dropwizard.jackson.Jackson;
 import org.junit.Test;
 
 import static io.dropwizard.testing.FixtureHelpers.fixture;
-import static my.superfood.assertions.DtoAssertions.assertEqualMineralAmountDto;
+import static my.superfood.assertions.DtoAssertions.assertEqualMineralDto;
 import static my.superfood.dto.MineralAmountDtoBuilder.aMineralAmountDto;
+import static my.superfood.dto.MineralDtoBuilder.aMineralDto;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class MineralAmountDtoTest {
+public class MineralDtoTest {
+
 
     private static final ObjectMapper MAPPER = Jackson.newObjectMapper();
 
     @Test
     public void serializesToJSON() throws Exception {
         String expected = MAPPER.writeValueAsString(
-                MAPPER.readValue(fixture("fixtures/mineralAmount.json"), MineralAmountDto.class));
+                MAPPER.readValue(fixture("fixtures/mineral.json"), MineralDto.class));
 
-        assertThat(MAPPER.writeValueAsString(aMineralAmountDto().build())).isEqualTo(expected);
+        assertThat(MAPPER.writeValueAsString(aMineralDto().build())).isEqualTo(expected);
     }
 
     @Test
     public void deserializesFromJSON() throws Exception {
-        MineralAmountDto expected = aMineralAmountDto().build();
+        MineralDto expected = aMineralDto().build();
 
-        MineralAmountDto actual = MAPPER.readValue(fixture("fixtures/mineralAmount.json"), MineralAmountDto.class);
+        MineralDto actual = MAPPER.readValue(fixture("fixtures/mineral.json"), MineralDto.class);
 
-        assertEqualMineralAmountDto(actual, expected);
+        assertEqualMineralDto(actual, expected);
     }
 }
