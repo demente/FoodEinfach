@@ -21,20 +21,24 @@ import javax.ws.rs.core.MediaType;
 public class RecipeResource {
 
     private final RecipeDao recipeDao;
+    private final RecipeMapper recipeMapper;
 
-    public RecipeResource(RecipeDao recipeDao) {
+    public RecipeResource(RecipeDao recipeDao, RecipeMapper recipeMapper) {
         this.recipeDao = recipeDao;
+        this.recipeMapper = recipeMapper;
     }
 
     @POST
     @UnitOfWork
     public Long save(RecipeDto recipe) {
-        Recipe persistedRecipe = recipeDao.save(RecipeMapper.INSTANCE.toRecipe(recipe));
+        Recipe persistedRecipe = recipeDao.save(recipeMapper.toRecipe(recipe));
         return persistedRecipe.getId();
     }
 
     @DELETE
-    public void delete(Long id) {
+    @UnitOfWork
+    @Path("/{id}")
+    public void delete(@PathParam("id") Long id) {
         recipeDao.delete(id);
     }
 
@@ -42,7 +46,7 @@ public class RecipeResource {
     @UnitOfWork
     @Path("/{id}")
     public RecipeDto findById(@PathParam("id") Long id) {
-        return RecipeMapper.INSTANCE.toRecipeDto(recipeDao.findById(id));
+        return recipeMapper.toRecipeDto(recipeDao.findById(id));
     }
 
 }
