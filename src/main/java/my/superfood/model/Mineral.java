@@ -5,6 +5,9 @@ import my.superfood.model.enums.MineralName;
 import javax.persistence.*;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "allMinerals",
+                query = "SELECT m FROM Mineral m")})
 public class Mineral {
 
     @Id
