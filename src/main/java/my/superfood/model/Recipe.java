@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "recipe")
-@NamedQueries({ @NamedQuery(name = "allRecipes",
+@NamedQueries({@NamedQuery(name = "allRecipes",
         query = "SELECT r FROM Recipe r"),})
 public class Recipe {
 
@@ -26,9 +26,19 @@ public class Recipe {
     @ElementCollection()
     private List<MealType> type;
 
-    private Long preparationTime; // in minutes
+    private Long preparationTime;
 
-    private Long servings; // number of servings or servings
+    private Long cookingTime;
+
+    public Long getCookingTime() {
+        return cookingTime;
+    }
+
+    public void setCookingTime(Long cookingTime) {
+        this.cookingTime = cookingTime;
+    }
+
+    private Long servings;
 
     public Long getId() {
         return id;

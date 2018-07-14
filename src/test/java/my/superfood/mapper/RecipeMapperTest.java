@@ -28,6 +28,7 @@ public class RecipeMapperTest {
         assertThat(actual.getId()).isEqualTo(expected.getId());
         assertThat(actual.getInstructions()).isEqualTo(expected.getInstructions());
         assertThat(actual.getPreparationTime()).isEqualTo(expected.getPreparationTime());
+        assertThat(actual.getCookingTime()).isEqualTo(expected.getCookingTime());
         assertThat(actual.getServings()).isEqualTo(expected.getServings());
     }
 
@@ -41,6 +42,7 @@ public class RecipeMapperTest {
         assertThat(actual.getInstructions()).isEqualTo(expected.getInstructions());
         assertThat(actual.getPreparationTime()).isEqualTo(expected.getPreparationTime());
         assertThat(actual.getServings()).isEqualTo(expected.getServings());
+        assertThat(actual.getCookingTime()).isEqualTo(expected.getCookingTime());
     }
 
 }

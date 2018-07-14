@@ -69,6 +69,8 @@ public class DtoAssertions {
         assertThat(actual.getId()).isEqualTo(expected.getId());
         assertThat(actual.getName()).isEqualTo(expected.getName());
         assertThat(actual.getType()).isEqualTo(expected.getType());
+        assertThat(actual.getPreparationTime()).isEqualTo(expected.getPreparationTime());
+        assertThat(actual.getCookingTime()).isEqualTo(expected.getCookingTime());
     }
 }
 

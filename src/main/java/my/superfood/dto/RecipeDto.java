@@ -19,7 +19,9 @@ public class RecipeDto {
     @JsonProperty
     private List<String> type;
     @JsonProperty
-    private Long preparationTime; // in minutes
+    private Long preparationTime;
+    @JsonProperty
+    private Long cookingTime;
     @JsonProperty
     private Long servings;
 
@@ -77,5 +79,13 @@ public class RecipeDto {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getCookingTime() {
+        return cookingTime;
+    }
+
+    public void setCookingTime(Long cookingTime) {
+        this.cookingTime = cookingTime;
     }
 }
