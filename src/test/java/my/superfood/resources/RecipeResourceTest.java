@@ -1,10 +1,7 @@
 package my.superfood.resources;
 
-import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.testing.junit.ResourceTestRule;
-import my.superfood.assertions.DtoAssertions;
 import my.superfood.dao.RecipeDao;
-import my.superfood.dto.FoodDto;
 import my.superfood.dto.RecipeDto;
 import my.superfood.mapper.RecipeMapper;
 import my.superfood.model.Recipe;
@@ -13,19 +10,17 @@ import org.junit.ClassRule;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
-import static my.superfood.dto.FoodDtoBuilder.aFoodDto;
+import static java.util.Arrays.asList;
+import static my.superfood.assertions.DtoAssertions.assertEqualRecipeDto;
 import static my.superfood.dto.RecipeDtoBuilder.aRecipeDto;
 import static my.superfood.model.RecipeBuilder.aRecipe;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.mock;
@@ -71,7 +66,7 @@ public class RecipeResourceTest {
 
         then(recipeMapper).should().toRecipe(recipeDtoArgumentCaptor.capture());
 
-        DtoAssertions.assertEqualRecipeDto(recipeDtoArgumentCaptor.getValue(), expected);
+        assertEqualRecipeDto(recipeDtoArgumentCaptor.getValue(), expected);
     }
 
     @Test
@@ -115,7 +110,38 @@ public class RecipeResourceTest {
 
         RecipeDto actual = resources.target("/recipes/1").request().get(RecipeDto.class);
 
-        DtoAssertions.assertEqualRecipeDto(actual, expected);
+        assertEqualRecipeDto(actual, expected);
     }
 
+
+    @Test
+    public void findsAll() {
+        resources.target("/recipes").request().get(new GenericType<List<RecipeDto>>() {
+        });
+
+        then(recipeDao).should().findAll();
+    }
+
+    @Test
+    public void mapsFoundRecipesToDtoList() {
+        List<Recipe> expected = asList(aRecipe().build());
+        given(recipeDao.findAll()).willReturn(expected);
+
+        resources.target("/recipes").request().get(new GenericType<List<RecipeDto>>() {
+        });
+
+        then(recipeMapper).should().toRecipeDtoList(expected);
+
+    }
+
+    @Test
+    public void returnsFoundRecipes() {
+        RecipeDto expected = aRecipeDto().build();
+        given(recipeMapper.toRecipeDtoList(anyList())).willReturn(asList(expected));
+
+        List<RecipeDto> actual = resources.target("/recipes").request().get(new GenericType<List<RecipeDto>>() {
+        });
+
+        assertEqualRecipeDto(actual.get(0), expected);
+    }
 }

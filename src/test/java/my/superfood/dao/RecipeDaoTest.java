@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+import java.util.List;
+
 import static my.superfood.model.FoodBuilder.aNewFood;
 import static my.superfood.model.RecipeBuilder.aNewRecipe;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -53,6 +55,16 @@ public class RecipeDaoTest {
         Recipe actual = recipeDao.findById(expected.getId());
 
         assertThat(actual).isSameAs(expected);
+    }
+
+    @Test
+    public void findsAll() {
+        Recipe applePie = database.inTransaction(() -> recipeDao.save(aNewRecipe().withName("Apple pie").build()));
+        Recipe chocolateCake = database.inTransaction(() -> recipeDao.save(aNewRecipe().withName("Chocolate cake").build()));
+
+        List<Recipe> actual = recipeDao.findAll();
+
+        assertThat(actual).containsExactly(applePie, chocolateCake);
     }
 
 }

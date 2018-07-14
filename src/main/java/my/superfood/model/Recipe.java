@@ -2,19 +2,13 @@ package my.superfood.model;
 
 import my.superfood.model.enums.MealType;
 
-import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "recipe")
+@NamedQueries({ @NamedQuery(name = "allRecipes",
+        query = "SELECT r FROM Recipe r"),})
 public class Recipe {
 
     @Id

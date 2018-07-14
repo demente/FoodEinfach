@@ -4,6 +4,8 @@ import io.dropwizard.hibernate.AbstractDAO;
 import my.superfood.model.Recipe;
 import org.hibernate.SessionFactory;
 
+import java.util.List;
+
 public class RecipeDao extends AbstractDAO<Recipe> {
 
     public RecipeDao(SessionFactory sessionFactory) {
@@ -22,4 +24,7 @@ public class RecipeDao extends AbstractDAO<Recipe> {
         currentSession().delete(get(id));
     }
 
+    public List<Recipe> findAll() {
+        return list(currentSession().createNamedQuery("allRecipes", Recipe.class));
+    }
 }
