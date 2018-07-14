@@ -1,6 +1,65 @@
 {
   "id": 1,
-  "foodId": 2,
+  "food": {
+    "id": 1,
+    "name": "Apple",
+    "type": "FRUIT",
+    "weight": {
+      "weight": 100,
+      "unit": "MICROGRAM"
+    },
+    "nutritionalInformation": {
+      "calories": 52,
+      "protein": {
+        "weight": 100,
+        "unit": "MICROGRAM"
+      },
+      "fat": {
+        "weight": 100,
+        "unit": "MICROGRAM"
+      },
+      "carbohydrates": {
+        "weight": 100,
+        "unit": "MICROGRAM"
+      },
+      "sugar": {
+        "weight": 100,
+        "unit": "MICROGRAM"
+      },
+      "fibre": {
+        "weight": 100,
+        "unit": "MICROGRAM"
+      },
+      "vitamins": [
+        {
+          "id": 1,
+          "name": "A",
+          "amount": {
+            "weight": 100,
+            "unit": "MICROGRAM"
+          },
+          "dailyNorm": {
+            "weight": 100,
+            "unit": "MICROGRAM"
+          }
+        }
+      ],
+      "minerals": [
+        {
+          "id": 1,
+          "name": "Ca",
+          "amount": {
+            "weight": 100,
+            "unit": "MICROGRAM"
+          },
+          "dailyNorm": {
+            "weight": 100,
+            "unit": "MICROGRAM"
+          }
+        }
+      ]
+    }
+  },
   "recipeId": 3,
   "amount": 100,
   "unit": "GRAM"

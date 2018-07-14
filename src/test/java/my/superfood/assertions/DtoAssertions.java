@@ -1,6 +1,5 @@
 package my.superfood.assertions;
 
-import my.superfood.dao.MineralDao;
 import my.superfood.dto.*;
 import my.superfood.dto.MineralAmountDto;
 
@@ -47,10 +46,11 @@ public class DtoAssertions {
 
     public static void assertEqualIngredientDto(IngredientDto actual, IngredientDto expected) {
         assertThat(actual.getId()).isEqualTo(expected.getId());
-        assertThat(actual.getFoodId()).isEqualTo(expected.getFoodId());
         assertThat(actual.getRecipeId()).isEqualTo(expected.getRecipeId());
         assertThat(actual.getUnit()).isEqualTo(expected.getUnit());
         assertThat(actual.getAmount()).isEqualTo(expected.getAmount());
+
+        assertEqualFoodDto(actual.getFood(), expected.getFood());
     }
 
     public static void assertEqualMineralAmountDto(MineralAmountDto actual, MineralAmountDto expected) {
