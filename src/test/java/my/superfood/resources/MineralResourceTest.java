@@ -16,9 +16,9 @@ import javax.ws.rs.core.GenericType;
 import java.util.List;
 
 import static java.util.Arrays.asList;
+import static my.superfood.assertions.DtoAssertions.assertEqualMineralDto;
 import static my.superfood.dto.MineralDtoBuilder.aMineralDto;
 import static my.superfood.model.MineralBuilder.aMineral;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
@@ -46,7 +46,7 @@ public class MineralResourceTest {
 
     @Test
     public void findsAll() {
-        resources.target("/minerals").request().get(new GenericType<List<FoodDto>>() {
+        resources.target("/minerals").request().get(new GenericType<List<MineralDto>>() {
         });
 
         then(mineralDao).should().findAll();
@@ -57,7 +57,7 @@ public class MineralResourceTest {
         List<Mineral> expected = asList(aMineral().build());
         given(mineralDao.findAll()).willReturn(expected);
 
-        resources.target("/minerals").request().get(new GenericType<List<FoodDto>>() {
+        resources.target("/minerals").request().get(new GenericType<List<MineralDto>>() {
         });
 
         then(mineralMapper).should().toMineralDtoList(expected);
@@ -72,6 +72,6 @@ public class MineralResourceTest {
         List<MineralDto> actual = resources.target("/minerals").request().get(new GenericType<List<MineralDto>>() {
         });
 
-        DtoAssertions.assertEqualMineralDto(actual.get(0), expected);
+        assertEqualMineralDto(actual.get(0), expected);
     }
 }
