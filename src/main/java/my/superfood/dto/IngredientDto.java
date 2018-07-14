@@ -14,9 +14,7 @@ public class IngredientDto {
     @JsonProperty
     private Long recipeId;
     @JsonProperty
-    private Long amount;
-    @JsonProperty
-    private String unit;
+    private WeightDto amount;
 
     public Long getId() {
         return id;
@@ -42,20 +40,11 @@ public class IngredientDto {
         this.recipeId = recipeId;
     }
 
-    public Long getAmount() {
+    public WeightDto getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
+    public void setAmount(WeightDto amount) {
         this.amount = amount;
     }
-
-    public String getUnit() {
-        return unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
-    }
-
 }

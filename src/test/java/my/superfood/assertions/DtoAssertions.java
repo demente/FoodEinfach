@@ -47,9 +47,9 @@ public class DtoAssertions {
     public static void assertEqualIngredientDto(IngredientDto actual, IngredientDto expected) {
         assertThat(actual.getId()).isEqualTo(expected.getId());
         assertThat(actual.getRecipeId()).isEqualTo(expected.getRecipeId());
-        assertThat(actual.getUnit()).isEqualTo(expected.getUnit());
         assertThat(actual.getAmount()).isEqualTo(expected.getAmount());
 
+        assertEqualWeightDto(actual.getAmount(), expected.getAmount());
         assertEqualFoodDto(actual.getFood(), expected.getFood());
     }
 

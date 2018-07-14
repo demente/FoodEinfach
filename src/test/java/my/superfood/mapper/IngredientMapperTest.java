@@ -24,8 +24,8 @@ public class IngredientMapperTest {
         Ingredient actual = ingredientMapper.toIngredient(expected);
 
         assertThat(actual.getId()).isEqualTo(expected.getId());
-        assertThat(actual.getUnit().name()).isEqualTo(expected.getUnit());
-        assertThat(actual.getAmount()).isEqualTo(expected.getAmount());
+        assertThat(actual.getUnit().name()).isEqualTo(expected.getAmount().getUnit());
+        assertThat(actual.getAmount()).isEqualTo(expected.getAmount().getWeight());
     }
 
     @Test
@@ -35,7 +35,7 @@ public class IngredientMapperTest {
         IngredientDto actual = ingredientMapper.toIngredientDto(expected);
 
         assertThat(actual.getId()).isEqualTo(expected.getId());
-        assertThat(actual.getUnit()).isEqualTo(expected.getUnit().name());
-        assertThat(actual.getAmount()).isEqualTo(expected.getAmount());
+        assertThat(actual.getAmount().getUnit()).isEqualTo(expected.getUnit().name());
+        assertThat(actual.getAmount().getWeight()).isEqualTo(expected.getAmount());
     }
 }
