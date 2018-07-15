@@ -6,12 +6,13 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+import java.util.List;
+
 import static my.superfood.model.FoodBuilder.aNewFood;
 import static my.superfood.model.MealPlanBuilder.aNewMealPlan;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class MealPlanDaoTest {
-
 
     @Rule
     public DAOTestRule database = DAOTestRule.newBuilder()
@@ -58,5 +59,16 @@ public class MealPlanDaoTest {
 
         assertThat(mealPlanDao.findById(persisted.getId())).isNull();
     }
+
+    @Test
+    public void findsAll() {
+        MealPlan first = database.inTransaction(() -> mealPlanDao.save(aNewMealPlan().build()));
+        MealPlan second = database.inTransaction(() -> mealPlanDao.save(aNewMealPlan().build()));
+
+        List<MealPlan> actual = mealPlanDao.findAll();
+
+        assertThat(actual).containsExactly(first, second);
+    }
+
 
 }

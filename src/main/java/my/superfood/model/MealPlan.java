@@ -5,6 +5,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "meal_plan")
+
+@NamedQueries({
+        @NamedQuery(name = "allMealPlans",
+                query = "SELECT m FROM MealPlan m")})
 public class MealPlan {
 
     @Id
