@@ -11,4 +11,8 @@ public class MealPlanBuilder extends AbstractMealPlanBuilder {
     public static MealPlanBuilder aMealPlan() {
         return new MealPlanBuilder();
     }
+
+    public static MealPlanBuilder aNewMealPlan() {
+        return aMealPlan().withId(null);
+    }
 }
