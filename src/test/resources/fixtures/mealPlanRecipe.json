@@ -78,7 +78,7 @@
       "BREAKFAST"
     ],
     "preparationTime": 10,
-    "cookingTime": null,
+    "cookingTime": 20,
     "servings": 2
   },
   "dayOfWeek": "FRIDAY",
