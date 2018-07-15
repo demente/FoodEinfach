@@ -8,10 +8,11 @@ import my.superfood.model.MealPlan;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.List;
 
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@Path("/mealplan")
+@Path("/mealplans")
 public class MealPlanResource {
 
     private final MealPlanDao mealPlanDao;
@@ -40,6 +41,12 @@ public class MealPlanResource {
     @Path("/{id}")
     public MealPlanDto findById(@PathParam("id") Long id) {
         return mealPlanMapper.toMealPlanDto(mealPlanDao.findById(id));
+    }
+
+    @GET
+    @UnitOfWork
+    public List<MealPlanDto> findAll() {
+        return mealPlanMapper.toMealPlanDtoList(mealPlanDao.findAll());
     }
 
 }
