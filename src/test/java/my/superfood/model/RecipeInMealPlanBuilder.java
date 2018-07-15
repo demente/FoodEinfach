@@ -1,6 +1,11 @@
 package my.superfood.model;
 
+import my.superfood.model.enums.MealType;
+
 import javax.annotation.Generated;
+import java.time.DayOfWeek;
+
+import static my.superfood.model.RecipeBuilder.aRecipe;
 
 @Generated("PojoBuilder")
 public class RecipeInMealPlanBuilder extends AbstractRecipeInMealPlanBuilder {
@@ -9,6 +14,10 @@ public class RecipeInMealPlanBuilder extends AbstractRecipeInMealPlanBuilder {
     }
 
     public static RecipeInMealPlanBuilder aRecipeInMealPlan() {
-        return new RecipeInMealPlanBuilder();
+        return new RecipeInMealPlanBuilder()
+                .withId(1L)
+                .withMealType(MealType.BREAKFAST)
+                .withDayOfWeek(DayOfWeek.MONDAY)
+                .withRecipe(aRecipe().build());
     }
 }
