@@ -88,5 +88,10 @@ public class DtoAssertions {
         assertThat(actual.getMealType()).isEqualTo(expected.getMealType());
     }
 
+    public static void assertEqualMealPlanDto(MealPlanDto actual, MealPlanDto expected) {
+        assertThat(actual.getId()).isEqualTo(expected.getId());
+        assertEqualMealPlanFoodDto(actual.getFood().get(0), expected.getFood().get(0));
+        assertEqualMealPlanRecipeDto(actual.getRecipes().get(0), expected.getRecipes().get(0));
+    }
 }
 

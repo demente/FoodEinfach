@@ -2,6 +2,10 @@ package my.superfood.model;
 
 import javax.annotation.Generated;
 
+import static java.util.Arrays.asList;
+import static my.superfood.model.FoodInMealPlanBuilder.aFoodInMealPlan;
+import static my.superfood.model.RecipeInMealPlanBuilder.aRecipeInMealPlan;
+
 @Generated("PojoBuilder")
 public class MealPlanBuilder extends AbstractMealPlanBuilder {
 
@@ -9,7 +13,10 @@ public class MealPlanBuilder extends AbstractMealPlanBuilder {
     }
 
     public static MealPlanBuilder aMealPlan() {
-        return new MealPlanBuilder();
+        return new MealPlanBuilder()
+                .withId(1L)
+                .withFood(asList(aFoodInMealPlan().build()))
+                .withRecipe(asList(aRecipeInMealPlan().build()));
     }
 
     public static MealPlanBuilder aNewMealPlan() {
