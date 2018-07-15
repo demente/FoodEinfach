@@ -2,26 +2,34 @@ package my.superfood.model;
 
 import my.superfood.model.enums.MealType;
 
+import javax.persistence.*;
 import java.time.DayOfWeek;
 
+
+@Entity
+@Table(name="meal_plan_recipe")
 public class RecipeInMealPlan {
 
-    private MealPlan mealPlan;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "recipe_id")
     private Recipe recipe;
 
     private DayOfWeek dayOfWeek;
 
     private MealType mealType;
 
-    public MealPlan getMealPlan() {
-        return mealPlan;
+    public Long getId() {
+        return id;
     }
 
-    public void setMealPlan(MealPlan mealPlan) {
-        this.mealPlan = mealPlan;
+    public void setId(Long id) {
+        this.id = id;
     }
-
     public Recipe getRecipe() {
         return recipe;
     }

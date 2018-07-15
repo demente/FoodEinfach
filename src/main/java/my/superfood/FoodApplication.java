@@ -26,7 +26,9 @@ import java.util.EnumSet;
 public class FoodApplication extends Application<FoodConfiguration> {
 
     private final HibernateBundle<FoodConfiguration> hibernateBundle = new HibernateBundle<FoodConfiguration>(
-            Food.class, MineralAmount.class, VitaminAmount.class, Ingredient.class, Recipe.class, Vitamin.class, Mineral.class) {
+            Food.class, MineralAmount.class, VitaminAmount.class, Ingredient.class, Recipe.class,
+            Vitamin.class, Mineral.class, FoodInMealPlan.class,
+            RecipeInMealPlan.class, MealPlan.class) {
         public DataSourceFactory getDataSourceFactory(FoodConfiguration configuration) {
             return configuration.getDataSourceFactory();
         }

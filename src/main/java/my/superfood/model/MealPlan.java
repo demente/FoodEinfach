@@ -1,14 +1,22 @@
 package my.superfood.model;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "meal_plan")
 public class MealPlan {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "meal_plan_id")
     private List<FoodInMealPlan> food;
 
-    private  List<RecipeInMealPlan> recipe;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "meal_plan_id")
+    private List<RecipeInMealPlan> recipe;
 
     public Long getId() {
         return id;
