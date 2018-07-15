@@ -19,6 +19,7 @@ public class RecipeDtoBuilder extends AbstractRecipeDtoBuilder {
                 .withType(asList("BREAKFAST"))
                 .withInstructions("Cut the apples and put them in the oven.")
                 .withPreparationTime(10L)
+                .withCookingTime(20L)
                 .withIngredients(asList(anIngredientDto().build()));
     }
 }

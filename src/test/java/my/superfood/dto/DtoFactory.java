@@ -52,4 +52,21 @@ public class DtoFactory {
     public static FoodInfoDto newFoodInfoDto() {
         return new FoodInfoDto();
     }
+
+    @GeneratePojoBuilder(withGenerationGap = true)
+    public static MealPlanDto newMealPlanDto() {
+        return new MealPlanDto();
+    }
+
+
+    @GeneratePojoBuilder(withGenerationGap = true)
+    public static MealPlanFoodDto newMealPlanFoodDto() {
+        return new MealPlanFoodDto();
+    }
+
+
+    @GeneratePojoBuilder(withGenerationGap = true)
+    public static MealPlanRecipeDto newMealPlanRecipeDto() {
+        return new MealPlanRecipeDto();
+    }
 }

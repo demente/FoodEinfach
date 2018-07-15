@@ -47,7 +47,6 @@ public class DtoAssertions {
     public static void assertEqualIngredientDto(IngredientDto actual, IngredientDto expected) {
         assertThat(actual.getId()).isEqualTo(expected.getId());
         assertThat(actual.getRecipeId()).isEqualTo(expected.getRecipeId());
-        assertThat(actual.getAmount()).isEqualTo(expected.getAmount());
 
         assertEqualWeightDto(actual.getAmount(), expected.getAmount());
         assertEqualFoodDto(actual.getFood(), expected.getFood());
@@ -72,5 +71,22 @@ public class DtoAssertions {
         assertThat(actual.getPreparationTime()).isEqualTo(expected.getPreparationTime());
         assertThat(actual.getCookingTime()).isEqualTo(expected.getCookingTime());
     }
+
+
+    public static void assertEqualMealPlanRecipeDto(MealPlanRecipeDto actual, MealPlanRecipeDto expected) {
+        assertEqualRecipeDto(actual.getRecipe(), expected.getRecipe());
+        assertThat(actual.getDayOfWeek()).isEqualTo(expected.getDayOfWeek());
+        assertThat(actual.getId()).isEqualTo(expected.getId());
+        assertThat(actual.getMealType()).isEqualTo(expected.getMealType());
+    }
+
+    public static void assertEqualMealPlanFoodDto(MealPlanFoodDto actual, MealPlanFoodDto expected) {
+        assertEqualFoodDto(actual.getFood(), expected.getFood());
+        assertEqualWeightDto(actual.getAmount(), expected.getAmount());
+        assertThat(actual.getDayOfWeek()).isEqualTo(expected.getDayOfWeek());
+        assertThat(actual.getId()).isEqualTo(expected.getId());
+        assertThat(actual.getMealType()).isEqualTo(expected.getMealType());
+    }
+
 }
 

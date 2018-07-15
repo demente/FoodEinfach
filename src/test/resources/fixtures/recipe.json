@@ -65,8 +65,10 @@
         }
       },
       "recipeId": 3,
-      "amount": 100,
-      "unit": "GRAM"
+      "amount": {
+        "weight": 100,
+        "unit": "MICROGRAM"
+      }
     }
   ],
   "instructions": "Cut the apples and put them in the oven.",
@@ -74,5 +76,6 @@
     "BREAKFAST"
   ],
   "preparationTime": 10,
+  "cookingTime": 20,
   "servings": 2
 }

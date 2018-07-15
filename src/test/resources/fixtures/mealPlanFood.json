@@ -60,9 +60,10 @@
       ]
     }
   },
-  "recipeId": 3,
   "amount": {
     "weight": 100,
     "unit": "MICROGRAM"
-  }
+  },
+  "dayOfWeek": "FRIDAY",
+  "mealType": "BREAKFAST"
 }
