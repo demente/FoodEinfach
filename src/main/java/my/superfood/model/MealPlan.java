@@ -1,6 +1,7 @@
 package my.superfood.model;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -17,6 +18,8 @@ public class MealPlan {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "meal_plan_id")
     private List<FoodInMealPlan> food;
+    private Date startDate;
+    private Date endDate;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "meal_plan_id")
@@ -42,7 +45,24 @@ public class MealPlan {
         return recipe;
     }
 
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+
     public void setRecipe(List<RecipeInMealPlan> recipe) {
         this.recipe = recipe;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 }
