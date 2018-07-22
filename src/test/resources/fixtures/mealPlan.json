@@ -158,5 +158,7 @@
       "dayOfWeek": "FRIDAY",
       "mealType": "BREAKFAST"
     }
-  ]
+  ],
+  "startDate": 61444047600000,
+  "endDate": 61444652400000
 }

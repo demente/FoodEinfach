@@ -4,6 +4,8 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+import static javax.persistence.TemporalType.DATE;
+
 @Entity
 @Table(name = "meal_plan")
 
@@ -18,7 +20,9 @@ public class MealPlan {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "meal_plan_id")
     private List<FoodInMealPlan> food;
+    @Temporal(DATE)
     private Date startDate;
+    @Temporal(DATE)
     private Date endDate;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)

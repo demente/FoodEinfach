@@ -3,6 +3,7 @@ package my.superfood.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Date;
 import java.util.List;
 
 @XmlRootElement
@@ -13,6 +14,10 @@ public class MealPlanDto {
     private List<MealPlanFoodDto> food;
     @JsonProperty
     private List<MealPlanRecipeDto> recipes;
+    @JsonProperty
+    private Date startDate;
+    @JsonProperty
+    private Date endDate;
 
     public Long getId() {
         return id;
@@ -36,5 +41,21 @@ public class MealPlanDto {
 
     public void setRecipes(List<MealPlanRecipeDto> recipes) {
         this.recipes = recipes;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 }

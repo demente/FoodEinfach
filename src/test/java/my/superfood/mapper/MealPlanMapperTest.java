@@ -19,6 +19,8 @@ public class MealPlanMapperTest {
         MealPlan actual = mealPlanMapper.toMealPlan(expected);
 
         assertThat(actual.getId()).isEqualTo(expected.getId());
+        assertThat(actual.getStartDate()).isEqualTo(expected.getStartDate());
+        assertThat(actual.getEndDate()).isEqualTo(expected.getEndDate());
     }
 
     @Test
@@ -28,5 +30,7 @@ public class MealPlanMapperTest {
         MealPlanDto actual = mealPlanMapper.toMealPlanDto(expected);
 
         assertThat(actual.getId()).isEqualTo(expected.getId());
+        assertThat(actual.getStartDate()).isEqualTo(expected.getStartDate());
+        assertThat(actual.getEndDate()).isEqualTo(expected.getEndDate());
     }
 }

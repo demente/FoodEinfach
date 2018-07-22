@@ -70,5 +70,4 @@ public class MealPlanDaoTest {
         assertThat(actual).containsExactly(first, second);
     }
 
-
 }

@@ -7,6 +7,7 @@ import javax.annotation.Generated;
 import java.time.DayOfWeek;
 
 import static my.superfood.model.FoodBuilder.aFood;
+import static my.superfood.model.FoodBuilder.aNewFood;
 
 @Generated("PojoBuilder")
 public class FoodInMealPlanBuilder extends AbstractFoodInMealPlanBuilder {
@@ -22,5 +23,9 @@ public class FoodInMealPlanBuilder extends AbstractFoodInMealPlanBuilder {
                 .withUnit(Unit.MICROGRAM)
                 .withMealType(MealType.BREAKFAST)
                 .withFood(aFood().build());
+    }
+
+    public static FoodInMealPlanBuilder aNewFoodInMealPlan() {
+        return aFoodInMealPlan().withId(null).withFood(aNewFood().build());
     }
 }
