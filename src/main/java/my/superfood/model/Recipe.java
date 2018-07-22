@@ -8,7 +8,8 @@ import java.util.List;
 @Entity
 @Table(name = "recipe")
 @NamedQueries({@NamedQuery(name = "allRecipes",
-        query = "SELECT r FROM Recipe r"),})
+        query = "SELECT r FROM Recipe r"),
+        @NamedQuery(name = "recipeByName", query = "SELECT r FROM Recipe r WHERE lower(name) like concat(lower(:name),'%')")})
 public class Recipe {
 
     @Id

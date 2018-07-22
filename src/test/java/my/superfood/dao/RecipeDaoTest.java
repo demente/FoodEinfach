@@ -67,4 +67,16 @@ public class RecipeDaoTest {
         assertThat(actual).containsExactly(applePie, chocolateCake);
     }
 
+    @Test
+    public void findsByName() {
+        Recipe applePie = database.inTransaction(() -> recipeDao.save(aNewRecipe().withName("Apple pie").build()));
+        Recipe appleSouflle = database.inTransaction(() -> recipeDao.save(aNewRecipe().withName("Apple souffle").build()));
+        Recipe apricotMuffin = database.inTransaction(() -> recipeDao.save(aNewRecipe().withName("Apricot muffin").build()));
+
+        List<Recipe> actual = recipeDao.findByName("apple");
+
+        assertThat(actual).containsExactly(applePie, appleSouflle);
+        assertThat(actual).doesNotContain(apricotMuffin);
+    }
+
 }
