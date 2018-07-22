@@ -6,13 +6,7 @@ import my.superfood.dao.RecipeDao;
 import my.superfood.mapper.RecipeMapper;
 import my.superfood.model.Recipe;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
@@ -49,10 +43,13 @@ public class RecipeResource {
     public RecipeDto findById(@PathParam("id") Long id) {
         return recipeMapper.toRecipeDto(recipeDao.findById(id));
     }
-
+    
     @GET
     @UnitOfWork
-    public List<RecipeDto> findAll() {
+    public List<RecipeDto> findByCriteria(@QueryParam("name") String name) {
+        if (name != null) {
+            return recipeMapper.toRecipeDtoList(recipeDao.findByName(name));
+        }
         return recipeMapper.toRecipeDtoList(recipeDao.findAll());
     }
 

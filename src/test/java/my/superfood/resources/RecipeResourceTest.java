@@ -113,7 +113,6 @@ public class RecipeResourceTest {
         assertEqualRecipeDto(actual, expected);
     }
 
-
     @Test
     public void findsAll() {
         resources.target("/recipes").request().get(new GenericType<List<RecipeDto>>() {
@@ -140,6 +139,37 @@ public class RecipeResourceTest {
         given(recipeMapper.toRecipeDtoList(anyList())).willReturn(asList(expected));
 
         List<RecipeDto> actual = resources.target("/recipes").request().get(new GenericType<List<RecipeDto>>() {
+        });
+
+        assertEqualRecipeDto(actual.get(0), expected);
+    }
+
+    @Test
+    public void findsByName() {
+        resources.target("/recipes").queryParam("name","recipeName").request().get(new GenericType<List<RecipeDto>>() {
+        });
+
+        then(recipeDao).should().findByName("recipeName");
+    }
+
+    @Test
+    public void mapsRecipesFoundByNameToDtoList() {
+        List<Recipe> expected = asList(aRecipe().build());
+        given(recipeDao.findByName(anyString())).willReturn(expected);
+
+        resources.target("/recipes").queryParam("name","recipeName").request().get(new GenericType<List<RecipeDto>>() {
+        });
+
+        then(recipeMapper).should().toRecipeDtoList(expected);
+
+    }
+
+    @Test
+    public void returnsRecipesFoundByName() {
+        RecipeDto expected = aRecipeDto().build();
+        given(recipeMapper.toRecipeDtoList(anyList())).willReturn(asList(expected));
+
+        List<RecipeDto> actual = resources.target("/recipes").queryParam("name","recipeName").request().get(new GenericType<List<RecipeDto>>() {
         });
 
         assertEqualRecipeDto(actual.get(0), expected);
