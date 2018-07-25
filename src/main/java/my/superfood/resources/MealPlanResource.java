@@ -25,8 +25,8 @@ public class MealPlanResource {
 
     @POST
     @UnitOfWork
-    public Long saveMealPlan(MealPlanDto food) {
-        MealPlan persistedMealPlan = mealPlanDao.save(mealPlanMapper.toMealPlan(food));
+    public Long saveMealPlan(MealPlanDto mealPlanDto) {
+        MealPlan persistedMealPlan = mealPlanDao.save(mealPlanMapper.toMealPlan(mealPlanDto));
         return persistedMealPlan.getId();
     }
 

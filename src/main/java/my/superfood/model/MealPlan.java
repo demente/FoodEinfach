@@ -27,7 +27,7 @@ public class MealPlan {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "meal_plan_id")
-    private List<RecipeInMealPlan> recipe;
+    private List<RecipeInMealPlan> recipes;
 
     public Long getId() {
         return id;
@@ -45,8 +45,8 @@ public class MealPlan {
         this.food = food;
     }
 
-    public List<RecipeInMealPlan> getRecipe() {
-        return recipe;
+    public List<RecipeInMealPlan> getRecipes() {
+        return recipes;
     }
 
     public Date getStartDate() {
@@ -58,8 +58,8 @@ public class MealPlan {
     }
 
 
-    public void setRecipe(List<RecipeInMealPlan> recipe) {
-        this.recipe = recipe;
+    public void setRecipes(List<RecipeInMealPlan> recipes) {
+        this.recipes = recipes;
     }
 
     public Date getEndDate() {
