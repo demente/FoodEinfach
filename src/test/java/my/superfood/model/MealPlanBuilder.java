@@ -1,8 +1,9 @@
 package my.superfood.model;
 
+import org.joda.time.LocalDate;
+
 import javax.annotation.Generated;
 
-import java.util.Date;
 
 import static java.util.Arrays.asList;
 import static my.superfood.model.FoodInMealPlanBuilder.aFoodInMealPlan;
@@ -19,8 +20,8 @@ public class MealPlanBuilder extends AbstractMealPlanBuilder {
     public static MealPlanBuilder aMealPlan() {
         return new MealPlanBuilder()
                 .withId(1L)
-                .withStartDate(new Date(2017, 1, 1))
-                .withEndDate(new Date(2017, 1, 8))
+                .withStartDate(new LocalDate(2017, 1, 1))
+                .withEndDate(new LocalDate(2017, 1, 8))
                 .withFood(asList(aFoodInMealPlan().build()))
                 .withRecipes(asList(aRecipeInMealPlan().build()));
     }

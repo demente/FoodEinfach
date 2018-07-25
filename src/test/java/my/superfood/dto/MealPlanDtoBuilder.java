@@ -1,8 +1,8 @@
 package my.superfood.dto;
 
-import javax.annotation.Generated;
+import org.joda.time.LocalDate;
 
-import java.util.Date;
+import javax.annotation.Generated;
 
 import static java.util.Arrays.asList;
 import static my.superfood.dto.MealPlanFoodDtoBuilder.aMealPlanFoodDto;
@@ -18,8 +18,8 @@ public class MealPlanDtoBuilder extends AbstractMealPlanDtoBuilder {
     public static MealPlanDtoBuilder aMealPlanDto() {
         return new MealPlanDtoBuilder()
                 .withId(1L)
-                .withStartDate(new Date(2017, 1, 1))
-                .withEndDate(new Date(2017, 1, 8))
+                .withStartDate(new LocalDate(2017, 1, 1))
+                .withEndDate(new LocalDate(2017, 1, 8))
                 .withFood(asList(aMealPlanFoodDto().build()))
                 .withRecipes(asList(aMealPlanRecipeDto().build()));
     }

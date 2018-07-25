@@ -1,7 +1,8 @@
 package my.superfood.model;
 
+import org.joda.time.LocalDate;
+
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 import static javax.persistence.TemporalType.DATE;
@@ -20,10 +21,8 @@ public class MealPlan {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "meal_plan_id")
     private List<FoodInMealPlan> food;
-    @Temporal(DATE)
-    private Date startDate;
-    @Temporal(DATE)
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "meal_plan_id")
@@ -45,28 +44,27 @@ public class MealPlan {
         this.food = food;
     }
 
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
     public List<RecipeInMealPlan> getRecipes() {
         return recipes;
     }
 
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-
     public void setRecipes(List<RecipeInMealPlan> recipes) {
         this.recipes = recipes;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
     }
 }
