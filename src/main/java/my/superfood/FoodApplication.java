@@ -5,6 +5,7 @@ import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import liquibase.util.ISODateFormat;
 import my.superfood.dao.FoodDao;
 import my.superfood.dao.MealPlanDao;
 import my.superfood.dao.MineralDao;
@@ -17,9 +18,11 @@ import my.superfood.mapper.RecipeMapper;
 import my.superfood.model.*;
 import my.superfood.resources.*;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
+import org.joda.time.format.ISODateTimeFormat;
 
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
+import java.text.SimpleDateFormat;
 import java.util.EnumSet;
 
 public class FoodApplication extends Application<FoodConfiguration> {
@@ -46,11 +49,13 @@ public class FoodApplication extends Application<FoodConfiguration> {
     @Override
     public void run(FoodConfiguration conf, Environment environment) {
         configureCors(environment);
+        configureDateFormat(environment);
 
         final FoodDao foodDao = new FoodDao(hibernateBundle.getSessionFactory());
         RecipeDao recipeDao = new RecipeDao(hibernateBundle.getSessionFactory());
         MineralDao mineralDao = new MineralDao(hibernateBundle.getSessionFactory());
         MealPlanDao mealPlanDao = new MealPlanDao(hibernateBundle.getSessionFactory());
+
         environment.jersey().register(new FoodResource(foodDao, FoodMapper.INSTANCE));
         environment.jersey().register(new FoodInfoResource(foodDao, FoodMapper.INSTANCE));
         environment.jersey().register(new RecipeResource(recipeDao, RecipeMapper.INSTANCE));
@@ -59,6 +64,10 @@ public class FoodApplication extends Application<FoodConfiguration> {
 
         environment.healthChecks().register("database", new DatabaseConnectionHealthCheck(null));
 
+    }
+
+    private void configureDateFormat(Environment environment) {
+        environment.getObjectMapper().setDateFormat(new SimpleDateFormat());
     }
 
     private void configureCors(Environment environment) {

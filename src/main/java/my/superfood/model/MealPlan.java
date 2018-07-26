@@ -5,8 +5,6 @@ import org.joda.time.LocalDate;
 import javax.persistence.*;
 import java.util.List;
 
-import static javax.persistence.TemporalType.DATE;
-
 @Entity
 @Table(name = "meal_plan")
 
