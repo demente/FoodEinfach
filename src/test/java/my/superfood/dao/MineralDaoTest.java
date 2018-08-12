@@ -2,6 +2,7 @@ package my.superfood.dao;
 
 import io.dropwizard.testing.junit.DAOTestRule;
 import my.superfood.model.Mineral;
+import my.superfood.model.enums.MineralName;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -42,6 +43,14 @@ public class MineralDaoTest {
         List<Mineral> actual = mineralDao.findAll();
 
         assertThat(actual).containsExactly(calcium, iron);
+    }
+
+    @Test
+    public void findsByName() {
+        Mineral calcium = database.inTransaction(() -> mineralDao.save(aMineral().withName(Ca).build()));
+        Mineral actual = mineralDao.findByName(MineralName.Ca);
+
+        assertThat(actual).isEqualTo(calcium);
     }
 
 }

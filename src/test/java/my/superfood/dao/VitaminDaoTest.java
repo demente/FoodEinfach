@@ -2,6 +2,7 @@ package my.superfood.dao;
 
 import io.dropwizard.testing.junit.DAOTestRule;
 import my.superfood.model.Vitamin;
+import my.superfood.model.enums.VitaminName;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -42,6 +43,15 @@ public class VitaminDaoTest {
         List<Vitamin> actual = vitaminDao.findAll();
 
         assertThat(actual).containsExactly(a, b6);
+    }
+
+    @Test
+    public void findsByName() {
+        Vitamin a = database.inTransaction(() -> vitaminDao.save(aVitamin().withName(A).build()));
+
+        Vitamin actual = vitaminDao.findByName(VitaminName.A);
+
+        assertThat(actual).isEqualTo(a);
     }
 
 }

@@ -7,7 +7,8 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "allVitamins",
-                query = "SELECT v FROM Vitamin v")})
+                query = "SELECT v FROM Vitamin v"),
+        @NamedQuery(name = "vitaminByName", query = "SELECT v FROM Vitamin v where name=:name")})
 public class Vitamin {
 
     @Id
