@@ -29,6 +29,13 @@ public class WeightMapperTest {
     }
 
     @Test
+    public void returnsNullIfNoWeightGiven() {
+        WeightDto actual = weightMapper.toWeightDto(null);
+
+        assertThat(actual).isNull();
+    }
+
+    @Test
     public void mapsToWeightInMicrograms() {
         Long actual = weightMapper.toWeight(aWeightDto().withWeight(10L).withUnit(GRAM.name()).build());
 

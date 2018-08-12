@@ -12,6 +12,10 @@ public class WeightMapper {
     }
 
     public WeightDto toWeightDto(Long weight, Unit targetUnit) {
+        if (weight == null) {
+            return null;
+        }
+
         WeightDto dto = new WeightDto();
         dto.setWeight(weight / targetUnit.getMultiplier());
         dto.setUnit(targetUnit.name());
