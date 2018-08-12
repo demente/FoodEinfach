@@ -5,13 +5,12 @@ import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
-import my.superfood.dao.FoodDao;
-import my.superfood.dao.MealPlanDao;
-import my.superfood.dao.MineralDao;
-import my.superfood.dao.RecipeDao;
+import my.superfood.dao.*;
 import my.superfood.healthchecks.DatabaseConnectionHealthCheck;
 import my.superfood.mapper.*;
 import my.superfood.model.*;
+import my.superfood.resolver.MineralResolver;
+import my.superfood.resolver.VitaminResolver;
 import my.superfood.resources.*;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 
@@ -50,10 +49,14 @@ public class FoodApplication extends Application<FoodConfiguration> {
         RecipeDao recipeDao = new RecipeDao(hibernateBundle.getSessionFactory());
         MineralDao mineralDao = new MineralDao(hibernateBundle.getSessionFactory());
         MealPlanDao mealPlanDao = new MealPlanDao(hibernateBundle.getSessionFactory());
+        VitaminDao vitaminDao = new VitaminDao(hibernateBundle.getSessionFactory());
+
+        VitaminResolver vitaminResolver = new VitaminResolver(vitaminDao);
+        MineralResolver mineralResolver = new MineralResolver(mineralDao);
 
         WeightMapper weightMapper = new WeightMapper();
-        VitaminMapper vitaminMapper = new VitaminMapper(weightMapper);
-        MineralMapper mineralMapper = new MineralMapper(weightMapper);
+        VitaminMapper vitaminMapper = new VitaminMapper(vitaminResolver, weightMapper);
+        MineralMapper mineralMapper = new MineralMapper(mineralResolver, weightMapper);
         NutritionalInformationMapper nutritionalInformationMapper = new NutritionalInformationMapper(vitaminMapper, mineralMapper, weightMapper);
         FoodMapper foodMapper = new FoodMapper(nutritionalInformationMapper, weightMapper);
         IngredientMapper ingredientMapper = new IngredientMapper(foodMapper);
@@ -67,6 +70,7 @@ public class FoodApplication extends Application<FoodConfiguration> {
         environment.jersey().register(new RecipeResource(recipeDao, recipeMapper));
         environment.jersey().register(new MineralResource(mineralDao, mineralMapper));
         environment.jersey().register(new MealPlanResource(mealPlanDao, mealPlanMapper));
+        environment.jersey().register(new VitaminResource(vitaminDao, vitaminMapper));
 
         environment.healthChecks().register("database", new DatabaseConnectionHealthCheck(null));
 
