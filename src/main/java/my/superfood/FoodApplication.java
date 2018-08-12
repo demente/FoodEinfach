@@ -5,20 +5,15 @@ import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
-import liquibase.util.ISODateFormat;
 import my.superfood.dao.FoodDao;
 import my.superfood.dao.MealPlanDao;
 import my.superfood.dao.MineralDao;
 import my.superfood.dao.RecipeDao;
 import my.superfood.healthchecks.DatabaseConnectionHealthCheck;
-import my.superfood.mapper.FoodMapper;
-import my.superfood.mapper.MealPlanMapper;
-import my.superfood.mapper.MineralMapper;
-import my.superfood.mapper.RecipeMapper;
+import my.superfood.mapper.*;
 import my.superfood.model.*;
 import my.superfood.resources.*;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
-import org.joda.time.format.ISODateTimeFormat;
 
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
@@ -56,11 +51,22 @@ public class FoodApplication extends Application<FoodConfiguration> {
         MineralDao mineralDao = new MineralDao(hibernateBundle.getSessionFactory());
         MealPlanDao mealPlanDao = new MealPlanDao(hibernateBundle.getSessionFactory());
 
-        environment.jersey().register(new FoodResource(foodDao, FoodMapper.INSTANCE));
-        environment.jersey().register(new FoodInfoResource(foodDao, FoodMapper.INSTANCE));
-        environment.jersey().register(new RecipeResource(recipeDao, RecipeMapper.INSTANCE));
-        environment.jersey().register(new MineralResource(mineralDao, MineralMapper.INSTANCE));
-        environment.jersey().register(new MealPlanResource(mealPlanDao, MealPlanMapper.INSTANCE));
+        WeightMapper weightMapper = new WeightMapper();
+        VitaminMapper vitaminMapper = new VitaminMapper(weightMapper);
+        MineralMapper mineralMapper = new MineralMapper(weightMapper);
+        NutritionalInformationMapper nutritionalInformationMapper = new NutritionalInformationMapper(vitaminMapper, mineralMapper, weightMapper);
+        FoodMapper foodMapper = new FoodMapper(nutritionalInformationMapper, weightMapper);
+        IngredientMapper ingredientMapper = new IngredientMapper(foodMapper);
+        RecipeMapper recipeMapper = new RecipeMapper(ingredientMapper);
+        MealPlanRecipeMapper mealPlanRecipeMapper = new MealPlanRecipeMapper(recipeMapper);
+        MealPlanFoodMapper mealPlanFoodMapper = new MealPlanFoodMapper(foodMapper);
+        MealPlanMapper mealPlanMapper = new MealPlanMapper(mealPlanRecipeMapper, mealPlanFoodMapper);
+
+        environment.jersey().register(new FoodResource(foodDao, foodMapper));
+        environment.jersey().register(new FoodInfoResource(foodDao, foodMapper));
+        environment.jersey().register(new RecipeResource(recipeDao, recipeMapper));
+        environment.jersey().register(new MineralResource(mineralDao, mineralMapper));
+        environment.jersey().register(new MealPlanResource(mealPlanDao, mealPlanMapper));
 
         environment.healthChecks().register("database", new DatabaseConnectionHealthCheck(null));
 

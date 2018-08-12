@@ -4,21 +4,30 @@ import my.superfood.dto.MineralAmountDto;
 import my.superfood.dto.MineralDto;
 import my.superfood.model.Mineral;
 import my.superfood.model.MineralAmount;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import static my.superfood.dto.MineralAmountDtoBuilder.aMineralAmountDto;
 import static my.superfood.model.MineralAmountBuilder.aMineralAmount;
 import static my.superfood.model.MineralBuilder.aMineral;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.then;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MineralMapperTest {
 
-    @InjectMocks
-    private MineralMapper mineralMapper = new MineralMapperImpl();
+    private MineralMapper mineralMapper;
+    @Mock
+    private WeightMapper weightMapper;
+
+    @Before
+    public void setup() {
+        mineralMapper = new MineralMapper(weightMapper);
+    }
 
     @Test
     public void mapsMineralAmountToDto() {
@@ -47,6 +56,13 @@ public class MineralMapperTest {
         MineralDto actual = mineralMapper.toMineralDto(expected);
 
         assertThat(actual.getName()).isEqualTo(expected.getName().name());
-        assertThat(actual.getDailyNorm().getWeight()).isEqualTo(expected.getDailyNorm());
+    }
+
+    @Test
+    public void mapsWeightToWeightDto() {
+        Mineral expected = aMineral().build();
+        mineralMapper.toMineralDto(expected);
+
+        then(weightMapper).should().toWeightDto(expected.getDailyNorm());
     }
 }

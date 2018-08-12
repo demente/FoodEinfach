@@ -24,7 +24,6 @@ public class VitaminResource {
         this.vitaminMapper = vitaminMapper;
     }
 
-
     @GET
     @UnitOfWork
     public List<VitaminDto> findAll() {

@@ -2,15 +2,28 @@ package my.superfood.mapper;
 
 import my.superfood.dto.MealPlanFoodDto;
 import my.superfood.model.FoodInMealPlan;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import static my.superfood.dto.MealPlanFoodDtoBuilder.aMealPlanFoodDto;
 import static my.superfood.model.FoodInMealPlanBuilder.aFoodInMealPlan;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.then;
 
+@RunWith(MockitoJUnitRunner.class)
 public class MealPlanFoodMapperTest {
 
-    private MealPlanFoodMapper mealPlanFoodMapper = new MealPlanFoodMapperImpl();
+    private MealPlanFoodMapper mealPlanFoodMapper;
+    @Mock
+    private FoodMapper foodMapper;
+
+    @Before
+    public void setup() {
+        mealPlanFoodMapper = new MealPlanFoodMapper(foodMapper);
+    }
 
     @Test
     public void mapsDtoToEntity() {
@@ -23,7 +36,15 @@ public class MealPlanFoodMapperTest {
         assertThat(actual.getMealType()).isEqualTo(expected.getMealType());
         assertThat(actual.getAmount()).isEqualTo(expected.getAmount().getWeight());
         assertThat(actual.getUnit().name()).isEqualTo(expected.getAmount().getUnit());
-        assertThat(actual.getFood().getId()).isEqualTo(expected.getFood().getId());
+    }
+
+    @Test
+    public void mapsFoodDtoToFood() {
+        MealPlanFoodDto expected = aMealPlanFoodDto().build();
+
+        mealPlanFoodMapper.toFoodInMealPlan(expected);
+
+        then(foodMapper).should().toFood(expected.getFood());
     }
 
     @Test
@@ -35,8 +56,17 @@ public class MealPlanFoodMapperTest {
         assertThat(actual.getId()).isEqualTo(expected.getId());
         assertThat(actual.getDayOfWeek()).isEqualTo(expected.getDayOfWeek());
         assertThat(actual.getMealType()).isEqualTo(expected.getMealType());
-        assertThat(actual.getFood().getId()).isEqualTo(expected.getFood().getId());
         assertThat(actual.getAmount().getWeight()).isEqualTo(expected.getAmount());
         assertThat(actual.getAmount().getUnit()).isEqualTo(expected.getUnit().name());
     }
+
+    @Test
+    public void mapsFoodToFoodDto() {
+        FoodInMealPlan expected = aFoodInMealPlan().build();
+
+        mealPlanFoodMapper.toMealPlanFoodDto(expected);
+
+        then(foodMapper).should().toFoodDto(expected.getFood());
+    }
+
 }

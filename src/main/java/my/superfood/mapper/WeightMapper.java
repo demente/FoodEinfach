@@ -2,23 +2,19 @@ package my.superfood.mapper;
 
 import my.superfood.dto.WeightDto;
 import my.superfood.model.enums.Unit;
-import org.mapstruct.Mapper;
-
-import java.math.BigDecimal;
 
 import static my.superfood.model.enums.Unit.MICROGRAM;
 
-@Mapper
-public interface WeightMapper {
+public class WeightMapper {
 
-    default WeightDto toWeightDto(Long weight) {
+    public WeightDto toWeightDto(Long weight) {
         WeightDto dto = new WeightDto();
         dto.setWeight(weight);
         dto.setUnit(MICROGRAM.name());
         return dto;
     }
 
-    default Long toWeight(WeightDto weightDto) {
+    public Long toWeight(WeightDto weightDto) {
         if (weightDto == null) {
             return null;
         }

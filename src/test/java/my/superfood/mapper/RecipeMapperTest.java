@@ -4,9 +4,11 @@ import my.superfood.dto.RecipeDto;
 import my.superfood.dto.RecipeDtoBuilder;
 import my.superfood.model.Recipe;
 import my.superfood.model.enums.MealType;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import static my.superfood.dto.RecipeDtoBuilder.aRecipeDto;
@@ -16,8 +18,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(MockitoJUnitRunner.class)
 public class RecipeMapperTest {
 
-    @InjectMocks
-    private RecipeMapper recipeMapper = new RecipeMapperImpl();
+    private RecipeMapper recipeMapper;
+    @Mock
+    private IngredientMapper ingredientMapper;
+
+    @Before
+    public void setup() {
+        recipeMapper = new RecipeMapper(ingredientMapper);
+    }
 
     @Test
     public void mapsDtoToEntity() {

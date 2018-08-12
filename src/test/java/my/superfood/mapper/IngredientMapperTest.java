@@ -1,10 +1,13 @@
 package my.superfood.mapper;
 
 import my.superfood.dto.IngredientDto;
+import my.superfood.model.Food;
 import my.superfood.model.Ingredient;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import static my.superfood.dto.IngredientDtoBuilder.anIngredientDto;
@@ -14,8 +17,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(MockitoJUnitRunner.class)
 public class IngredientMapperTest {
 
-    @InjectMocks
-    private IngredientMapper ingredientMapper = new IngredientMapperImpl();
+    private IngredientMapper ingredientMapper;
+@Mock
+private FoodMapper foodMapper;
+
+    @Before
+    public void setup(){
+        ingredientMapper = new IngredientMapper(foodMapper);
+    }
 
     @Test
     public void mapsDtoToEntity() {

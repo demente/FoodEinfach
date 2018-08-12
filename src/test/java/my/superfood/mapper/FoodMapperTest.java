@@ -3,6 +3,7 @@ package my.superfood.mapper;
 import my.superfood.dto.FoodDto;
 import my.superfood.dto.FoodInfoDto;
 import my.superfood.model.Food;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,12 +19,17 @@ import static org.mockito.BDDMockito.then;
 @RunWith(MockitoJUnitRunner.class)
 public class FoodMapperTest {
 
-    @InjectMocks
-    private FoodMapper foodMapper = new FoodMapperImpl();
+    private FoodMapper foodMapper;
 
     @Mock
     private NutritionalInformationMapper nutritionalInformationMapper;
+    @Mock
+    private WeightMapper weightMapper;
 
+    @Before
+    public void setup() {
+        foodMapper = new FoodMapper(nutritionalInformationMapper, weightMapper);
+    }
 
     @Test
     public void mapsDtoToEntity() {
@@ -48,7 +54,6 @@ public class FoodMapperTest {
     }
 
     @Test
-    @Ignore(value = "until I find a way to use mocks")
     public void mapsToNutritionalInformationDto() {
         Food food = aFood().build();
 
@@ -58,7 +63,6 @@ public class FoodMapperTest {
     }
 
     @Test
-    @Ignore(value = "until I find a way to use mocks")
     public void mapsToNutritionalInformation() {
         FoodDto food = aFoodDto().build();
 

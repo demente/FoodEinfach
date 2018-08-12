@@ -4,6 +4,7 @@ import my.superfood.dto.NutritionalInformationDto;
 import my.superfood.dto.NutritionalInformationDtoBuilder;
 import my.superfood.model.NutritionalInformation;
 import my.superfood.model.NutritionalInformationBuilder;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -17,8 +18,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(MockitoJUnitRunner.class)
 public class NutritionalInformationMapperTest {
 
-    @InjectMocks
-    private NutritionalInformationMapper nutritionalInformationMapper = new NutritionalInformationMapperImpl();
+    private NutritionalInformationMapper nutritionalInformationMapper;
+    @Mock
+    private VitaminMapper vitaminMapper;
+    @Mock
+    private MineralMapper mineralMapper;
+    @Mock
+    private WeightMapper weightMapper;
+
+    @Before
+    public void setup() {
+        nutritionalInformationMapper = new NutritionalInformationMapper(vitaminMapper, mineralMapper, weightMapper);
+    }
 
     @Test
     public void mapsDtoToEntity() {

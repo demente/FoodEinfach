@@ -6,6 +6,7 @@ import my.superfood.dto.FoodDto;
 import my.superfood.mapper.FoodMapper;
 import my.superfood.model.Food;
 
+import javax.inject.Named;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
