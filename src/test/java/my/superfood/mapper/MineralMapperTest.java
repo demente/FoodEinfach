@@ -48,14 +48,14 @@ public class MineralMapperTest {
 
     @Test
     public void mapsMineralAmountDtoToMineralAmount() {
-        MineralAmount expected = aMineralAmount().build();
+        MineralAmountDto expected = aMineralAmountDto().build();
         Long weight = 12L;
         Mineral mineral = aMineral().build();
 
         given(weightMapper.toWeight(any())).willReturn(weight);
         given(mineralResolver.toMineral(any())).willReturn(mineral);
 
-        MineralAmount actual = mineralMapper.toMineralAmount(aMineralAmountDto().build());
+        MineralAmount actual = mineralMapper.toMineralAmount(expected);
 
         assertThat(actual.getId()).isEqualTo(expected.getId());
         assertThat(actual.getMineral()).isEqualTo(mineral);
@@ -119,7 +119,7 @@ public class MineralMapperTest {
     }
 
     @Test
-    public void mapsToWeightDtoWhenMappingMineralToMineralDt() {
+    public void mapsToWeightDtoWhenMappingMineralToMineralDto() {
         mineralMapper.toMineralDto(aMineral().withDailyNorm(12L).build());
 
         then(weightMapper).should().toWeightDto(12L);
@@ -138,4 +138,34 @@ public class MineralMapperTest {
         assertThat(actual).extracting(MineralDto::getDailyNorm).containsExactly(weight);
     }
 
+    @Test
+    public void mapsToMineralAmountDtoList() {
+        MineralAmount expected = aMineralAmount().build();
+        WeightDto weightDto = aWeightDto().build();
+
+        given(weightMapper.toWeightDto(any())).willReturn(weightDto);
+
+        List<MineralAmountDto> actual = mineralMapper.toMineralAmountDtoList(asList(expected));
+
+        assertThat(actual).extracting(MineralAmountDto::getId).containsExactly(expected.getId());
+        assertThat(actual).extracting(MineralAmountDto::getName).containsExactly(expected.getMineral().getName());
+        assertThat(actual).extracting(MineralAmountDto::getAmount).containsExactly(weightDto);
+        assertThat(actual).extracting(MineralAmountDto::getDailyNorm).containsExactly(weightDto);
+    }
+
+    @Test
+    public void mapsToMineralAmountList() {
+        MineralAmountDto expected = aMineralAmountDto().build();
+        Long weight = 12L;
+        Mineral mineral = aMineral().build();
+
+        given(weightMapper.toWeight(any())).willReturn(weight);
+        given(mineralResolver.toMineral(any())).willReturn(mineral);
+
+        List<MineralAmount> actual = mineralMapper.toMineralAmountList(asList(expected));
+
+        assertThat(actual).extracting(MineralAmount::getId).containsExactly(expected.getId());
+        assertThat(actual).extracting(MineralAmount::getMineral).containsExactly(mineral);
+        assertThat(actual).extracting(MineralAmount::getAmount).containsExactly(weight);
+    }
 }

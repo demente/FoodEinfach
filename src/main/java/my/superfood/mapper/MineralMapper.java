@@ -76,6 +76,32 @@ public class MineralMapper {
         return list;
     }
 
+    public List<MineralAmountDto> toMineralAmountDtoList(List<MineralAmount> mineralAmountList) {
+        if (mineralAmountList == null) {
+            return null;
+        }
+
+        List<MineralAmountDto> list = new ArrayList<MineralAmountDto>();
+        for (MineralAmount mineralAmount : mineralAmountList) {
+            list.add(toMineralAmountDto(mineralAmount));
+        }
+
+        return list;
+    }
+
+    public List<MineralAmount> toMineralAmountList(List<MineralAmountDto> mineralAmountDtoList) {
+        if (mineralAmountDtoList == null) {
+            return null;
+        }
+
+        List<MineralAmount> list = new ArrayList<MineralAmount>();
+        for (MineralAmountDto mineralAmountDto : mineralAmountDtoList) {
+            list.add(toMineralAmount(mineralAmountDto));
+        }
+
+        return list;
+    }
+
     private Long getDailyNorm(MineralAmount mineralAmount) {
 
         if (mineralAmount == null) {
