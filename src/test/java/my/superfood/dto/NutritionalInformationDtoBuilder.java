@@ -4,7 +4,7 @@ import javax.annotation.Generated;
 
 import static java.util.Arrays.asList;
 import static my.superfood.dto.MineralAmountDtoBuilder.aMineralAmountDto;
-import static my.superfood.dto.VitaminDtoBuilder.aVitaminDto;
+import static my.superfood.dto.VitaminAmountDtoBuilder.aVitaminAmountDto;
 import static my.superfood.dto.WeightDtoBuilder.aWeightDto;
 
 @Generated("PojoBuilder")
@@ -22,6 +22,6 @@ public class NutritionalInformationDtoBuilder extends AbstractNutritionalInforma
                 .withFibre(aWeightDto().build())
                 .withSugar(aWeightDto().build())
                 .withMinerals(asList(aMineralAmountDto().build()))
-                .withVitamins(asList(aVitaminDto().build()));
+                .withVitamins(asList(aVitaminAmountDto().build()));
     }
 }

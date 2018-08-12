@@ -19,7 +19,7 @@ public class NutritionalInformationDto {
     @JsonProperty
     private WeightDto fibre;
     @JsonProperty
-    private List<VitaminDto> vitamins;
+    private List<VitaminAmountDto> vitamins;
     @JsonProperty
     private List<MineralAmountDto> minerals;
 
@@ -71,11 +71,11 @@ public class NutritionalInformationDto {
         this.fibre = fibre;
     }
 
-    public List<VitaminDto> getVitamins() {
+    public List<VitaminAmountDto> getVitamins() {
         return vitamins;
     }
 
-    public void setVitamins(List<VitaminDto> vitamins) {
+    public void setVitamins(List<VitaminAmountDto> vitamins) {
         this.vitamins = vitamins;
     }
 
