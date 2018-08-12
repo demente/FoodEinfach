@@ -8,9 +8,13 @@ import static my.superfood.model.enums.Unit.MICROGRAM;
 public class WeightMapper {
 
     public WeightDto toWeightDto(Long weight) {
+        return toWeightDto(weight, MICROGRAM);
+    }
+
+    public WeightDto toWeightDto(Long weight, Unit targetUnit) {
         WeightDto dto = new WeightDto();
-        dto.setWeight(weight);
-        dto.setUnit(MICROGRAM.name());
+        dto.setWeight(weight / targetUnit.getMultiplier());
+        dto.setUnit(targetUnit.name());
         return dto;
     }
 
