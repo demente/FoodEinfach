@@ -5,16 +5,18 @@ import my.superfood.dto.MineralDto;
 import my.superfood.model.Mineral;
 import my.superfood.model.MineralAmount;
 import my.superfood.model.enums.MineralName;
+import my.superfood.resolver.MineralResolver;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MineralMapper {
 
-
+    private final MineralResolver mineralResolver;
     private final WeightMapper weightMapper;
 
-    public MineralMapper(WeightMapper weightMapper) {
+    public MineralMapper(MineralResolver mineralResolver, WeightMapper weightMapper) {
+        this.mineralResolver = mineralResolver;
         this.weightMapper = weightMapper;
     }
 
@@ -24,14 +26,9 @@ public class MineralMapper {
         }
 
         MineralAmount mineralAmount = new MineralAmount();
-
-        Mineral mineral = new Mineral();
-        mineralAmount.setMineral(mineral);
-
-        mineral.setDailyNorm(weightMapper.toWeight(mineralAmountDto.getDailyNorm()));
-        mineral.setName(mineralAmountDto.getName());
         mineralAmount.setId(mineralAmountDto.getId());
         mineralAmount.setAmount(weightMapper.toWeight(mineralAmountDto.getAmount()));
+        mineralAmount.setMineral(mineralResolver.toMineral(mineralAmountDto.getName()));
 
         return mineralAmount;
     }
@@ -43,10 +40,10 @@ public class MineralMapper {
 
         MineralAmountDto mineralAmountDto = new MineralAmountDto();
 
-        mineralAmountDto.setDailyNorm(weightMapper.toWeightDto(mineralAmountMineralDailyNorm(mineralAmount)));
-        mineralAmountDto.setName(mineralAmountMineralName(mineralAmount));
-        mineralAmountDto.setAmount(weightMapper.toWeightDto(mineralAmount.getAmount()));
         mineralAmountDto.setId(mineralAmount.getId());
+        mineralAmountDto.setName(getMineralName(mineralAmount));
+        mineralAmountDto.setDailyNorm(weightMapper.toWeightDto(getDailyNorm(mineralAmount)));
+        mineralAmountDto.setAmount(weightMapper.toWeightDto(mineralAmount.getAmount()));
 
         return mineralAmountDto;
     }
@@ -79,7 +76,7 @@ public class MineralMapper {
         return list;
     }
 
-    private Long mineralAmountMineralDailyNorm(MineralAmount mineralAmount) {
+    private Long getDailyNorm(MineralAmount mineralAmount) {
 
         if (mineralAmount == null) {
             return null;
@@ -95,7 +92,7 @@ public class MineralMapper {
         return dailyNorm;
     }
 
-    private MineralName mineralAmountMineralName(MineralAmount mineralAmount) {
+    private MineralName getMineralName(MineralAmount mineralAmount) {
 
         if (mineralAmount == null) {
             return null;
