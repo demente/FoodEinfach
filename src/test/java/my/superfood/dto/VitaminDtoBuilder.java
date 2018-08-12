@@ -13,9 +13,7 @@ public class VitaminDtoBuilder extends AbstractVitaminDtoBuilder {
     }
 
     public static VitaminDtoBuilder aVitaminDto() {
-        return new VitaminDtoBuilder().withId(1L)
-                                      .withName(VitaminName.A)
-                                      .withAmount(aWeightDto().build())
-                                      .withDailyNorm(aWeightDto().build());
+        return new VitaminDtoBuilder().withName(VitaminName.A)
+                .withDailyNorm(aWeightDto().build());
     }
 }

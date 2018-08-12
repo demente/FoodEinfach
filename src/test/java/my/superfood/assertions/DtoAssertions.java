@@ -2,6 +2,7 @@ package my.superfood.assertions;
 
 import my.superfood.dto.*;
 import my.superfood.dto.MineralAmountDto;
+import my.superfood.model.VitaminAmount;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -22,11 +23,16 @@ public class DtoAssertions {
         assertEqualWeightDto(actual.getFibre(), expected.getFibre());
     }
 
-    public static void assertEqualVitaminDto(VitaminDto actual, VitaminDto expected) {
+    public static void assertEqualVitaminAmountDto(VitaminAmountDto actual, VitaminAmountDto expected){
         assertThat(actual.getId()).isEqualTo(expected.getId());
         assertThat(actual.getName()).isEqualTo(expected.getName());
         assertEqualWeightDto(actual.getDailyNorm(), expected.getDailyNorm());
         assertEqualWeightDto(actual.getAmount(), expected.getAmount());
+    }
+
+    public static void assertEqualVitaminDto(VitaminDto actual, VitaminDto expected) {
+        assertThat(actual.getName()).isEqualTo(expected.getName());
+        assertEqualWeightDto(actual.getDailyNorm(), expected.getDailyNorm());
     }
 
     public static void assertEqualFoodDto(FoodDto actual, FoodDto expected) {

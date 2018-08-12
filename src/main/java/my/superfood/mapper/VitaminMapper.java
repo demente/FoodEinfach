@@ -1,9 +1,11 @@
 package my.superfood.mapper;
 
+import my.superfood.dto.VitaminAmountDto;
 import my.superfood.dto.VitaminDto;
 import my.superfood.model.Vitamin;
 import my.superfood.model.VitaminAmount;
 import my.superfood.model.enums.VitaminName;
+import my.superfood.resolver.VitaminResolver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,42 +13,41 @@ import java.util.List;
 public class VitaminMapper {
 
     private final WeightMapper weightMapper;
+    private final VitaminResolver vitaminResolver;
 
-    public VitaminMapper(WeightMapper weightMapper) {
+    public VitaminMapper(VitaminResolver vitaminResolver, WeightMapper weightMapper) {
+        this.vitaminResolver = vitaminResolver;
         this.weightMapper = weightMapper;
     }
 
-    public VitaminDto toVitaminDto(VitaminAmount vitaminAmount) {
-        if (vitaminAmount == null) {
-            return null;
-        }
 
-        VitaminDto vitaminDto = new VitaminDto();
-
-        vitaminDto.setDailyNorm(weightMapper.toWeightDto(vitaminAmountVitaminDailyNorm(vitaminAmount)));
-        vitaminDto.setName(vitaminAmountVitaminName(vitaminAmount));
-        vitaminDto.setAmount(weightMapper.toWeightDto(vitaminAmount.getAmount()));
-        vitaminDto.setId(vitaminAmount.getId());
-
-        return vitaminDto;
-    }
-
-    public VitaminAmount toVitaminAmount(VitaminDto vitaminDto) {
-        if (vitaminDto == null) {
+    public VitaminAmount toVitaminAmount(VitaminAmountDto vitaminAmountDto) {
+        if (vitaminAmountDto == null) {
             return null;
         }
 
         VitaminAmount vitaminAmount = new VitaminAmount();
+        vitaminAmount.setId(vitaminAmountDto.getId());
+        vitaminAmount.setAmount(weightMapper.toWeight(vitaminAmountDto.getAmount()));
 
-        Vitamin vitamin = new Vitamin();
+        Vitamin vitamin = vitaminResolver.toVitamin(vitaminAmountDto.getName());
         vitaminAmount.setVitamin(vitamin);
 
-        vitamin.setDailyNorm(weightMapper.toWeight(vitaminDto.getDailyNorm()));
-        vitamin.setName(vitaminDto.getName());
-        vitaminAmount.setId(vitaminDto.getId());
-        vitaminAmount.setAmount(weightMapper.toWeight(vitaminDto.getAmount()));
-
         return vitaminAmount;
+    }
+
+    public VitaminAmountDto toVitaminAmountDto(VitaminAmount vitaminAmount) {
+        if (vitaminAmount == null) {
+            return null;
+        }
+        VitaminAmountDto vitaminAmountDto = new VitaminAmountDto();
+
+        vitaminAmountDto.setId(vitaminAmount.getId());
+        vitaminAmountDto.setName(getVitaminName(vitaminAmount));
+        vitaminAmountDto.setDailyNorm(weightMapper.toWeightDto(getDailyNorm(vitaminAmount)));
+        vitaminAmountDto.setAmount(weightMapper.toWeightDto(vitaminAmount.getAmount()));
+
+        return vitaminAmountDto;
     }
 
     public VitaminDto toVitaminDto(Vitamin vitamin) {
@@ -56,7 +57,9 @@ public class VitaminMapper {
 
         VitaminDto vitaminDto = new VitaminDto();
 
-        vitaminDto.setName(vitamin.getName());
+        if (vitamin.getName() != null) {
+            vitaminDto.setName(vitamin.getName());
+        }
         vitaminDto.setDailyNorm(weightMapper.toWeightDto(vitamin.getDailyNorm()));
 
         return vitaminDto;
@@ -75,20 +78,33 @@ public class VitaminMapper {
         return list;
     }
 
-    public Vitamin toVitamin(VitaminDto vitaminDto) {
-        if (vitaminDto == null) {
+    public List<VitaminAmount> toVitaminAmountList(List<VitaminAmountDto> vitaminAmountDtoList) {
+        if (vitaminAmountDtoList == null) {
             return null;
         }
 
-        Vitamin vitamin = new Vitamin();
+        List<VitaminAmount> list = new ArrayList<VitaminAmount>();
+        for (VitaminAmountDto vitaminAmountDto : vitaminAmountDtoList) {
+            list.add(toVitaminAmount(vitaminAmountDto));
+        }
 
-        vitamin.setName(vitaminDto.getName());
-        vitamin.setDailyNorm(weightMapper.toWeight(vitaminDto.getDailyNorm()));
-
-        return vitamin;
+        return list;
     }
 
-    private Long vitaminAmountVitaminDailyNorm(VitaminAmount vitaminAmount) {
+    public List<VitaminAmountDto> toVitaminAmountDtoList(List<VitaminAmount> vitaminAmountList) {
+        if (vitaminAmountList == null) {
+            return null;
+        }
+
+        List<VitaminAmountDto> list = new ArrayList<VitaminAmountDto>();
+        for (VitaminAmount vitaminAmount : vitaminAmountList) {
+            list.add(toVitaminAmountDto(vitaminAmount));
+        }
+
+        return list;
+    }
+
+    private Long getDailyNorm(VitaminAmount vitaminAmount) {
 
         if (vitaminAmount == null) {
             return null;
@@ -104,7 +120,7 @@ public class VitaminMapper {
         return dailyNorm;
     }
 
-    private VitaminName vitaminAmountVitaminName(VitaminAmount vitaminAmount) {
+    private VitaminName getVitaminName(VitaminAmount vitaminAmount) {
 
         if (vitaminAmount == null) {
             return null;

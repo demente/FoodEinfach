@@ -22,7 +22,6 @@ public class DtoFactory {
         return new MineralDto();
     }
 
-
     @GeneratePojoBuilder(withGenerationGap = true)
     public static NutritionalInformationDto newNutritionalInformationDto() {
         return new NutritionalInformationDto();
@@ -36,6 +35,11 @@ public class DtoFactory {
     @GeneratePojoBuilder(withGenerationGap = true)
     public static VitaminDto newVitaminDto() {
         return new VitaminDto();
+    }
+
+    @GeneratePojoBuilder(withGenerationGap = true)
+    public static VitaminAmountDto newVitaminAmountDto() {
+        return new VitaminAmountDto();
     }
 
     @GeneratePojoBuilder(withGenerationGap = true)
@@ -58,12 +62,10 @@ public class DtoFactory {
         return new MealPlanDto();
     }
 
-
     @GeneratePojoBuilder(withGenerationGap = true)
     public static MealPlanFoodDto newMealPlanFoodDto() {
         return new MealPlanFoodDto();
     }
-
 
     @GeneratePojoBuilder(withGenerationGap = true)
     public static MealPlanRecipeDto newMealPlanRecipeDto() {
