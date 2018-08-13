@@ -13,9 +13,12 @@ import javax.validation.constraints.NotNull;
         @NamedQuery(name = "allFood",
                 query = "SELECT f FROM Food f"),
         @NamedQuery(name = "foodByName",
-                query = "SELECT f FROM Food f where lower(name) like concat(lower(:name),'%')")})
+                query = "SELECT f FROM Food f where lower(name) like concat(lower(:name),'%')"),
+        @NamedQuery(name = "foodByMineral", query = "SELECT f FROM Food as f " +
+                "JOIN f.nutritionPerHundredGrams.minerals as ma " +
+                "with ma.mineral.name=:name " +
+                "order by ma.amount desc")})
 public class Food {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

@@ -2,6 +2,7 @@ package my.superfood.dao;
 
 import io.dropwizard.hibernate.AbstractDAO;
 import my.superfood.model.Food;
+import my.superfood.model.enums.MineralName;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
@@ -32,6 +33,12 @@ public class FoodDao extends AbstractDAO<Food> {
     public List<Food> findByName(String name) {
         Query<Food> query = currentSession().createNamedQuery("foodByName", Food.class);
         query.setParameter("name", name);
+        return list(query);
+    }
+
+    public List<Food> findByMineral(MineralName mineralName) {
+        Query<Food> query = currentSession().createNamedQuery("foodByMineral", Food.class);
+        query.setParameter("name", mineralName);
         return list(query);
     }
 

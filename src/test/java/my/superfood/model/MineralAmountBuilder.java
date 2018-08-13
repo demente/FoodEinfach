@@ -1,7 +1,5 @@
 package my.superfood.model;
 
-import my.superfood.model.enums.Unit;
-
 import javax.annotation.Generated;
 
 import static my.superfood.model.MineralBuilder.aMineral;
@@ -15,5 +13,9 @@ public class MineralAmountBuilder extends AbstractMineralAmountBuilder {
 
     public static MineralAmountBuilder aMineralAmount() {
         return new MineralAmountBuilder().withAmount(12L).withId(1L).withMineral(aMineral().build());
+    }
+
+    public static MineralAmountBuilder aNewMineralAmount() {
+        return aMineralAmount().withId(null);
     }
 }
