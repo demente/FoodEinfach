@@ -2,7 +2,7 @@ package my.superfood.mapper;
 
 import my.superfood.dto.MealPlanFoodDto;
 import my.superfood.dto.WeightDto;
-import my.superfood.model.FoodInMealPlan;
+import my.superfood.model.MealPlanFood;
 import my.superfood.model.enums.Unit;
 
 import java.util.ArrayList;
@@ -16,8 +16,8 @@ public class MealPlanFoodMapper {
         this.foodMapper = foodMapper;
     }
 
-    public MealPlanFoodDto toMealPlanFoodDto(FoodInMealPlan FoodInMealPlan) {
-        if (FoodInMealPlan == null) {
+    public MealPlanFoodDto toMealPlanFoodDto(MealPlanFood MealPlanFood) {
+        if (MealPlanFood == null) {
             return null;
         }
 
@@ -26,57 +26,57 @@ public class MealPlanFoodMapper {
         WeightDto amount = new WeightDto();
         mealPlanFoodDto.setAmount(amount);
 
-        amount.setWeight(FoodInMealPlan.getAmount());
-        if (FoodInMealPlan.getUnit() != null) {
-            amount.setUnit(FoodInMealPlan.getUnit().name());
+        amount.setWeight(MealPlanFood.getAmount());
+        if (MealPlanFood.getUnit() != null) {
+            amount.setUnit(MealPlanFood.getUnit().name());
         }
-        mealPlanFoodDto.setId(FoodInMealPlan.getId());
-        mealPlanFoodDto.setMealType(FoodInMealPlan.getMealType());
-        mealPlanFoodDto.setFood(foodMapper.toFoodDto(FoodInMealPlan.getFood()));
-        mealPlanFoodDto.setDayOfWeek(FoodInMealPlan.getDayOfWeek());
+        mealPlanFoodDto.setId(MealPlanFood.getId());
+        mealPlanFoodDto.setMealType(MealPlanFood.getMealType());
+        mealPlanFoodDto.setFood(foodMapper.toFoodDto(MealPlanFood.getFood()));
+        mealPlanFoodDto.setDayOfWeek(MealPlanFood.getDayOfWeek());
 
         return mealPlanFoodDto;
     }
 
-    public FoodInMealPlan toFoodInMealPlan(MealPlanFoodDto mealPlanFoodDto) {
+    public MealPlanFood toFoodInMealPlan(MealPlanFoodDto mealPlanFoodDto) {
         if (mealPlanFoodDto == null) {
             return null;
         }
 
-        FoodInMealPlan foodInMealPlan = new FoodInMealPlan();
+        MealPlanFood mealPlanFood = new MealPlanFood();
 
         String amount = mealPlanFoodDtoAmountUnit(mealPlanFoodDto);
         if (amount != null) {
-            foodInMealPlan.setUnit(Enum.valueOf(Unit.class, amount));
+            mealPlanFood.setUnit(Enum.valueOf(Unit.class, amount));
         }
-        foodInMealPlan.setAmount(mealPlanFoodDtoAmountWeight(mealPlanFoodDto));
-        foodInMealPlan.setId(mealPlanFoodDto.getId());
-        foodInMealPlan.setFood(foodMapper.toFood(mealPlanFoodDto.getFood()));
-        foodInMealPlan.setDayOfWeek(mealPlanFoodDto.getDayOfWeek());
-        foodInMealPlan.setMealType(mealPlanFoodDto.getMealType());
+        mealPlanFood.setAmount(mealPlanFoodDtoAmountWeight(mealPlanFoodDto));
+        mealPlanFood.setId(mealPlanFoodDto.getId());
+        mealPlanFood.setFood(foodMapper.toFood(mealPlanFoodDto.getFood()));
+        mealPlanFood.setDayOfWeek(mealPlanFoodDto.getDayOfWeek());
+        mealPlanFood.setMealType(mealPlanFoodDto.getMealType());
 
-        return foodInMealPlan;
+        return mealPlanFood;
     }
 
-    public List<MealPlanFoodDto> toMealPlanFoodDtoList(List<FoodInMealPlan> foodInMealPlanList) {
-        if (foodInMealPlanList == null) {
+    public List<MealPlanFoodDto> toMealPlanFoodDtoList(List<MealPlanFood> mealPlanFoodList) {
+        if (mealPlanFoodList == null) {
             return null;
         }
 
         List<MealPlanFoodDto> list = new ArrayList<MealPlanFoodDto>();
-        for (FoodInMealPlan foodInMealPlan : foodInMealPlanList) {
-            list.add(toMealPlanFoodDto(foodInMealPlan));
+        for (MealPlanFood mealPlanFood : mealPlanFoodList) {
+            list.add(toMealPlanFoodDto(mealPlanFood));
         }
 
         return list;
     }
 
-    public List<FoodInMealPlan> toFoodInMealPlanList(List<MealPlanFoodDto> mealPlanFoodDtoList) {
+    public List<MealPlanFood> toFoodInMealPlanList(List<MealPlanFoodDto> mealPlanFoodDtoList) {
         if (mealPlanFoodDtoList == null) {
             return null;
         }
 
-        List<FoodInMealPlan> list = new ArrayList<FoodInMealPlan>();
+        List<MealPlanFood> list = new ArrayList<MealPlanFood>();
         for (MealPlanFoodDto mealPlanFoodDto : mealPlanFoodDtoList) {
             list.add(toFoodInMealPlan(mealPlanFoodDto));
         }

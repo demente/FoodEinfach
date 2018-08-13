@@ -1,7 +1,7 @@
 package my.superfood.mapper;
 
 import my.superfood.dto.MealPlanRecipeDto;
-import my.superfood.model.RecipeInMealPlan;
+import my.superfood.model.MealPlanRecipe;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,7 +28,7 @@ public class MealPlanRecipeMapperTest {
     public void mapsDtoToEntity() {
         MealPlanRecipeDto expected = aMealPlanRecipeDto().build();
 
-        RecipeInMealPlan actual = mealPlanRecipeMapper.toRecipeInMealPlan(expected);
+        MealPlanRecipe actual = mealPlanRecipeMapper.toRecipeInMealPlan(expected);
 
         assertThat(actual.getId()).isEqualTo(expected.getId());
         assertThat(actual.getDayOfWeek()).isEqualTo(expected.getDayOfWeek());
@@ -46,7 +46,7 @@ public class MealPlanRecipeMapperTest {
 
     @Test
     public void mapsEntityToDto() {
-        RecipeInMealPlan expected = aRecipeInMealPlan().build();
+        MealPlanRecipe expected = aRecipeInMealPlan().build();
 
         MealPlanRecipeDto actual = mealPlanRecipeMapper.toMealPlanRecipeDto(expected);
 
@@ -57,7 +57,7 @@ public class MealPlanRecipeMapperTest {
 
     @Test
     public void mapsRecipeToRecipeDto() {
-        RecipeInMealPlan expected = aRecipeInMealPlan().build();
+        MealPlanRecipe expected = aRecipeInMealPlan().build();
 
         mealPlanRecipeMapper.toMealPlanRecipeDto(expected);
 

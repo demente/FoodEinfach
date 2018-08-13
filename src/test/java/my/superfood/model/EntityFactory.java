@@ -13,8 +13,8 @@ public class EntityFactory {
     }
 
     @GeneratePojoBuilder(withGenerationGap = true)
-    public static FoodInMealPlan newFoodInMealPlan() {
-        return new FoodInMealPlan();
+    public static MealPlanFood newMealPlanFood() {
+        return new MealPlanFood();
     }
 
     @GeneratePojoBuilder(withGenerationGap = true)
@@ -43,8 +43,8 @@ public class EntityFactory {
     }
 
     @GeneratePojoBuilder(withGenerationGap = true)
-    public static RecipeInMealPlan newRecipeInMealPlan() {
-        return new RecipeInMealPlan();
+    public static MealPlanRecipe newMealPlanRecipe() {
+        return new MealPlanRecipe();
     }
 
     @GeneratePojoBuilder(withGenerationGap = true)

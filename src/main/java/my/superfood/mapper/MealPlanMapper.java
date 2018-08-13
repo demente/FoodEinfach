@@ -3,9 +3,9 @@ package my.superfood.mapper;
 import my.superfood.dto.MealPlanDto;
 import my.superfood.dto.MealPlanFoodDto;
 import my.superfood.dto.MealPlanRecipeDto;
-import my.superfood.model.FoodInMealPlan;
+import my.superfood.model.MealPlanFood;
 import my.superfood.model.MealPlan;
-import my.superfood.model.RecipeInMealPlan;
+import my.superfood.model.MealPlanRecipe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,13 +28,13 @@ public class MealPlanMapper {
         MealPlan mealPlan = new MealPlan();
 
         mealPlan.setId(mealPlanDto.getId());
-        List<FoodInMealPlan> list = mealPlanFoodMapper.toFoodInMealPlanList(mealPlanDto.getFood());
+        List<MealPlanFood> list = mealPlanFoodMapper.toFoodInMealPlanList(mealPlanDto.getFood());
         if (list != null) {
             mealPlan.setFood(list);
         }
         mealPlan.setStartDate(mealPlanDto.getStartDate());
         mealPlan.setEndDate(mealPlanDto.getEndDate());
-        List<RecipeInMealPlan> list_ = mealPlanRecipeMapper.toRecipeInMealPlanList(mealPlanDto.getRecipes());
+        List<MealPlanRecipe> list_ = mealPlanRecipeMapper.toRecipeInMealPlanList(mealPlanDto.getRecipes());
         if (list_ != null) {
             mealPlan.setRecipes(list_);
         }

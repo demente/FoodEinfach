@@ -8,7 +8,6 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static my.superfood.model.FoodBuilder.aNewFood;
 import static my.superfood.model.MealPlanBuilder.aNewMealPlan;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,8 +16,8 @@ public class MealPlanDaoTest {
     @Rule
     public DAOTestRule database = DAOTestRule.newBuilder()
             .addEntityClass(MealPlan.class)
-            .addEntityClass(FoodInMealPlan.class)
-            .addEntityClass(RecipeInMealPlan.class)
+            .addEntityClass(MealPlanFood.class)
+            .addEntityClass(MealPlanRecipe.class)
             .addEntityClass(Food.class)
             .addEntityClass(Recipe.class)
             .addEntityClass(Ingredient.class)

@@ -8,7 +8,7 @@ import java.time.DayOfWeek;
 
 @Entity
 @Table(name="meal_plan_recipe")
-public class RecipeInMealPlan {
+public class MealPlanRecipe {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

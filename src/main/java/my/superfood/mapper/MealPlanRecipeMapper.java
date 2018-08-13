@@ -1,7 +1,7 @@
 package my.superfood.mapper;
 
 import my.superfood.dto.MealPlanRecipeDto;
-import my.superfood.model.RecipeInMealPlan;
+import my.superfood.model.MealPlanRecipe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,42 +14,42 @@ public class MealPlanRecipeMapper {
         this.recipeMapper = recipeMapper;
     }
 
-    public MealPlanRecipeDto toMealPlanRecipeDto(RecipeInMealPlan recipeInMealPlan) {
-        if (recipeInMealPlan == null) {
+    public MealPlanRecipeDto toMealPlanRecipeDto(MealPlanRecipe mealPlanRecipe) {
+        if (mealPlanRecipe == null) {
             return null;
         }
 
         MealPlanRecipeDto mealPlanRecipeDto = new MealPlanRecipeDto();
 
-        mealPlanRecipeDto.setId(recipeInMealPlan.getId());
-        mealPlanRecipeDto.setRecipe(recipeMapper.toRecipeDto(recipeInMealPlan.getRecipe()));
-        mealPlanRecipeDto.setMealType(recipeInMealPlan.getMealType());
-        mealPlanRecipeDto.setDayOfWeek(recipeInMealPlan.getDayOfWeek());
+        mealPlanRecipeDto.setId(mealPlanRecipe.getId());
+        mealPlanRecipeDto.setRecipe(recipeMapper.toRecipeDto(mealPlanRecipe.getRecipe()));
+        mealPlanRecipeDto.setMealType(mealPlanRecipe.getMealType());
+        mealPlanRecipeDto.setDayOfWeek(mealPlanRecipe.getDayOfWeek());
 
         return mealPlanRecipeDto;
     }
 
-    public RecipeInMealPlan toRecipeInMealPlan(MealPlanRecipeDto mealPlanRecipeDto) {
+    public MealPlanRecipe toRecipeInMealPlan(MealPlanRecipeDto mealPlanRecipeDto) {
         if (mealPlanRecipeDto == null) {
             return null;
         }
 
-        RecipeInMealPlan recipeInMealPlan = new RecipeInMealPlan();
+        MealPlanRecipe mealPlanRecipe = new MealPlanRecipe();
 
-        recipeInMealPlan.setId(mealPlanRecipeDto.getId());
-        recipeInMealPlan.setRecipe(recipeMapper.toRecipe(mealPlanRecipeDto.getRecipe()));
-        recipeInMealPlan.setDayOfWeek(mealPlanRecipeDto.getDayOfWeek());
-        recipeInMealPlan.setMealType(mealPlanRecipeDto.getMealType());
+        mealPlanRecipe.setId(mealPlanRecipeDto.getId());
+        mealPlanRecipe.setRecipe(recipeMapper.toRecipe(mealPlanRecipeDto.getRecipe()));
+        mealPlanRecipe.setDayOfWeek(mealPlanRecipeDto.getDayOfWeek());
+        mealPlanRecipe.setMealType(mealPlanRecipeDto.getMealType());
 
-        return recipeInMealPlan;
+        return mealPlanRecipe;
     }
 
-    public List<RecipeInMealPlan> toRecipeInMealPlanList(List<MealPlanRecipeDto> mealPlanRecipeDtoList) {
+    public List<MealPlanRecipe> toRecipeInMealPlanList(List<MealPlanRecipeDto> mealPlanRecipeDtoList) {
         if (mealPlanRecipeDtoList == null) {
             return null;
         }
 
-        List<RecipeInMealPlan> list = new ArrayList<RecipeInMealPlan>();
+        List<MealPlanRecipe> list = new ArrayList<MealPlanRecipe>();
         for (MealPlanRecipeDto mealPlanRecipeDto : mealPlanRecipeDtoList) {
             list.add(toRecipeInMealPlan(mealPlanRecipeDto));
         }
@@ -57,14 +57,14 @@ public class MealPlanRecipeMapper {
         return list;
     }
 
-    public List<MealPlanRecipeDto> toMealPlanRecipeDtoList(List<RecipeInMealPlan> recipeInMealPlanList) {
-        if (recipeInMealPlanList == null) {
+    public List<MealPlanRecipeDto> toMealPlanRecipeDtoList(List<MealPlanRecipe> mealPlanRecipeList) {
+        if (mealPlanRecipeList == null) {
             return null;
         }
 
         List<MealPlanRecipeDto> list = new ArrayList<MealPlanRecipeDto>();
-        for (RecipeInMealPlan recipeInMealPlan : recipeInMealPlanList) {
-            list.add(toMealPlanRecipeDto(recipeInMealPlan));
+        for (MealPlanRecipe mealPlanRecipe : mealPlanRecipeList) {
+            list.add(toMealPlanRecipeDto(mealPlanRecipe));
         }
 
         return list;

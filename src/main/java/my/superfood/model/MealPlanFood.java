@@ -8,20 +8,19 @@ import java.time.DayOfWeek;
 
 @Entity
 @Table(name = "meal_plan_food")
-public class FoodInMealPlan {
+public class MealPlanFood {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "food_id")
     private Food food;
-
     @Enumerated(EnumType.STRING)
     private Unit unit;
-
     private Long amount;
+    private DayOfWeek dayOfWeek;
+    private MealType mealType;
 
     public Long getId() {
         return id;
@@ -46,10 +45,6 @@ public class FoodInMealPlan {
     public void setAmount(Long amount) {
         this.amount = amount;
     }
-
-    private DayOfWeek dayOfWeek;
-
-    private MealType mealType;
 
     public Food getFood() {
         return food;
