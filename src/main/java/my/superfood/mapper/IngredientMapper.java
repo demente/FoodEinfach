@@ -3,7 +3,7 @@ package my.superfood.mapper;
 import my.superfood.dto.IngredientDto;
 import my.superfood.dto.WeightDto;
 import my.superfood.model.Ingredient;
-import my.superfood.model.enums.Unit;
+import my.superfood.resolver.FoodResolver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,10 +12,13 @@ import java.util.List;
 public class IngredientMapper {
 
     private final FoodMapper foodMapper;
+    private final FoodResolver foodResolver;
+    private final WeightMapper weightMapper;
 
-
-    public IngredientMapper(FoodMapper foodMapper) {
+    public IngredientMapper(FoodResolver foodResolver, FoodMapper foodMapper, WeightMapper weightMapper) {
+        this.foodResolver = foodResolver;
         this.foodMapper = foodMapper;
+        this.weightMapper = weightMapper;
     }
 
     public IngredientDto toIngredientDto(Ingredient ingredient) {
@@ -25,14 +28,8 @@ public class IngredientMapper {
 
         IngredientDto ingredientDto = new IngredientDto();
 
-        WeightDto amount = new WeightDto();
-        ingredientDto.setAmount(amount);
-
-        amount.setWeight(ingredient.getAmount());
-        if (ingredient.getUnit() != null) {
-            amount.setUnit(ingredient.getUnit().name());
-        }
         ingredientDto.setId(ingredient.getId());
+        ingredientDto.setAmount(weightMapper.toWeightDto(ingredient.getAmount()));
         ingredientDto.setFood(foodMapper.toFoodDto(ingredient.getFood()));
 
         return ingredientDto;
@@ -58,13 +55,9 @@ public class IngredientMapper {
 
         Ingredient ingredient = new Ingredient();
 
-        String amount = ingredientDtoAmountUnit(ingredientDto);
-        if (amount != null) {
-            ingredient.setUnit(Enum.valueOf(Unit.class, amount));
-        }
-        ingredient.setAmount(ingredientDtoAmountWeight(ingredientDto));
         ingredient.setId(ingredientDto.getId());
-        ingredient.setFood(foodMapper.toFood(ingredientDto.getFood()));
+        ingredient.setAmount(weightMapper.toWeightInMicrograms(ingredientDto.getAmount()));
+        ingredient.setFood(foodResolver.toFood(ingredientDto.getFood().getId()));
 
         return ingredient;
     }
@@ -80,38 +73,6 @@ public class IngredientMapper {
         }
 
         return list;
-    }
-
-    private String ingredientDtoAmountUnit(IngredientDto ingredientDto) {
-
-        if (ingredientDto == null) {
-            return null;
-        }
-        WeightDto amount = ingredientDto.getAmount();
-        if (amount == null) {
-            return null;
-        }
-        String unit = amount.getUnit();
-        if (unit == null) {
-            return null;
-        }
-        return unit;
-    }
-
-    private Long ingredientDtoAmountWeight(IngredientDto ingredientDto) {
-
-        if (ingredientDto == null) {
-            return null;
-        }
-        WeightDto amount = ingredientDto.getAmount();
-        if (amount == null) {
-            return null;
-        }
-        Long weight = amount.getWeight();
-        if (weight == null) {
-            return null;
-        }
-        return weight;
     }
 
 }

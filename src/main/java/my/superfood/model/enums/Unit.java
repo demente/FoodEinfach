@@ -13,15 +13,6 @@ public enum Unit {
         this.multiplier = multiplier;
     }
 
-    public String getLabel() {
-        return label;
-    }
-
-    public Long getMultiplier() {
-        return multiplier;
-    }
-
-
     public static Unit getByLabel(String label) {
         for (Unit unit : values()) {
             if (unit.getLabel().equals(label)) {
@@ -29,5 +20,13 @@ public enum Unit {
             }
         }
         return null;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public Long getMultiplier() {
+        return multiplier;
     }
 }

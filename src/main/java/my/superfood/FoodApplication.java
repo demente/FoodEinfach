@@ -61,7 +61,7 @@ public class FoodApplication extends Application<FoodConfiguration> {
         MineralMapper mineralMapper = new MineralMapper(mineralResolver, weightMapper);
         NutritionalInformationMapper nutritionalInformationMapper = new NutritionalInformationMapper(vitaminMapper, mineralMapper, weightMapper);
         FoodMapper foodMapper = new FoodMapper(nutritionalInformationMapper, weightMapper);
-        IngredientMapper ingredientMapper = new IngredientMapper(foodMapper);
+        IngredientMapper ingredientMapper = new IngredientMapper(foodResolver, foodMapper, weightMapper);
         RecipeMapper recipeMapper = new RecipeMapper(ingredientMapper);
         MealPlanRecipeMapper mealPlanRecipeMapper = new MealPlanRecipeMapper(recipeMapper);
         MealPlanFoodMapper mealPlanFoodMapper = new MealPlanFoodMapper(foodResolver, foodMapper, weightMapper);
