@@ -30,7 +30,7 @@ public class RecipeMapper {
             recipeDto.setIngredients(list);
         }
         recipeDto.setInstructions(recipe.getInstructions());
-        List<String> list_ = mealTypeListToStringList(recipe.getType());
+        List<String> list_ = getMealTypesAsString(recipe.getType());
         if (list_ != null) {
             recipeDto.setType(list_);
         }
@@ -42,29 +42,29 @@ public class RecipeMapper {
         return recipeDto;
     }
 
-    public Recipe toRecipe(RecipeDto recipe) {
-        if (recipe == null) {
+    public Recipe toRecipe(RecipeDto recipeDto) {
+        if (recipeDto == null) {
             return null;
         }
 
-        Recipe recipe_ = new Recipe();
+        Recipe recipe = new Recipe();
 
-        recipe_.setCookingTime(recipe.getCookingTime());
-        recipe_.setId(recipe.getId());
-        List<Ingredient> list = ingredientMapper.toIngredientList(recipe.getIngredients());
+        recipe.setCookingTime(recipeDto.getCookingTime());
+        recipe.setId(recipeDto.getId());
+        List<Ingredient> list = ingredientMapper.toIngredientList(recipeDto.getIngredients());
         if (list != null) {
-            recipe_.setIngredients(list);
+            recipe.setIngredients(list);
         }
-        recipe_.setInstructions(recipe.getInstructions());
-        List<MealType> list_ = stringListToMealTypeList(recipe.getType());
+        recipe.setInstructions(recipeDto.getInstructions());
+        List<MealType> list_ = getMealTypes(recipeDto.getType());
         if (list_ != null) {
-            recipe_.setType(list_);
+            recipe.setType(list_);
         }
-        recipe_.setPreparationTime(recipe.getPreparationTime());
-        recipe_.setServings(recipe.getServings());
-        recipe_.setName(recipe.getName());
+        recipe.setPreparationTime(recipeDto.getPreparationTime());
+        recipe.setServings(recipeDto.getServings());
+        recipe.setName(recipeDto.getName());
 
-        return recipe_;
+        return recipe;
     }
 
     public List<RecipeDto> toRecipeDtoList(List<Recipe> recipeList) {
@@ -80,7 +80,7 @@ public class RecipeMapper {
         return list;
     }
 
-    protected List<String> mealTypeListToStringList(List<MealType> list) {
+    protected List<String> getMealTypesAsString(List<MealType> list) {
         if (list == null) {
             return null;
         }
@@ -93,7 +93,7 @@ public class RecipeMapper {
         return list_;
     }
 
-    protected List<MealType> stringListToMealTypeList(List<String> list) {
+    protected List<MealType> getMealTypes(List<String> list) {
         if (list == null) {
             return null;
         }
