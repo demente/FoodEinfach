@@ -1,9 +1,8 @@
 package my.superfood.mapper;
 
 import my.superfood.dto.MealPlanFoodDto;
-import my.superfood.dto.WeightDto;
 import my.superfood.model.MealPlanFood;
-import my.superfood.model.enums.Unit;
+import my.superfood.resolver.FoodResolver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,49 +10,44 @@ import java.util.List;
 public class MealPlanFoodMapper {
 
     private final FoodMapper foodMapper;
+    private final FoodResolver foodResolver;
+    private final WeightMapper weightMapper;
 
-    public MealPlanFoodMapper(FoodMapper foodMapper) {
+    public MealPlanFoodMapper(FoodResolver foodResolver, FoodMapper foodMapper, WeightMapper weightMapper) {
+        this.foodResolver = foodResolver;
         this.foodMapper = foodMapper;
+        this.weightMapper = weightMapper;
     }
 
-    public MealPlanFoodDto toMealPlanFoodDto(MealPlanFood MealPlanFood) {
-        if (MealPlanFood == null) {
+    public MealPlanFoodDto toMealPlanFoodDto(MealPlanFood mealPlanFood) {
+        if (mealPlanFood == null) {
             return null;
         }
 
         MealPlanFoodDto mealPlanFoodDto = new MealPlanFoodDto();
+        mealPlanFoodDto.setId(mealPlanFood.getId());
+        mealPlanFoodDto.setDayOfWeek(mealPlanFood.getDayOfWeek());
+        mealPlanFoodDto.setMealType(mealPlanFood.getMealType());
 
-        WeightDto amount = new WeightDto();
-        mealPlanFoodDto.setAmount(amount);
-
-        amount.setWeight(MealPlanFood.getAmount());
-        if (MealPlanFood.getUnit() != null) {
-            amount.setUnit(MealPlanFood.getUnit().name());
-        }
-        mealPlanFoodDto.setId(MealPlanFood.getId());
-        mealPlanFoodDto.setMealType(MealPlanFood.getMealType());
-        mealPlanFoodDto.setFood(foodMapper.toFoodDto(MealPlanFood.getFood()));
-        mealPlanFoodDto.setDayOfWeek(MealPlanFood.getDayOfWeek());
+        mealPlanFoodDto.setAmount(weightMapper.toWeightDto(mealPlanFood.getAmount()));
+        mealPlanFoodDto.setFood(foodMapper.toFoodDto(mealPlanFood.getFood()));
 
         return mealPlanFoodDto;
     }
 
-    public MealPlanFood toFoodInMealPlan(MealPlanFoodDto mealPlanFoodDto) {
+    public MealPlanFood toMealPlanFood(MealPlanFoodDto mealPlanFoodDto) {
         if (mealPlanFoodDto == null) {
             return null;
         }
 
         MealPlanFood mealPlanFood = new MealPlanFood();
 
-        String amount = mealPlanFoodDtoAmountUnit(mealPlanFoodDto);
-        if (amount != null) {
-            mealPlanFood.setUnit(Enum.valueOf(Unit.class, amount));
-        }
-        mealPlanFood.setAmount(mealPlanFoodDtoAmountWeight(mealPlanFoodDto));
         mealPlanFood.setId(mealPlanFoodDto.getId());
-        mealPlanFood.setFood(foodMapper.toFood(mealPlanFoodDto.getFood()));
         mealPlanFood.setDayOfWeek(mealPlanFoodDto.getDayOfWeek());
         mealPlanFood.setMealType(mealPlanFoodDto.getMealType());
+
+        mealPlanFood.setAmount(weightMapper.toWeight(mealPlanFoodDto.getAmount()));
+        mealPlanFood.setFood(foodResolver.toFood(mealPlanFoodDto.getFood().getId()));
 
         return mealPlanFood;
     }
@@ -71,48 +65,16 @@ public class MealPlanFoodMapper {
         return list;
     }
 
-    public List<MealPlanFood> toFoodInMealPlanList(List<MealPlanFoodDto> mealPlanFoodDtoList) {
+    public List<MealPlanFood> toMealPlanFoodList(List<MealPlanFoodDto> mealPlanFoodDtoList) {
         if (mealPlanFoodDtoList == null) {
             return null;
         }
 
         List<MealPlanFood> list = new ArrayList<MealPlanFood>();
         for (MealPlanFoodDto mealPlanFoodDto : mealPlanFoodDtoList) {
-            list.add(toFoodInMealPlan(mealPlanFoodDto));
+            list.add(toMealPlanFood(mealPlanFoodDto));
         }
 
         return list;
-    }
-
-    private String mealPlanFoodDtoAmountUnit(MealPlanFoodDto mealPlanFoodDto) {
-
-        if (mealPlanFoodDto == null) {
-            return null;
-        }
-        WeightDto amount = mealPlanFoodDto.getAmount();
-        if (amount == null) {
-            return null;
-        }
-        String unit = amount.getUnit();
-        if (unit == null) {
-            return null;
-        }
-        return unit;
-    }
-
-    private Long mealPlanFoodDtoAmountWeight(MealPlanFoodDto mealPlanFoodDto) {
-
-        if (mealPlanFoodDto == null) {
-            return null;
-        }
-        WeightDto amount = mealPlanFoodDto.getAmount();
-        if (amount == null) {
-            return null;
-        }
-        Long weight = amount.getWeight();
-        if (weight == null) {
-            return null;
-        }
-        return weight;
     }
 }

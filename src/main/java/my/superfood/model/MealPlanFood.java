@@ -1,7 +1,6 @@
 package my.superfood.model;
 
 import my.superfood.model.enums.MealType;
-import my.superfood.model.enums.Unit;
 
 import javax.persistence.*;
 import java.time.DayOfWeek;
@@ -16,8 +15,6 @@ public class MealPlanFood {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "food_id")
     private Food food;
-    @Enumerated(EnumType.STRING)
-    private Unit unit;
     private Long amount;
     private DayOfWeek dayOfWeek;
     private MealType mealType;
@@ -28,14 +25,6 @@ public class MealPlanFood {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Unit getUnit() {
-        return unit;
-    }
-
-    public void setUnit(Unit unit) {
-        this.unit = unit;
     }
 
     public Long getAmount() {

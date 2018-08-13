@@ -9,6 +9,7 @@ import my.superfood.dao.*;
 import my.superfood.healthchecks.DatabaseConnectionHealthCheck;
 import my.superfood.mapper.*;
 import my.superfood.model.*;
+import my.superfood.resolver.FoodResolver;
 import my.superfood.resolver.MineralResolver;
 import my.superfood.resolver.VitaminResolver;
 import my.superfood.resources.*;
@@ -53,6 +54,7 @@ public class FoodApplication extends Application<FoodConfiguration> {
 
         VitaminResolver vitaminResolver = new VitaminResolver(vitaminDao);
         MineralResolver mineralResolver = new MineralResolver(mineralDao);
+        FoodResolver foodResolver = new FoodResolver(foodDao);
 
         WeightMapper weightMapper = new WeightMapper();
         VitaminMapper vitaminMapper = new VitaminMapper(vitaminResolver, weightMapper);
@@ -62,7 +64,7 @@ public class FoodApplication extends Application<FoodConfiguration> {
         IngredientMapper ingredientMapper = new IngredientMapper(foodMapper);
         RecipeMapper recipeMapper = new RecipeMapper(ingredientMapper);
         MealPlanRecipeMapper mealPlanRecipeMapper = new MealPlanRecipeMapper(recipeMapper);
-        MealPlanFoodMapper mealPlanFoodMapper = new MealPlanFoodMapper(foodMapper);
+        MealPlanFoodMapper mealPlanFoodMapper = new MealPlanFoodMapper(foodResolver, foodMapper, weightMapper);
         MealPlanMapper mealPlanMapper = new MealPlanMapper(mealPlanRecipeMapper, mealPlanFoodMapper);
 
         environment.jersey().register(new FoodResource(foodDao, foodMapper));

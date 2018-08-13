@@ -44,7 +44,7 @@ public class MealPlanMapperTest {
 
         mealPlanMapper.toMealPlan(expected);
 
-        then(mealPlanFoodMapper).should().toFoodInMealPlanList(expected.getFood());
+        then(mealPlanFoodMapper).should().toMealPlanFoodList(expected.getFood());
     }
 
     @Test

@@ -1,7 +1,6 @@
 package my.superfood.model;
 
 import my.superfood.model.enums.MealType;
-import my.superfood.model.enums.Unit;
 
 import javax.annotation.Generated;
 import java.time.DayOfWeek;
@@ -18,7 +17,6 @@ public class MealPlanFoodBuilder extends AbstractMealPlanFoodBuilder {
         return new MealPlanFoodBuilder().withId(1L)
                 .withFood(aFood().build())
                 .withAmount(100L)
-                .withUnit(Unit.GRAM)
                 .withDayOfWeek(DayOfWeek.MONDAY)
                 .withMealType(MealType.BREAKFAST);
     }

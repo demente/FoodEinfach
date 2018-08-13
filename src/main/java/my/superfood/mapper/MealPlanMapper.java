@@ -28,7 +28,7 @@ public class MealPlanMapper {
         MealPlan mealPlan = new MealPlan();
 
         mealPlan.setId(mealPlanDto.getId());
-        List<MealPlanFood> list = mealPlanFoodMapper.toFoodInMealPlanList(mealPlanDto.getFood());
+        List<MealPlanFood> list = mealPlanFoodMapper.toMealPlanFoodList(mealPlanDto.getFood());
         if (list != null) {
             mealPlan.setFood(list);
         }
