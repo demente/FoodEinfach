@@ -9,7 +9,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import static my.superfood.dto.MealPlanRecipeDtoBuilder.aMealPlanRecipeDto;
-import static my.superfood.model.RecipeInMealPlanBuilder.aRecipeInMealPlan;
+import static my.superfood.model.MealPlanRecipeBuilder.aMealPlanRecipe;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.then;
 
@@ -46,7 +46,7 @@ public class MealPlanRecipeMapperTest {
 
     @Test
     public void mapsEntityToDto() {
-        MealPlanRecipe expected = aRecipeInMealPlan().build();
+        MealPlanRecipe expected = aMealPlanRecipe().build();
 
         MealPlanRecipeDto actual = mealPlanRecipeMapper.toMealPlanRecipeDto(expected);
 
@@ -57,7 +57,7 @@ public class MealPlanRecipeMapperTest {
 
     @Test
     public void mapsRecipeToRecipeDto() {
-        MealPlanRecipe expected = aRecipeInMealPlan().build();
+        MealPlanRecipe expected = aMealPlanRecipe().build();
 
         mealPlanRecipeMapper.toMealPlanRecipeDto(expected);
 
