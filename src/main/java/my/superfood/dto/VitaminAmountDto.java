@@ -6,16 +6,12 @@ import my.superfood.model.enums.VitaminName;
 public class VitaminAmountDto {
     @JsonProperty
     private Long id;
-
     @JsonProperty
     private VitaminName name;
-
     @JsonProperty
     private WeightDto amount;
-
     @JsonProperty
     private WeightDto dailyNorm;
-
 
     public Long getId() {
         return id;
