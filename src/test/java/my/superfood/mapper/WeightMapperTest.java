@@ -37,7 +37,7 @@ public class WeightMapperTest {
 
     @Test
     public void mapsToWeightInMicrograms() {
-        Long actual = weightMapper.toWeight(aWeightDto().withWeight(10L).withUnit(GRAM.name()).build());
+        Long actual = weightMapper.toWeightInMicrograms(aWeightDto().withWeight(10L).withUnit(GRAM.name()).build());
 
         assertThat(actual).isEqualTo(10000000L);
     }

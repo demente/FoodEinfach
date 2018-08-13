@@ -56,7 +56,7 @@ public class VitaminMapperTest {
         Long expectedWeight = 112L;
 
         given(vitaminResolver.toVitamin(any())).willReturn(expectedVitamin);
-        given(weightMapper.toWeight(any())).willReturn(expectedWeight);
+        given(weightMapper.toWeightInMicrograms(any())).willReturn(expectedWeight);
 
         VitaminAmount actual = vitaminMapper.toVitaminAmount(expected);
 
@@ -77,7 +77,7 @@ public class VitaminMapperTest {
         WeightDto weight = aWeightDto().build();
         vitaminMapper.toVitaminAmount(aVitaminAmountDto().withAmount(weight).build());
 
-        then(weightMapper).should().toWeight(weight);
+        then(weightMapper).should().toWeightInMicrograms(weight);
     }
 
     @Test
@@ -158,7 +158,7 @@ public class VitaminMapperTest {
         Long expectedWeight = 112L;
 
         given(vitaminResolver.toVitamin(any())).willReturn(expectedVitamin);
-        given(weightMapper.toWeight(any())).willReturn(expectedWeight);
+        given(weightMapper.toWeightInMicrograms(any())).willReturn(expectedWeight);
 
         List<VitaminAmount> actual = vitaminMapper.toVitaminAmountList(asList(expected));
 

@@ -3,7 +3,6 @@ package my.superfood.mapper;
 import my.superfood.dto.FoodDto;
 import my.superfood.dto.FoodInfoDto;
 import my.superfood.model.Food;
-import my.superfood.model.NutritionalInformation;
 import my.superfood.model.enums.FoodType;
 
 import java.util.ArrayList;
@@ -47,7 +46,7 @@ public class FoodMapper {
         food.setNutritionPerHundredGrams(nutritionalInformationMapper.toNutritionalInformation(foodDto.getNutritionalInformation()));
         food.setId(foodDto.getId());
         food.setName(foodDto.getName());
-        food.setWeight(weightMapper.toWeight(foodDto.getWeight()));
+        food.setWeight(weightMapper.toWeightInMicrograms(foodDto.getWeight()));
         if (foodDto.getType() != null) {
             food.setType(Enum.valueOf(FoodType.class, foodDto.getType()));
         }

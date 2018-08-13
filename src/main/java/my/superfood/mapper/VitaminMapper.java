@@ -28,7 +28,7 @@ public class VitaminMapper {
 
         VitaminAmount vitaminAmount = new VitaminAmount();
         vitaminAmount.setId(vitaminAmountDto.getId());
-        vitaminAmount.setAmount(weightMapper.toWeight(vitaminAmountDto.getAmount()));
+        vitaminAmount.setAmount(weightMapper.toWeightInMicrograms(vitaminAmountDto.getAmount()));
 
         Vitamin vitamin = vitaminResolver.toVitamin(vitaminAmountDto.getName());
         vitaminAmount.setVitamin(vitamin);

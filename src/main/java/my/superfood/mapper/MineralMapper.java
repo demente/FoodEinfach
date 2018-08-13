@@ -27,7 +27,7 @@ public class MineralMapper {
 
         MineralAmount mineralAmount = new MineralAmount();
         mineralAmount.setId(mineralAmountDto.getId());
-        mineralAmount.setAmount(weightMapper.toWeight(mineralAmountDto.getAmount()));
+        mineralAmount.setAmount(weightMapper.toWeightInMicrograms(mineralAmountDto.getAmount()));
         mineralAmount.setMineral(mineralResolver.toMineral(mineralAmountDto.getName()));
 
         return mineralAmount;

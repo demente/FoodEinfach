@@ -7,22 +7,22 @@ import static my.superfood.model.enums.Unit.MICROGRAM;
 
 public class WeightMapper {
 
-    public WeightDto toWeightDto(Long weight) {
-        return toWeightDto(weight, MICROGRAM);
+    public WeightDto toWeightDto(Long weightInMicrograms) {
+        return toWeightDto(weightInMicrograms, MICROGRAM);
     }
 
-    public WeightDto toWeightDto(Long weight, Unit targetUnit) {
-        if (weight == null) {
+    public WeightDto toWeightDto(Long weightInMicrograms, Unit targetUnit) {
+        if (weightInMicrograms == null) {
             return null;
         }
 
         WeightDto dto = new WeightDto();
-        dto.setWeight(weight / targetUnit.getMultiplier());
+        dto.setWeight(weightInMicrograms / targetUnit.getMultiplier());
         dto.setUnit(targetUnit.name());
         return dto;
     }
 
-    public Long toWeight(WeightDto weightDto) {
+    public Long toWeightInMicrograms(WeightDto weightDto) {
         if (weightDto == null) {
             return null;
         }

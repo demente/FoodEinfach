@@ -97,7 +97,7 @@ public class MealPlanFoodMapperTest {
         long weight = 12L;
 
         given(foodResolver.toFood(anyLong())).willReturn(food);
-        given(weightMapper.toWeight(any())).willReturn(weight);
+        given(weightMapper.toWeightInMicrograms(any())).willReturn(weight);
 
         MealPlanFood actual = mealPlanFoodMapper.toMealPlanFood(expected);
 
@@ -113,7 +113,7 @@ public class MealPlanFoodMapperTest {
         WeightDto expected = aWeightDto().build();
         mealPlanFoodMapper.toMealPlanFood(aMealPlanFoodDto().withAmount(expected).build());
 
-        then(weightMapper).should().toWeight(expected);
+        then(weightMapper).should().toWeightInMicrograms(expected);
     }
 
     @Test
@@ -150,7 +150,7 @@ public class MealPlanFoodMapperTest {
         long weight = 12L;
 
         given(foodResolver.toFood(anyLong())).willReturn(food);
-        given(weightMapper.toWeight(any())).willReturn(weight);
+        given(weightMapper.toWeightInMicrograms(any())).willReturn(weight);
 
         List<MealPlanFood> actual = mealPlanFoodMapper.toMealPlanFoodList(asList(expected));
 

@@ -52,7 +52,7 @@ public class MineralMapperTest {
         Long weight = 12L;
         Mineral mineral = aMineral().build();
 
-        given(weightMapper.toWeight(any())).willReturn(weight);
+        given(weightMapper.toWeightInMicrograms(any())).willReturn(weight);
         given(mineralResolver.toMineral(any())).willReturn(mineral);
 
         MineralAmount actual = mineralMapper.toMineralAmount(expected);
@@ -68,7 +68,7 @@ public class MineralMapperTest {
 
         mineralMapper.toMineralAmount(aMineralAmountDto().withAmount(expected).build());
 
-        then(weightMapper).should().toWeight(expected);
+        then(weightMapper).should().toWeightInMicrograms(expected);
     }
 
     @Test
@@ -159,7 +159,7 @@ public class MineralMapperTest {
         Long weight = 12L;
         Mineral mineral = aMineral().build();
 
-        given(weightMapper.toWeight(any())).willReturn(weight);
+        given(weightMapper.toWeightInMicrograms(any())).willReturn(weight);
         given(mineralResolver.toMineral(any())).willReturn(mineral);
 
         List<MineralAmount> actual = mineralMapper.toMineralAmountList(asList(expected));

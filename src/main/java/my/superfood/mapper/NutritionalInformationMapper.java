@@ -28,11 +28,11 @@ public class NutritionalInformationMapper {
 
         NutritionalInformation nutritionalInformation = new NutritionalInformation();
 
-        nutritionalInformation.setProtein(weightMapper.toWeight(nutritionalInformationDto.getProtein()));
-        nutritionalInformation.setFat(weightMapper.toWeight(nutritionalInformationDto.getFat()));
-        nutritionalInformation.setCarbohydrates(weightMapper.toWeight(nutritionalInformationDto.getCarbohydrates()));
-        nutritionalInformation.setSugar(weightMapper.toWeight(nutritionalInformationDto.getSugar()));
-        nutritionalInformation.setFibre(weightMapper.toWeight(nutritionalInformationDto.getFibre()));
+        nutritionalInformation.setProtein(weightMapper.toWeightInMicrograms(nutritionalInformationDto.getProtein()));
+        nutritionalInformation.setFat(weightMapper.toWeightInMicrograms(nutritionalInformationDto.getFat()));
+        nutritionalInformation.setCarbohydrates(weightMapper.toWeightInMicrograms(nutritionalInformationDto.getCarbohydrates()));
+        nutritionalInformation.setSugar(weightMapper.toWeightInMicrograms(nutritionalInformationDto.getSugar()));
+        nutritionalInformation.setFibre(weightMapper.toWeightInMicrograms(nutritionalInformationDto.getFibre()));
         nutritionalInformation.setCalories(nutritionalInformationDto.getCalories());
         List<VitaminAmount> list = vitaminMapper.toVitaminAmountList(nutritionalInformationDto.getVitamins());
         if (list != null) {

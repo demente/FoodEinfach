@@ -46,7 +46,7 @@ public class MealPlanFoodMapper {
         mealPlanFood.setDayOfWeek(mealPlanFoodDto.getDayOfWeek());
         mealPlanFood.setMealType(mealPlanFoodDto.getMealType());
 
-        mealPlanFood.setAmount(weightMapper.toWeight(mealPlanFoodDto.getAmount()));
+        mealPlanFood.setAmount(weightMapper.toWeightInMicrograms(mealPlanFoodDto.getAmount()));
         mealPlanFood.setFood(foodResolver.toFood(mealPlanFoodDto.getFood().getId()));
 
         return mealPlanFood;
