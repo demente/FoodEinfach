@@ -17,7 +17,11 @@ import javax.validation.constraints.NotNull;
         @NamedQuery(name = "foodByMineral", query = "SELECT f FROM Food as f " +
                 "JOIN f.nutritionPerHundredGrams.minerals as ma " +
                 "with ma.mineral.name=:name " +
-                "order by ma.amount desc")})
+                "order by ma.amount desc"),
+        @NamedQuery(name = "foodByVitamin", query = "SELECT f FROM Food as f " +
+                "JOIN f.nutritionPerHundredGrams.vitamins as v " +
+                "with v.vitamin.name=:name " +
+                "order by v.amount desc")})
 public class Food {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

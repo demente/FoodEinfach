@@ -13,4 +13,8 @@ public class VitaminAmountBuilder extends AbstractVitaminAmountBuilder {
     public static VitaminAmountBuilder aVitaminAmount() {
         return new VitaminAmountBuilder().withId(1L).withVitamin(aVitamin().build()).withAmount(10L);
     }
+
+    public static VitaminAmountBuilder aNewVitaminAmount() {
+        return aVitaminAmount().withId(null);
+    }
 }

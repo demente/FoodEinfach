@@ -3,6 +3,7 @@ package my.superfood.dao;
 import io.dropwizard.testing.junit.DAOTestRule;
 import my.superfood.model.*;
 import my.superfood.model.enums.MineralName;
+import my.superfood.model.enums.VitaminName;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -14,6 +15,8 @@ import static my.superfood.model.FoodBuilder.aNewFood;
 import static my.superfood.model.MineralAmountBuilder.aNewMineralAmount;
 import static my.superfood.model.MineralBuilder.aMineral;
 import static my.superfood.model.NutritionalInformationBuilder.aNutritionalInformation;
+import static my.superfood.model.VitaminAmountBuilder.aNewVitaminAmount;
+import static my.superfood.model.VitaminBuilder.aVitamin;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class FoodDaoTest {
@@ -29,11 +32,13 @@ public class FoodDaoTest {
 
     private FoodDao foodDao;
     private MineralDao mineralDao;
+    private VitaminDao vitaminDao;
 
     @Before
     public void setUp() {
         foodDao = new FoodDao(database.getSessionFactory());
         mineralDao = new MineralDao(database.getSessionFactory());
+        vitaminDao = new VitaminDao(database.getSessionFactory());
     }
 
     @Test
@@ -101,6 +106,30 @@ public class FoodDaoTest {
                                 asList(aNewMineralAmount().withMineral(aMineral().withName(MineralName.Fe).build()).build())).build()).build()));
 
         List<Food> actual = foodDao.findByMineral(MineralName.Ca);
+
+        assertThat(actual).containsExactly(apple, plum);
+        assertThat(actual).doesNotContain(pear);
+    }
+
+    @Test
+    public void findsByVitamin() {
+        Vitamin a = database.inTransaction(() -> vitaminDao.save(aVitamin().withName(VitaminName.A).build()));
+
+        Food apple = database.inTransaction(() ->
+                foodDao.save(aNewFood().withName("Apple")
+                        .withNutritionPerHundredGrams(aNutritionalInformation().withVitamins(
+                                asList(aNewVitaminAmount().withVitamin(a).withAmount(120L).build())).build()).build()));
+
+        Food plum = database.inTransaction(() -> foodDao.save(aNewFood().withName("Plum")
+                .withNutritionPerHundredGrams(aNutritionalInformation().withVitamins(
+                        asList(aNewVitaminAmount().withVitamin(a).withAmount(10L).build())).build()).build()));
+
+        Food pear = database.inTransaction(() ->
+                foodDao.save(aNewFood().withName("Pear")
+                        .withNutritionPerHundredGrams(aNutritionalInformation().withVitamins(
+                                asList(aNewVitaminAmount().withVitamin(aVitamin().withName(VitaminName.C).build()).build())).build()).build()));
+
+        List<Food> actual = foodDao.findByVitamin(VitaminName.A);
 
         assertThat(actual).containsExactly(apple, plum);
         assertThat(actual).doesNotContain(pear);
