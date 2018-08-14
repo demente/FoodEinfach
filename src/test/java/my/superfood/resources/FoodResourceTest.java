@@ -1,23 +1,19 @@
 package my.superfood.resources;
 
 import io.dropwizard.testing.junit.ResourceTestRule;
-import my.superfood.assertions.DtoAssertions;
 import my.superfood.dao.FoodDao;
 import my.superfood.dto.FoodDto;
-import my.superfood.dto.WeightDto;
 import my.superfood.mapper.FoodMapper;
 import my.superfood.model.Food;
+import my.superfood.model.enums.MineralName;
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
-import org.mockito.junit.MockitoJUnitRunner;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
-
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -146,6 +142,36 @@ public class FoodResourceTest {
         });
 
         assertEqualFoodDto(actual.get(0), expected);
+    }
 
+    @Test
+    public void findsByMineral() {
+        resources.target("/food/mineral/Ca").request().get(new GenericType<List<FoodDto>>() {
+        });
+
+        then(foodDao).should().findByMineral(MineralName.Ca);
+    }
+
+    @Test
+    public void mapsFoodFoundByMineralToDtoList() {
+        List<Food> expected = asList(aFood().build());
+        given(foodDao.findByMineral(any())).willReturn(expected);
+
+        resources.target("/food/mineral/Ca").request().get(new GenericType<List<FoodDto>>() {
+        });
+
+        then(foodMapper).should().toFoodDtoList(expected);
+    }
+
+    @Test
+    public void returnsFoodFoundByMineral() {
+        FoodDto expected = aFoodDto().build();
+        given(foodMapper.toFoodDtoList(anyList())).willReturn(asList(expected));
+
+        List<FoodDto> actual = resources.target("/food/mineral/Ca").request().get(new GenericType<List<FoodDto>>() {
+        });
+
+
+        assertEqualFoodDto(actual.get(0), expected);
     }
 }
