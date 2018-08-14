@@ -39,6 +39,7 @@ public class FoodDao extends AbstractDAO<Food> {
     public List<Food> findByMineral(MineralName mineralName) {
         Query<Food> query = currentSession().createNamedQuery("foodByMineral", Food.class);
         query.setParameter("name", mineralName);
+        query.setMaxResults(100);
         return list(query);
     }
 
