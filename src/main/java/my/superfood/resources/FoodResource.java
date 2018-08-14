@@ -6,6 +6,7 @@ import my.superfood.dto.FoodDto;
 import my.superfood.mapper.FoodMapper;
 import my.superfood.model.Food;
 import my.superfood.model.enums.MineralName;
+import my.superfood.model.enums.VitaminName;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -58,5 +59,12 @@ public class FoodResource {
     @Path("/mineral/{name}")
     public List<FoodDto> findByMineral(@PathParam("name") MineralName name) {
         return foodMapper.toFoodDtoList(foodDao.findByMineral(name));
+    }
+
+    @GET
+    @UnitOfWork
+    @Path("/vitamin/{name}")
+    public List<FoodDto> findByVitamin(@PathParam("name") VitaminName name) {
+        return foodMapper.toFoodDtoList(foodDao.findByVitamin(name));
     }
 }

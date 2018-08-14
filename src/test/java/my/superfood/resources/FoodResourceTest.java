@@ -6,6 +6,7 @@ import my.superfood.dto.FoodDto;
 import my.superfood.mapper.FoodMapper;
 import my.superfood.model.Food;
 import my.superfood.model.enums.MineralName;
+import my.superfood.model.enums.VitaminName;
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
@@ -171,6 +172,36 @@ public class FoodResourceTest {
         List<FoodDto> actual = resources.target("/food/mineral/Ca").request().get(new GenericType<List<FoodDto>>() {
         });
 
+
+        assertEqualFoodDto(actual.get(0), expected);
+    }
+
+    @Test
+    public void findsByVitamin() {
+        resources.target("/food/vitamin/A").request().get(new GenericType<List<FoodDto>>() {
+        });
+
+        then(foodDao).should().findByVitamin(VitaminName.A);
+    }
+
+    @Test
+    public void mapsFoodFoundByVitaminToDtoList() {
+        List<Food> expected = asList(aFood().build());
+        given(foodDao.findByVitamin(any())).willReturn(expected);
+
+        resources.target("/food/vitamin/A").request().get(new GenericType<List<FoodDto>>() {
+        });
+
+        then(foodMapper).should().toFoodDtoList(expected);
+    }
+
+    @Test
+    public void returnsFoodFoundByVitamin() {
+        FoodDto expected = aFoodDto().build();
+        given(foodMapper.toFoodDtoList(anyList())).willReturn(asList(expected));
+
+        List<FoodDto> actual = resources.target("/food/vitamin/A").request().get(new GenericType<List<FoodDto>>() {
+        });
 
         assertEqualFoodDto(actual.get(0), expected);
     }
