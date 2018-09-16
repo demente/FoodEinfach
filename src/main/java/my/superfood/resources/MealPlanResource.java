@@ -31,6 +31,7 @@ public class MealPlanResource {
     }
 
     @DELETE
+    @UnitOfWork
     @Path("/{id}")
     public void deleteMealPlan(@PathParam("id") Long id) {
         mealPlanDao.delete(id);
