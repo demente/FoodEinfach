@@ -3,6 +3,7 @@ package my.superfood.model.enums;
 public enum Unit {
     GRAM("g", 1000000L),
     MICROGRAM("μg", 1L),
+    MILLIGRAM("mg", 1000L),
     SPOON("tbs", 14300000L);
 
     private String label;
