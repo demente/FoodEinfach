@@ -22,9 +22,9 @@ public class WeightMapperTest {
 
     @Test
     public void mapsToWeightDtoInGivenUnits() {
-        WeightDto actual = weightMapper.toWeightDto(12000000L, GRAM);
+        WeightDto actual = weightMapper.toWeightDto(12000024L, GRAM);
 
-        assertThat(actual.getWeight()).isEqualTo(12L);
+        assertThat(actual.getWeight()).isEqualTo(12.000024);
         assertThat(actual.getUnit()).isEqualTo(Unit.GRAM.name());
     }
 
@@ -37,7 +37,7 @@ public class WeightMapperTest {
 
     @Test
     public void mapsToWeightInMicrograms() {
-        Long actual = weightMapper.toWeightInMicrograms(aWeightDto().withWeight(10L).withUnit(GRAM.name()).build());
+        Long actual = weightMapper.toWeightInMicrograms(aWeightDto().withWeight(Double.valueOf(10)).withUnit(GRAM.name()).build());
 
         assertThat(actual).isEqualTo(10000000L);
     }

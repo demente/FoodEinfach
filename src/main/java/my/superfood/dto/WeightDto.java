@@ -5,15 +5,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class WeightDto {
 
     @JsonProperty
-    private Long weight;
+    private Double weight;
     @JsonProperty
     private String unit;
 
-    public Long getWeight() {
+    public Double getWeight() {
         return weight;
     }
 
-    public void setWeight(Long weight) {
+    public void setWeight(Double weight) {
         this.weight = weight;
     }
 

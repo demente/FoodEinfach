@@ -17,7 +17,7 @@ public class WeightMapper {
         }
 
         WeightDto dto = new WeightDto();
-        dto.setWeight(weightInMicrograms / targetUnit.getMultiplier());
+        dto.setWeight(Double.valueOf(weightInMicrograms) / Double.valueOf(targetUnit.getMultiplier()));
         dto.setUnit(targetUnit.name());
         return dto;
     }
@@ -33,7 +33,7 @@ public class WeightMapper {
             return null;
         }
 
-        return weightDto.getWeight() * unit.getMultiplier();
+        return Math.round(weightDto.getWeight() * unit.getMultiplier());
     }
 
 }

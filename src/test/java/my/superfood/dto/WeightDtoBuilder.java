@@ -11,6 +11,6 @@ public class WeightDtoBuilder extends AbstractWeightDtoBuilder {
     }
 
     public static WeightDtoBuilder aWeightDto() {
-        return new WeightDtoBuilder().withUnit(Unit.MICROGRAM.name()).withWeight(100L);
+        return new WeightDtoBuilder().withUnit(Unit.MICROGRAM.name()).withWeight(Double.valueOf(100));
     }
 }
