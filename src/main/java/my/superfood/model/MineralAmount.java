@@ -11,7 +11,7 @@ public class MineralAmount implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mineralIdGenerator")
     @SequenceGenerator(name = "mineralIdGenerator", sequenceName = "mineral_amount_id_seq", allocationSize = 1)
     private Long id;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "mineral_name")
     private Mineral mineral;
     private Long amount;

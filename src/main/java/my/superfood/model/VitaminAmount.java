@@ -11,7 +11,7 @@ public class VitaminAmount implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "vitaminIdGenerator")
     @SequenceGenerator(name = "vitaminIdGenerator", sequenceName = "vitamin_amount_id_seq", allocationSize = 1)
     private Long id;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "vitamin_name")
     private Vitamin vitamin;
     private Long amount;
