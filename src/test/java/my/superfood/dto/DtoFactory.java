@@ -33,6 +33,11 @@ public class DtoFactory {
     }
 
     @GeneratePojoBuilder(withGenerationGap = true)
+    public static RecipeInfoDto newRecipeInfoDto() {
+        return new RecipeInfoDto();
+    }
+
+    @GeneratePojoBuilder(withGenerationGap = true)
     public static VitaminDto newVitaminDto() {
         return new VitaminDto();
     }
