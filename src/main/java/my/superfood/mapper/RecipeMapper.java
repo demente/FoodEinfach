@@ -2,6 +2,7 @@ package my.superfood.mapper;
 
 import my.superfood.dto.IngredientDto;
 import my.superfood.dto.RecipeDto;
+import my.superfood.dto.RecipeInfoDto;
 import my.superfood.model.Ingredient;
 import my.superfood.model.Recipe;
 import my.superfood.model.enums.MealType;
@@ -75,6 +76,36 @@ public class RecipeMapper {
         List<RecipeDto> list = new ArrayList<RecipeDto>();
         for (Recipe recipe : recipeList) {
             list.add(toRecipeDto(recipe));
+        }
+
+        return list;
+    }
+
+    public RecipeInfoDto toRecipeInfoDto(Recipe recipe) {
+        if (recipe == null) {
+            return null;
+        }
+
+        RecipeInfoDto recipeInfoDto = new RecipeInfoDto();
+        recipeInfoDto.setId(recipe.getId());
+        recipeInfoDto.setName(recipe.getName());
+
+        List<String> mealType = getMealTypesAsString(recipe.getType());
+        if (mealType != null) {
+            recipeInfoDto.setType(mealType);
+        }
+
+        return recipeInfoDto;
+    }
+
+    public List<RecipeInfoDto> toRecipeInfoDtoList(List<Recipe> recipeList) {
+        if (recipeList == null) {
+            return null;
+        }
+
+        List<RecipeInfoDto> list = new ArrayList<RecipeInfoDto>();
+        for (Recipe recipe : recipeList) {
+            list.add(toRecipeInfoDto(recipe));
         }
 
         return list;
