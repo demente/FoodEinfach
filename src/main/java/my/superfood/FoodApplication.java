@@ -70,6 +70,7 @@ public class FoodApplication extends Application<FoodConfiguration> {
         environment.jersey().register(new FoodResource(foodDao, foodMapper));
         environment.jersey().register(new FoodInfoResource(foodDao, foodMapper));
         environment.jersey().register(new RecipeResource(recipeDao, recipeMapper));
+        environment.jersey().register(new RecipeInfoResource(recipeDao, recipeMapper));
         environment.jersey().register(new MineralResource(mineralDao, mineralMapper));
         environment.jersey().register(new MealPlanResource(mealPlanDao, mealPlanMapper));
         environment.jersey().register(new VitaminResource(vitaminDao, vitaminMapper));
