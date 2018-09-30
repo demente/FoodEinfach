@@ -5,6 +5,10 @@ public enum FoodType {
     FRUIT,
     MEAT,
     DAIRY,
-    GRAIN;
+    GRAIN,
+    HERBS,
+    OIL,
+    FISH,
+    LEGUMES;
 
 }
