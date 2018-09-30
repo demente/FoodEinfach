@@ -13,9 +13,8 @@ public class MealPlanRecipe {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-
-    @ManyToOne(cascade = CascadeType.ALL)
+    
+    @ManyToOne()
     @JoinColumn(name = "recipe_id")
     private Recipe recipe;
 
