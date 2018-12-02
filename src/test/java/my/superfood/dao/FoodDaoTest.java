@@ -63,7 +63,7 @@ public class FoodDaoTest {
 
         foodDao.delete(persisted.getId());
 
-        assertThat(foodDao.findById(persisted.getId())).isNull();
+        assertThat(foodDao.findById(persisted.getId()).isActive()).isFalse();
     }
 
     @Test

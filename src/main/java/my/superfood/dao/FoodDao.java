@@ -28,7 +28,9 @@ public class FoodDao extends AbstractDAO<Food> {
     }
 
     public void delete(Long id) {
-        currentSession().delete(get(id));
+        Food food = findById(id);
+        food.setActive(false);
+        save(food);
     }
 
     public List<Food> findByName(String name) {

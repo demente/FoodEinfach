@@ -11,17 +11,17 @@ import javax.validation.constraints.NotNull;
 @Table(name = "food")
 @NamedQueries({
         @NamedQuery(name = "allFood",
-                query = "SELECT f FROM Food f"),
+                query = "SELECT f FROM Food f where active is true"),
         @NamedQuery(name = "foodByName",
-                query = "SELECT f FROM Food f where lower(name) like concat(lower(:name),'%')"),
+                query = "SELECT f FROM Food f where lower(name) like concat(lower(:name),'%') and active is true"),
         @NamedQuery(name = "foodByMineral", query = "SELECT f FROM Food as f " +
                 "JOIN f.nutritionPerHundredGrams.minerals as ma " +
                 "with ma.mineral.name=:name " +
-                "order by ma.amount desc"),
+                "where f.active is true order by ma.amount desc"),
         @NamedQuery(name = "foodByVitamin", query = "SELECT f FROM Food as f " +
                 "JOIN f.nutritionPerHundredGrams.vitamins as v " +
                 "with v.vitamin.name=:name " +
-                "order by v.amount desc")})
+                "where f.active is true order by v.amount desc")})
 public class Food {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,6 +34,7 @@ public class Food {
     private Long weight;
     @Enumerated(EnumType.STRING)
     private FoodType type;
+    private boolean active;
 
     public Long getId() {
         return id;
@@ -75,5 +76,12 @@ public class Food {
         this.type = type;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 }
 
