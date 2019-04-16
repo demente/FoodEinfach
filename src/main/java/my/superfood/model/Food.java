@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "food")
 @NamedQueries({
         @NamedQuery(name = "allFood",
-                query = "SELECT f FROM Food f where active is true"),
+                query = "SELECT f FROM Food f where active is true and type is NOT null"),
         @NamedQuery(name = "foodByName",
                 query = "SELECT f FROM Food f where lower(name) like concat(lower(:name),'%') and active is true"),
         @NamedQuery(name = "foodByMineral", query = "SELECT f FROM Food as f " +
