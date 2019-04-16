@@ -4,11 +4,17 @@ public enum FoodType {
     VEGETABLE,
     FRUIT,
     MEAT,
-    DAIRY,
-    GRAIN,
+    DAIRY, //milk based products
+    GRAIN, //also includes dough
     HERBS,
     OIL,
     FISH,
-    LEGUMES;
+    LEGUMES, //beans, lentils, chickpeas
+    SAUCE,
+    EGG,
+    MUSHROOM,
+    NUTS,
+    DRINKS,
+    SWEETS; // i guess sugar, honey and all kinds of syrups
 
 }
