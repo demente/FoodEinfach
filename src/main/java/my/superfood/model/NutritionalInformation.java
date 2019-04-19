@@ -104,4 +104,53 @@ public class NutritionalInformation {
     public void setMinerals(List<MineralAmount> minerals) {
         this.minerals = minerals;
     }
+
+    public void addNutritionalInformation(NutritionalInformation other) {
+        setCalories(getCalories() + other.getCalories());
+        setProtein(getProtein() + other.getProtein());
+        setCarbohydrates(getCarbohydrates() + other.getCarbohydrates());
+        setFat(getFat() + other.getFat());
+        setFibre(getFibre() + other.getFibre());
+        setSugar(getSugar() + other.getSugar());
+        for (VitaminAmount vitaminAmount : other.getVitamins()) {
+            addVitaminAmount(getVitamins(), vitaminAmount);
+        }
+        for (MineralAmount mineralAmount : other.getMinerals()) {
+            addMineralAmount(getMinerals(), mineralAmount);
+        }
+    }
+
+
+    private void addVitaminAmount(List<VitaminAmount> vitaminAmountList, VitaminAmount vitaminToAdd) {
+        boolean isFound = false;
+        for (VitaminAmount vitamin : vitaminAmountList) {
+            if (vitamin.getVitamin().getName().equals(vitaminToAdd.getVitamin().getName())) {
+                vitamin.setAmount(vitamin.getAmount() + vitaminToAdd.getAmount());
+                isFound = true;
+            }
+        }
+        if (!isFound) {
+            VitaminAmount vitaminAmount = new VitaminAmount();
+            vitaminAmount.setAmount(vitaminToAdd.getAmount());
+            vitaminAmount.setVitamin(vitaminToAdd.getVitamin());
+            vitaminAmountList.add(vitaminAmount);
+        }
+    }
+
+
+    private void addMineralAmount(List<MineralAmount> mineralList, MineralAmount mineralToAdd) {
+        boolean isFound = false;
+        for (MineralAmount mineral : mineralList) {
+            if (mineral.getMineral().getName().equals(mineralToAdd.getMineral().getName())) {
+                mineral.setAmount(mineral.getAmount() + mineralToAdd.getAmount());
+                isFound = true;
+            }
+        }
+        if (!isFound) {
+            MineralAmount mineralAmount = new MineralAmount();
+            mineralAmount.setAmount(mineralToAdd.getAmount());
+            mineralAmount.setMineral(mineralToAdd.getMineral());
+            mineralList.add(mineralAmount);
+        }
+    }
 }

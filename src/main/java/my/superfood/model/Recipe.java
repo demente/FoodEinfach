@@ -101,19 +101,7 @@ public class Recipe {
         NutritionalInformation total = new NutritionalInformation(0L, 0L, 0L, 0L, 0L, 0L);
 
         for (Ingredient ingredient : getIngredients()) {
-            NutritionalInformation nutritionalInformation = ingredient.getNutritionalInformation();
-            total.setCalories(total.getCalories() + nutritionalInformation.getCalories());
-            total.setProtein(total.getProtein() + nutritionalInformation.getProtein());
-            total.setCarbohydrates(total.getCarbohydrates() + nutritionalInformation.getCarbohydrates());
-            total.setFat(total.getFat() + nutritionalInformation.getFat());
-            total.setFibre(total.getFibre() + nutritionalInformation.getFibre());
-            total.setSugar(total.getSugar() + nutritionalInformation.getSugar());
-            for (VitaminAmount vitaminAmount : nutritionalInformation.getVitamins()) {
-                addVitaminAmount(total.getVitamins(), vitaminAmount);
-            }
-            for (MineralAmount mineralAmount : nutritionalInformation.getMinerals()) {
-                addMineralAmount(total.getMinerals(), mineralAmount);
-            }
+            total.addNutritionalInformation(ingredient.getNutritionalInformation());
         }
         return total;
     }
@@ -139,36 +127,4 @@ public class Recipe {
         return total;
     }
 
-    private void addVitaminAmount(List<VitaminAmount> vitaminAmountList, VitaminAmount vitaminToAdd) {
-        boolean isFound = false;
-        for (VitaminAmount vitamin : vitaminAmountList) {
-            if (vitamin.getVitamin().getName().equals(vitaminToAdd.getVitamin().getName())) {
-                vitamin.setAmount(vitamin.getAmount() + vitaminToAdd.getAmount());
-                isFound = true;
-            }
-        }
-        if (!isFound) {
-            VitaminAmount vitaminAmount = new VitaminAmount();
-            vitaminAmount.setAmount(vitaminToAdd.getAmount());
-            vitaminAmount.setVitamin(vitaminToAdd.getVitamin());
-            vitaminAmountList.add(vitaminAmount);
-        }
-    }
-
-
-    private void addMineralAmount(List<MineralAmount> mineralList, MineralAmount mineralToAdd) {
-        boolean isFound = false;
-        for (MineralAmount mineral : mineralList) {
-            if (mineral.getMineral().getName().equals(mineralToAdd.getMineral().getName())) {
-                mineral.setAmount(mineral.getAmount() + mineralToAdd.getAmount());
-                isFound = true;
-            }
-        }
-        if (!isFound) {
-            MineralAmount mineralAmount = new MineralAmount();
-            mineralAmount.setAmount(mineralToAdd.getAmount());
-            mineralAmount.setMineral(mineralToAdd.getMineral());
-            mineralList.add(mineralAmount);
-        }
-    }
 }
