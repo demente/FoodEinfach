@@ -108,21 +108,9 @@ public class Recipe {
 
     public NutritionalInformation getNutritionalInformationPerServing() {
         NutritionalInformation total = getNutritionalInformation();
-
         double servings = getServings();
 
-        total.setCalories(Math.round(total.getCalories() / servings));
-        total.setProtein(Math.round(total.getProtein() / servings));
-        total.setCarbohydrates(Math.round(total.getCarbohydrates() / servings));
-        total.setFat(Math.round(total.getFat() / servings));
-        total.setFibre(Math.round(total.getFibre() / servings));
-        total.setSugar(Math.round(total.getSugar() / servings));
-        for (VitaminAmount vitaminAmount : total.getVitamins()) {
-            vitaminAmount.setAmount(Math.round(vitaminAmount.getAmount() / servings));
-        }
-        for (MineralAmount mineralAmount : total.getMinerals()) {
-            mineralAmount.setAmount(Math.round(mineralAmount.getAmount() / servings));
-        }
+        total.divide(servings);
 
         return total;
     }

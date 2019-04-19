@@ -120,6 +120,21 @@ public class NutritionalInformation {
         }
     }
 
+    public void divide(double divider){
+        setCalories(Math.round(getCalories() / divider));
+        setProtein(Math.round(getProtein() / divider));
+        setCarbohydrates(Math.round(getCarbohydrates() / divider));
+        setFat(Math.round(getFat() / divider));
+        setFibre(Math.round(getFibre() / divider));
+        setSugar(Math.round(getSugar() / divider));
+        for (VitaminAmount vitaminAmount : getVitamins()) {
+            vitaminAmount.setAmount(Math.round(vitaminAmount.getAmount() / divider));
+        }
+        for (MineralAmount mineralAmount : getMinerals()) {
+            mineralAmount.setAmount(Math.round(mineralAmount.getAmount() / divider));
+        }
+
+    }
 
     private void addVitaminAmount(List<VitaminAmount> vitaminAmountList, VitaminAmount vitaminToAdd) {
         boolean isFound = false;
