@@ -31,6 +31,7 @@ public class Recipe {
     private Long preparationTime;
 
     private Long cookingTime;
+    private Long servings;
 
     public Long getCookingTime() {
         return cookingTime;
@@ -39,8 +40,6 @@ public class Recipe {
     public void setCookingTime(Long cookingTime) {
         this.cookingTime = cookingTime;
     }
-
-    private Long servings;
 
     public Long getId() {
         return id;
@@ -96,5 +95,80 @@ public class Recipe {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public NutritionalInformation getNutritionalInformation() {
+        NutritionalInformation total = new NutritionalInformation(0L, 0L, 0L, 0L, 0L, 0L);
+
+        for (Ingredient ingredient : getIngredients()) {
+            NutritionalInformation nutritionalInformation = ingredient.getNutritionalInformation();
+            total.setCalories(total.getCalories() + nutritionalInformation.getCalories());
+            total.setProtein(total.getProtein() + nutritionalInformation.getProtein());
+            total.setCarbohydrates(total.getCarbohydrates() + nutritionalInformation.getCarbohydrates());
+            total.setFat(total.getFat() + nutritionalInformation.getFat());
+            total.setFibre(total.getFibre() + nutritionalInformation.getFibre());
+            total.setSugar(total.getSugar() + nutritionalInformation.getSugar());
+            for (VitaminAmount vitaminAmount : nutritionalInformation.getVitamins()) {
+                addVitaminAmount(total.getVitamins(), vitaminAmount);
+            }
+            for (MineralAmount mineralAmount : nutritionalInformation.getMinerals()) {
+                addMineralAmount(total.getMinerals(), mineralAmount);
+            }
+        }
+        return total;
+    }
+
+    public NutritionalInformation getNutritionalInformationPerServing() {
+        NutritionalInformation total = getNutritionalInformation();
+
+        double servings = getServings();
+
+        total.setCalories(Math.round(total.getCalories() / servings));
+        total.setProtein(Math.round(total.getProtein() / servings));
+        total.setCarbohydrates(Math.round(total.getCarbohydrates() / servings));
+        total.setFat(Math.round(total.getFat() / servings));
+        total.setFibre(Math.round(total.getFibre() / servings));
+        total.setSugar(Math.round(total.getSugar() / servings));
+        for (VitaminAmount vitaminAmount : total.getVitamins()) {
+            vitaminAmount.setAmount(Math.round(vitaminAmount.getAmount() / servings));
+        }
+        for (MineralAmount mineralAmount : total.getMinerals()) {
+            mineralAmount.setAmount(Math.round(mineralAmount.getAmount() / servings));
+        }
+
+        return total;
+    }
+
+    private void addVitaminAmount(List<VitaminAmount> vitaminAmountList, VitaminAmount vitaminToAdd) {
+        boolean isFound = false;
+        for (VitaminAmount vitamin : vitaminAmountList) {
+            if (vitamin.getVitamin().getName().equals(vitaminToAdd.getVitamin().getName())) {
+                vitamin.setAmount(vitamin.getAmount() + vitaminToAdd.getAmount());
+                isFound = true;
+            }
+        }
+        if (!isFound) {
+            VitaminAmount vitaminAmount = new VitaminAmount();
+            vitaminAmount.setAmount(vitaminToAdd.getAmount());
+            vitaminAmount.setVitamin(vitaminToAdd.getVitamin());
+            vitaminAmountList.add(vitaminAmount);
+        }
+    }
+
+
+    private void addMineralAmount(List<MineralAmount> mineralList, MineralAmount mineralToAdd) {
+        boolean isFound = false;
+        for (MineralAmount mineral : mineralList) {
+            if (mineral.getMineral().getName().equals(mineralToAdd.getMineral().getName())) {
+                mineral.setAmount(mineral.getAmount() + mineralToAdd.getAmount());
+                isFound = true;
+            }
+        }
+        if (!isFound) {
+            MineralAmount mineralAmount = new MineralAmount();
+            mineralAmount.setAmount(mineralToAdd.getAmount());
+            mineralAmount.setMineral(mineralToAdd.getMineral());
+            mineralList.add(mineralAmount);
+        }
     }
 }

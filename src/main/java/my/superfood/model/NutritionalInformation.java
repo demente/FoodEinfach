@@ -4,6 +4,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.List;
 
 @Embeddable
@@ -23,6 +24,22 @@ public class NutritionalInformation {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "food_id", nullable = false)
     private List<MineralAmount> minerals;
+
+    public NutritionalInformation() {
+        this.minerals = new ArrayList<>();
+        this.vitamins = new ArrayList<>();
+    }
+
+    public NutritionalInformation(Long protein, Long fat, Long carbohydrates, Long sugar, Long fibre, Long calories) {
+        this.protein = protein;
+        this.fat = fat;
+        this.carbohydrates = carbohydrates;
+        this.sugar = sugar;
+        this.fibre = fibre;
+        this.calories = calories;
+        this.minerals = new ArrayList<>();
+        this.vitamins = new ArrayList<>();
+    }
 
     public Long getProtein() {
         return protein;
