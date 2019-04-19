@@ -16,6 +16,6 @@ public class IngredientBuilder extends AbstractIngredientBuilder {
                 .withId(1L)
                 .withFood(aFood().build())
                 .withRecipe(aRecipe().build())
-                .withAmount(100L);
+                .withAmount(100000000L);
     }
 }

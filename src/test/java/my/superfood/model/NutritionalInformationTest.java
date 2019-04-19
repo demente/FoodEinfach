@@ -62,8 +62,55 @@ public class NutritionalInformationTest {
         assertThat(nutritionalInformation.getFat()).isEqualTo(6L);
         assertThat(nutritionalInformation.getFibre()).isEqualTo(2L);
         assertThat(nutritionalInformation.getSugar()).isEqualTo(8L);
-        assertThat(nutritionalInformation.getVitamins()).extracting(VitaminAmount::getAmount).containsExactly(20L,10L);
+        assertThat(nutritionalInformation.getVitamins()).extracting(VitaminAmount::getAmount).containsExactly(20L, 10L);
         assertThat(nutritionalInformation.getMinerals()).extracting(MineralAmount::getAmount).containsExactly(30L);
     }
 
+    @Test
+    public void findsMineralByName() {
+        MineralAmount expected = aMineralAmount().withMineral(aMineral().withName(MineralName.Fe).build()).build();
+        NutritionalInformation nutritionalInformation = aNutritionalInformation()
+                .withVitamins(asList(aVitaminAmount().build()))
+                .withMinerals(asList(expected)).build();
+
+        MineralAmount actual = nutritionalInformation.getMineralAmountByName(MineralName.Fe);
+
+        assertThat(actual).isSameAs(expected);
+    }
+
+    @Test
+    public void returnsNullIfNoMineralFoundByName() {
+
+        MineralAmount expected = aMineralAmount().withMineral(aMineral().withName(MineralName.Fe).build()).build();
+        NutritionalInformation nutritionalInformation = aNutritionalInformation()
+                .withVitamins(asList(aVitaminAmount().build()))
+                .withMinerals(asList(expected)).build();
+
+        MineralAmount actual = nutritionalInformation.getMineralAmountByName(MineralName.Ca);
+
+        assertThat(actual).isNull();
+    }
+
+    @Test
+    public void findsVitaminByName() {
+        VitaminAmount expected = aVitaminAmount().withVitamin(aVitamin().withName(VitaminName.A).build()).build();
+        NutritionalInformation nutritionalInformation = aNutritionalInformation()
+                .withVitamins(asList(aVitaminAmount().withVitamin(aVitamin().withName(VitaminName.C).build()).build(), expected))
+                .withMinerals(asList(aMineralAmount().build())).build();
+
+        VitaminAmount actual = nutritionalInformation.getVitaminAmountByName(VitaminName.A);
+
+        assertThat(actual).isSameAs(expected);
+    }
+
+    @Test
+    public void returnsNullIfNoVitaminFoundByName() {
+        NutritionalInformation nutritionalInformation = aNutritionalInformation()
+                .withVitamins(asList(aVitaminAmount().withVitamin(aVitamin().withName(VitaminName.C).build()).build()))
+                .withMinerals(asList(aMineralAmount().build())).build();
+
+        VitaminAmount actual = nutritionalInformation.getVitaminAmountByName(VitaminName.A);
+
+        assertThat(actual).isNull();
+    }
 }

@@ -1,5 +1,8 @@
 package my.superfood.model;
 
+import my.superfood.model.enums.MineralName;
+import my.superfood.model.enums.VitaminName;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
@@ -109,6 +112,14 @@ public class NutritionalInformation {
 
     public void setMinerals(List<MineralAmount> minerals) {
         this.minerals = minerals;
+    }
+
+    public VitaminAmount getVitaminAmountByName(VitaminName name) {
+        return getVitamins().stream().filter(vitaminAmount -> vitaminAmount.getVitamin().getName().equals(name)).findFirst().orElse(null);
+    }
+
+    public MineralAmount getMineralAmountByName(MineralName name) {
+        return getMinerals().stream().filter(mineralAmount -> mineralAmount.getMineral().getName().equals(name)).findFirst().orElse(null);
     }
 
     public void addNutritionalInformation(NutritionalInformation other) {
