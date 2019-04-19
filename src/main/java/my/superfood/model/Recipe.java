@@ -9,7 +9,8 @@ import java.util.List;
 @Table(name = "recipe")
 @NamedQueries({@NamedQuery(name = "allRecipes",
         query = "SELECT r FROM Recipe r"),
-        @NamedQuery(name = "recipeByName", query = "SELECT r FROM Recipe r WHERE lower(name) like concat(lower(:name),'%')")})
+        @NamedQuery(name = "recipeByName", query = "SELECT r FROM Recipe r WHERE lower(name) like concat(lower(:name),'%')"),
+        @NamedQuery(name = "recipeByType", query = "SELECT r FROM Recipe r left join r.type m where :type=m")})
 public class Recipe {
 
     @Id
