@@ -13,6 +13,7 @@ import java.util.List;
                 query = "SELECT m FROM MealPlan m")})
 public class MealPlan {
 
+    public static final double DAYS_IN_WEEK = 7.0;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -64,5 +65,14 @@ public class MealPlan {
 
     public void setRecipes(List<MealPlanRecipe> recipes) {
         this.recipes = recipes;
+    }
+
+    public NutritionalInformation getDailyAverageNutrition() {
+        NutritionalInformation averageNutritionalInfo = new NutritionalInformation();
+        for (MealPlanRecipe mealPlanRecipe : getRecipes()) {
+            averageNutritionalInfo.addNutritionalInformation(mealPlanRecipe.getRecipe().getNutritionalInformationPerServing());
+        }
+        averageNutritionalInfo.divide(DAYS_IN_WEEK);
+        return averageNutritionalInfo;
     }
 }

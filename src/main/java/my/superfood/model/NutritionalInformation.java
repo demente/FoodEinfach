@@ -26,6 +26,12 @@ public class NutritionalInformation {
     private List<MineralAmount> minerals;
 
     public NutritionalInformation() {
+        this.protein = 0L;
+        this.fat = 0L;
+        this.carbohydrates = 0L;
+        this.sugar = 0L;
+        this.fibre = 0L;
+        this.calories = 0L;
         this.minerals = new ArrayList<>();
         this.vitamins = new ArrayList<>();
     }
@@ -120,7 +126,7 @@ public class NutritionalInformation {
         }
     }
 
-    public void divide(double divider){
+    public void divide(double divider) {
         setCalories(Math.round(getCalories() / divider));
         setProtein(Math.round(getProtein() / divider));
         setCarbohydrates(Math.round(getCarbohydrates() / divider));
