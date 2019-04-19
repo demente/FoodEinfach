@@ -2,6 +2,7 @@ package my.superfood.dao;
 
 import io.dropwizard.hibernate.AbstractDAO;
 import my.superfood.model.Recipe;
+import my.superfood.model.enums.MealType;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
@@ -32,6 +33,12 @@ public class RecipeDao extends AbstractDAO<Recipe> {
     public List<Recipe> findByName(String name) {
         Query<Recipe> query = currentSession().createNamedQuery("recipeByName", Recipe.class);
         query.setParameter("name", name);
+        return list(query);
+    }
+
+    public List<Recipe> findByType(MealType mealType) {
+        Query<Recipe> query = currentSession().createNamedQuery("recipeByType", Recipe.class);
+        query.setParameter("type", mealType);
         return list(query);
     }
 }
