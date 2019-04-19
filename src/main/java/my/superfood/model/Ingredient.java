@@ -1,6 +1,9 @@
 package my.superfood.model;
 
+import my.superfood.model.enums.Unit;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "ingredient")
@@ -47,5 +50,34 @@ public class Ingredient {
 
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
+    }
+
+    public NutritionalInformation getNutritionalInformation() {
+        NutritionalInformation nutritionPerHundredGrams = getFood().getNutritionPerHundredGrams();
+        Double timesHundredGrams = Double.valueOf(getAmount()) / Double.valueOf(Unit.GRAM.getMultiplier() * 100);
+
+        NutritionalInformation nutritionalInformation = new NutritionalInformation();
+        nutritionalInformation.setCalories(Math.round(nutritionPerHundredGrams.getCalories() * timesHundredGrams));
+        nutritionalInformation.setProtein(Math.round(nutritionPerHundredGrams.getProtein() * timesHundredGrams));
+        nutritionalInformation.setCarbohydrates(Math.round(nutritionPerHundredGrams.getCarbohydrates() * timesHundredGrams));
+        nutritionalInformation.setFat(Math.round(nutritionPerHundredGrams.getFat() * timesHundredGrams));
+        nutritionalInformation.setFibre(Math.round(nutritionPerHundredGrams.getFibre() * timesHundredGrams));
+        nutritionalInformation.setSugar(Math.round(nutritionPerHundredGrams.getSugar() * timesHundredGrams));
+        nutritionalInformation.setVitamins(new ArrayList<>());
+        nutritionalInformation.setMinerals(new ArrayList<>());
+        for (VitaminAmount vitaminAmount : getFood().getNutritionPerHundredGrams().getVitamins()) {
+            VitaminAmount vitamin = new VitaminAmount();
+            vitamin.setVitamin(vitaminAmount.getVitamin());
+            vitamin.setAmount(Math.round(vitaminAmount.getAmount() * timesHundredGrams));
+            nutritionalInformation.getVitamins().add(vitamin);
+        }
+        for (MineralAmount mineralAmount : getFood().getNutritionPerHundredGrams().getMinerals()) {
+            MineralAmount mineral = new MineralAmount();
+            mineral.setMineral(mineralAmount.getMineral());
+            mineral.setAmount(Math.round(mineralAmount.getAmount() * timesHundredGrams));
+            nutritionalInformation.getMinerals().add(mineral);
+        }
+
+        return nutritionalInformation;
     }
 }
