@@ -90,6 +90,7 @@ public class FoodDaoTest {
     @Test
     public void findsByMineral() {
         Mineral ca = database.inTransaction(() -> mineralDao.save(aMineral().withName(MineralName.Ca).build()));
+        Mineral fe = database.inTransaction(() -> mineralDao.save(aMineral().withName(MineralName.Fe).build()));
 
         Food apple = database.inTransaction(() ->
                 foodDao.save(aNewFood().withName("Apple")
@@ -103,7 +104,7 @@ public class FoodDaoTest {
         Food pear = database.inTransaction(() ->
                 foodDao.save(aNewFood().withName("Pear")
                         .withNutritionPerHundredGrams(aNutritionalInformation().withMinerals(
-                                asList(aNewMineralAmount().withMineral(aMineral().withName(MineralName.Fe).build()).build())).build()).build()));
+                                asList(aNewMineralAmount().withMineral(fe).build())).build()).build()));
 
         List<Food> actual = foodDao.findByMineral(MineralName.Ca);
 
@@ -114,6 +115,7 @@ public class FoodDaoTest {
     @Test
     public void findsByVitamin() {
         Vitamin a = database.inTransaction(() -> vitaminDao.save(aVitamin().withName(VitaminName.A).build()));
+        Vitamin c = database.inTransaction(() -> vitaminDao.save(aVitamin().withName(VitaminName.C).build()));
 
         Food apple = database.inTransaction(() ->
                 foodDao.save(aNewFood().withName("Apple")
@@ -127,7 +129,7 @@ public class FoodDaoTest {
         Food pear = database.inTransaction(() ->
                 foodDao.save(aNewFood().withName("Pear")
                         .withNutritionPerHundredGrams(aNutritionalInformation().withVitamins(
-                                asList(aNewVitaminAmount().withVitamin(aVitamin().withName(VitaminName.C).build()).build())).build()).build()));
+                                asList(aNewVitaminAmount().withVitamin(c).build())).build()).build()));
 
         List<Food> actual = foodDao.findByVitamin(VitaminName.A);
 

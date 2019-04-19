@@ -8,7 +8,11 @@ import org.junit.Test;
 
 import java.util.List;
 
+import static java.util.Arrays.asList;
 import static my.superfood.model.MealPlanBuilder.aNewMealPlan;
+import static my.superfood.model.MealPlanFoodBuilder.aNewMealPlanFood;
+import static my.superfood.model.MealPlanRecipeBuilder.aNewMealPlanRecipe;
+import static my.superfood.model.RecipeBuilder.aNewRecipe;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class MealPlanDaoTest {
@@ -28,22 +32,28 @@ public class MealPlanDaoTest {
             .build();
 
     private MealPlanDao mealPlanDao;
+    private RecipeDao recipeDao;
 
     @Before
     public void setUp() {
         mealPlanDao = new MealPlanDao(database.getSessionFactory());
+        recipeDao = new RecipeDao(database.getSessionFactory());
     }
 
     @Test
     public void savesMealPlan() {
-        MealPlan mealPlan = database.inTransaction(() -> mealPlanDao.save(aNewMealPlan().build()));
+        Recipe recipe = database.inTransaction(() -> recipeDao.save(aNewRecipe().build()));
+        MealPlan mealPlan = database.inTransaction(() -> mealPlanDao.save(aNewMealPlan().withFood(asList(aNewMealPlanFood().build()))
+                .withRecipes(asList(aNewMealPlanRecipe().withRecipe(recipe).build())).build()));
 
         assertThat(mealPlan.getId()).isNotNull();
     }
 
     @Test
     public void findsById() {
-        MealPlan expected = database.inTransaction(() -> mealPlanDao.save(aNewMealPlan().build()));
+        Recipe recipe = database.inTransaction(() -> recipeDao.save(aNewRecipe().build()));
+        MealPlan expected = database.inTransaction(() -> mealPlanDao.save(aNewMealPlan().withFood(asList(aNewMealPlanFood().build()))
+                .withRecipes(asList(aNewMealPlanRecipe().withRecipe(recipe).build())).build()));
 
         MealPlan actual = mealPlanDao.findById(expected.getId());
 
@@ -52,7 +62,9 @@ public class MealPlanDaoTest {
 
     @Test
     public void deletesMealPlan() {
-        MealPlan persisted = database.inTransaction(() -> mealPlanDao.save(aNewMealPlan().build()));
+        Recipe recipe = database.inTransaction(() -> recipeDao.save(aNewRecipe().build()));
+        MealPlan persisted = database.inTransaction(() -> mealPlanDao.save(aNewMealPlan().withFood(asList(aNewMealPlanFood().build()))
+                .withRecipes(asList(aNewMealPlanRecipe().withRecipe(recipe).build())).build()));
 
         mealPlanDao.delete(persisted.getId());
 
@@ -61,8 +73,11 @@ public class MealPlanDaoTest {
 
     @Test
     public void findsAll() {
-        MealPlan first = database.inTransaction(() -> mealPlanDao.save(aNewMealPlan().build()));
-        MealPlan second = database.inTransaction(() -> mealPlanDao.save(aNewMealPlan().build()));
+        Recipe recipe = database.inTransaction(() -> recipeDao.save(aNewRecipe().build()));
+        MealPlan first = database.inTransaction(() -> mealPlanDao.save(aNewMealPlan().withFood(asList(aNewMealPlanFood().build()))
+                .withRecipes(asList(aNewMealPlanRecipe().withRecipe(recipe).build())).build()));
+        MealPlan second = database.inTransaction(() -> mealPlanDao.save(aNewMealPlan().withFood(asList(aNewMealPlanFood().build()))
+                .withRecipes(asList(aNewMealPlanRecipe().withRecipe(recipe).build())).build()));
 
         List<MealPlan> actual = mealPlanDao.findAll();
 
