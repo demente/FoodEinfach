@@ -41,6 +41,7 @@ public class Food {
     private Long minimumWeight;
     @Column(name = "min_weight_price")
     private Long pricePerMinimumWeightInCents;
+    private String minimumPackageName;
 
     public Long getId() {
         return id;
@@ -112,6 +113,14 @@ public class Food {
 
     public void setPricePerMinimumWeightInCents(Long pricePerMinimumWeightInCents) {
         this.pricePerMinimumWeightInCents = pricePerMinimumWeightInCents;
+    }
+
+    public String getMinimumPackageName() {
+        return minimumPackageName;
+    }
+
+    public void setMinimumPackageName(String minimumPackageName) {
+        this.minimumPackageName = minimumPackageName;
     }
 }
 
