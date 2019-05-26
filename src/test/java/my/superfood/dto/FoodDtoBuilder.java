@@ -21,7 +21,7 @@ public class FoodDtoBuilder extends AbstractFoodDtoBuilder {
                 .withWeight(aWeightDto().build())
                 .withMinimumPackageName("piece")
                 .withMinimumWeight(aWeightDto().build())
-                .withPricePerMinimumWeightInCents(200L)
+                .withPricePerMinimumWeight(2.55)
                 .withNutritionalInformation(aNutritionalInformationDto().build());
     }
 }

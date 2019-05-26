@@ -40,7 +40,7 @@ public class FoodMapperTest {
         assertThat(actual.getType().name()).isEqualTo(expected.getType());
         assertThat(actual.getName()).isEqualTo(expected.getName());
         assertThat(actual.getPieceName()).isEqualTo(expected.getPieceName());
-        assertThat(actual.getPricePerMinimumWeightInCents()).isEqualTo(expected.getPricePerMinimumWeightInCents());
+        assertThat(actual.getPricePerMinimumWeightInCents()).isEqualTo(Math.round(expected.getPricePerMinimumWeight() * 100));
         assertThat(actual.getMinimumPackageName()).isEqualTo(expected.getMinimumPackageName());
     }
 
@@ -62,7 +62,7 @@ public class FoodMapperTest {
         assertThat(actual.getId()).isEqualTo(expected.getId());
         assertThat(actual.getType()).isEqualTo(expected.getType().name());
         assertThat(actual.getName()).isEqualTo(expected.getName());
-        assertThat(actual.getPricePerMinimumWeightInCents()).isEqualTo(expected.getPricePerMinimumWeightInCents());
+        assertThat(actual.getPricePerMinimumWeight()).isEqualTo(Double.valueOf(expected.getPricePerMinimumWeightInCents() / 100.00));
         assertThat(actual.getMinimumPackageName()).isEqualTo(expected.getMinimumPackageName());
     }
 

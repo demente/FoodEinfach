@@ -34,7 +34,8 @@ public class FoodMapper {
         foodDto.setWeight(weightMapper.toWeightDto(food.getWeight()));
         foodDto.setPieceName(food.getPieceName());
         foodDto.setMinimumWeight(weightMapper.toWeightDto(food.getMinimumWeight()));
-        foodDto.setPricePerMinimumWeightInCents(food.getPricePerMinimumWeightInCents());
+        foodDto.setPricePerMinimumWeight(Double.valueOf(food.getPricePerMinimumWeightInCents() / 100.00));
+
         foodDto.setMinimumPackageName(food.getMinimumPackageName());
 
         return foodDto;
@@ -52,7 +53,7 @@ public class FoodMapper {
         food.setName(foodDto.getName());
         food.setWeight(weightMapper.toWeightInMicrograms(foodDto.getWeight()));
         food.setMinimumWeight(weightMapper.toWeightInMicrograms(foodDto.getMinimumWeight()));
-        food.setPricePerMinimumWeightInCents(foodDto.getPricePerMinimumWeightInCents());
+        food.setPricePerMinimumWeightInCents(Math.round(foodDto.getPricePerMinimumWeight() * 100));
         food.setPieceName(foodDto.getPieceName());
         food.setMinimumPackageName(foodDto.getMinimumPackageName());
         if (foodDto.getType() != null) {
