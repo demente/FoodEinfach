@@ -19,6 +19,9 @@ public class FoodDtoBuilder extends AbstractFoodDtoBuilder {
                 .withType(FoodType.FRUIT.name())
                 .withName("Apple")
                 .withWeight(aWeightDto().build())
+                .withMinimumPackageName("piece")
+                .withMinimumWeight(aWeightDto().build())
+                .withPricePerMinimumWeightInCents(200L)
                 .withNutritionalInformation(aNutritionalInformationDto().build());
     }
 }

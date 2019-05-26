@@ -21,6 +21,7 @@ public class FoodBuilder extends AbstractFoodBuilder {
                 .withWeight(1L)
                 .withMinimumWeight(5000000L)
                 .withPricePerMinimumWeightInCents(200L)
+                .withMinimumPackageName("piece")
                 .withNutritionPerHundredGrams(aNutritionalInformation().build());
     }
 
