@@ -85,13 +85,16 @@ public class FoodDto {
     public Long getPricePerMinimumWeightInCents() {
         return pricePerMinimumWeightInCents;
 
-    public String getMinimumPackageName() {
-        return minimumPackageName;
     }
 
     public void setPricePerMinimumWeightInCents(Long pricePerMinimumWeightInCents) {
         this.pricePerMinimumWeightInCents = pricePerMinimumWeightInCents;
+    }
+
+    public String getMinimumPackageName() {
+        return minimumPackageName;
+    }
+
     public void setMinimumPackageName(String minimumPackageName) {
         this.minimumPackageName = minimumPackageName;
     }
-}
