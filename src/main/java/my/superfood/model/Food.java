@@ -35,6 +35,12 @@ public class Food {
     @Enumerated(EnumType.STRING)
     private FoodType type;
     private boolean active;
+    @Column(name = "piece_name")
+    private String pieceName;
+    @Column(name = "min_weight")
+    private Long minimumWeight;
+    @Column(name = "min_weight_price")
+    private Long pricePerMinimumWeightInCents;
 
     public Long getId() {
         return id;
@@ -82,6 +88,30 @@ public class Food {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public String getPieceName() {
+        return pieceName;
+    }
+
+    public void setPieceName(String pieceName) {
+        this.pieceName = pieceName;
+    }
+
+    public Long getMinimumWeight() {
+        return minimumWeight;
+    }
+
+    public void setMinimumWeight(Long minimumWeight) {
+        this.minimumWeight = minimumWeight;
+    }
+
+    public Long getPricePerMinimumWeightInCents() {
+        return pricePerMinimumWeightInCents;
+    }
+
+    public void setPricePerMinimumWeightInCents(Long pricePerMinimumWeightInCents) {
+        this.pricePerMinimumWeightInCents = pricePerMinimumWeightInCents;
     }
 }
 

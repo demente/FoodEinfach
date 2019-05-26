@@ -19,6 +19,8 @@ public class FoodBuilder extends AbstractFoodBuilder {
                 .withName("Apple")
                 .withType(FoodType.FRUIT)
                 .withWeight(1L)
+                .withMinimumWeight(5000000L)
+                .withPricePerMinimumWeightInCents(200L)
                 .withNutritionPerHundredGrams(aNutritionalInformation().build());
     }
 

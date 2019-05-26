@@ -32,6 +32,9 @@ public class FoodMapper {
             foodDto.setType(food.getType().name());
         }
         foodDto.setWeight(weightMapper.toWeightDto(food.getWeight()));
+        foodDto.setPieceName(food.getPieceName());
+        foodDto.setMinimumWeight(weightMapper.toWeightDto(food.getMinimumWeight()));
+        foodDto.setPricePerMinimumWeightInCents(food.getPricePerMinimumWeightInCents());
 
         return foodDto;
     }
@@ -47,10 +50,14 @@ public class FoodMapper {
         food.setId(foodDto.getId());
         food.setName(foodDto.getName());
         food.setWeight(weightMapper.toWeightInMicrograms(foodDto.getWeight()));
+        food.setMinimumWeight(weightMapper.toWeightInMicrograms(foodDto.getMinimumWeight()));
+        food.setPricePerMinimumWeightInCents(foodDto.getPricePerMinimumWeightInCents());
+        food.setPieceName(foodDto.getPieceName());
         if (foodDto.getType() != null) {
             food.setType(Enum.valueOf(FoodType.class, foodDto.getType()));
         }
 
+        food.setActive(true);
         return food;
     }
 

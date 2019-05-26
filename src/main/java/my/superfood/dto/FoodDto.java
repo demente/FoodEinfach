@@ -16,7 +16,13 @@ public class FoodDto {
     @JsonProperty
     private WeightDto weight;
     @JsonProperty
+    private String pieceName;
+    @JsonProperty
     private NutritionalInformationDto nutritionalInformation;
+    @JsonProperty
+    private WeightDto minimumWeight;
+    @JsonProperty
+    private Long pricePerMinimumWeightInCents;
 
     public Long getId() {
         return id;
@@ -56,5 +62,29 @@ public class FoodDto {
 
     public void setNutritionalInformation(NutritionalInformationDto nutritionalInformation) {
         this.nutritionalInformation = nutritionalInformation;
+    }
+
+    public String getPieceName() {
+        return pieceName;
+    }
+
+    public void setPieceName(String pieceName) {
+        this.pieceName = pieceName;
+    }
+
+    public WeightDto getMinimumWeight() {
+        return minimumWeight;
+    }
+
+    public void setMinimumWeight(WeightDto minimumWeight) {
+        this.minimumWeight = minimumWeight;
+    }
+
+    public Long getPricePerMinimumWeightInCents() {
+        return pricePerMinimumWeightInCents;
+    }
+
+    public void setPricePerMinimumWeightInCents(Long pricePerMinimumWeightInCents) {
+        this.pricePerMinimumWeightInCents = pricePerMinimumWeightInCents;
     }
 }
