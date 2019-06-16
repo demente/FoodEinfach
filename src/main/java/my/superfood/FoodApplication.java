@@ -13,6 +13,7 @@ import my.superfood.resolver.FoodResolver;
 import my.superfood.resolver.MineralResolver;
 import my.superfood.resolver.VitaminResolver;
 import my.superfood.resources.*;
+import my.superfood.service.ShoppingListGenerator;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 
 import javax.servlet.DispatcherType;
@@ -67,6 +68,7 @@ public class FoodApplication extends Application<FoodConfiguration> {
         MealPlanFoodMapper mealPlanFoodMapper = new MealPlanFoodMapper(foodResolver, foodMapper, weightMapper);
         MealPlanMapper mealPlanMapper = new MealPlanMapper(mealPlanRecipeMapper, mealPlanFoodMapper);
 
+
         environment.jersey().register(new FoodResource(foodDao, foodMapper));
         environment.jersey().register(new FoodInfoResource(foodDao, foodMapper));
         environment.jersey().register(new RecipeResource(recipeDao, recipeMapper));
@@ -74,6 +76,8 @@ public class FoodApplication extends Application<FoodConfiguration> {
         environment.jersey().register(new MineralResource(mineralDao, mineralMapper));
         environment.jersey().register(new MealPlanResource(mealPlanDao, mealPlanMapper));
         environment.jersey().register(new VitaminResource(vitaminDao, vitaminMapper));
+        environment.jersey().register(new ShoppingListResource(mealPlanDao, new ShoppingListGenerator()));
+
 
         environment.healthChecks().register("database", new DatabaseConnectionHealthCheck(null));
 
