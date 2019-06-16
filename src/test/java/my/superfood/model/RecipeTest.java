@@ -73,6 +73,20 @@ public class RecipeTest {
         assertThat(recipe.getNutritionalInformationPerServing().getMinerals()).extracting(MineralAmount::getAmount).containsExactly(1200L);
     }
 
+    @Test
+    public void getsIngredientsPerServing() {
+        Ingredient ingredient = anIngredient().withFood(aFood().withId(1L).build())
+                .withAmount(100000000L).build();
+
+        Ingredient ingredient2 = anIngredient().withFood(aFood().withId(2L).build())
+                .withAmount(200000000L).build();
+
+        Recipe recipe = aRecipe().withServings(2L).withIngredients(asList(ingredient, ingredient2)).build();
+
+        assertThat(recipe.getIngredientsPerServing()).extracting(FoodAmount::getAmount).containsExactly(50000000L, 100000000L);
+        assertThat(recipe.getIngredientsPerServing()).extracting(FoodAmount::getFood).extracting(Food::getId).containsExactly(1L, 2L);
+    }
+
     private NutritionalInformation getNutritionalInfo(List<VitaminAmount> vitamins, List<MineralAmount> minerals, Long calories, Long protein, Long carbs, Long fat, Long fibre, Long sugar) {
         return aNutritionalInformation()
                 .withVitamins(vitamins)

@@ -3,7 +3,10 @@ package my.superfood.model;
 import org.joda.time.LocalDate;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "meal_plan")
@@ -74,5 +77,21 @@ public class MealPlan {
         }
         averageNutritionalInfo.divide(DAYS_IN_WEEK);
         return averageNutritionalInfo;
+    }
+
+    public List<FoodAmount> getIngredients() {
+        List<Recipe> recipes = getRecipes().stream().map(mealPlanRecipe -> mealPlanRecipe.getRecipe()).collect(Collectors.toList());
+        List<FoodAmount> result = new ArrayList<>();
+        List<FoodAmount> foodInMealPlan = recipes.stream().map(recipe -> recipe.getIngredientsPerServing())
+                .flatMap(List::stream).collect(Collectors.toList());
+        for (FoodAmount foodAmount : foodInMealPlan) {
+            Optional<FoodAmount> food = result.stream().filter(fa -> fa.getFood().equals(foodAmount.getFood())).findFirst();
+            if (food.isPresent()) {
+                food.get().setAmount(food.get().getAmount() + foodAmount.getAmount());
+            } else {
+                result.add(foodAmount);
+            }
+        }
+        return result;
     }
 }

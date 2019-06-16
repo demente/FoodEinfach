@@ -3,7 +3,6 @@ package my.superMealPlan.resources;
 import io.dropwizard.testing.junit.ResourceTestRule;
 import my.superfood.dao.MealPlanDao;
 import my.superfood.dto.MealPlanDto;
-import my.superfood.dto.MineralDto;
 import my.superfood.mapper.MealPlanMapper;
 import my.superfood.model.MealPlan;
 import my.superfood.resources.MealPlanResource;
@@ -15,18 +14,14 @@ import org.mockito.ArgumentCaptor;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
-
 import java.util.List;
 
 import static java.util.Arrays.asList;
 import static my.superfood.assertions.DtoAssertions.assertEqualMealPlanDto;
-import static my.superfood.assertions.DtoAssertions.assertEqualMineralDto;
 import static my.superfood.dto.MealPlanDtoBuilder.aMealPlanDto;
-import static my.superfood.dto.MineralDtoBuilder.aMineralDto;
 import static my.superfood.model.MealPlanBuilder.aMealPlan;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.mock;

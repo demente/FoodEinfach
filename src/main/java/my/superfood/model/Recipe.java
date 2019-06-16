@@ -4,6 +4,7 @@ import my.superfood.model.enums.MealType;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "recipe")
@@ -21,7 +22,7 @@ public class Recipe {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "recipe_id")
-    private List<Ingredient> ingredients;
+    private List<Ingredient> ingredients; //TODO: do not allow same ingredient more than once
 
     private String instructions; // TODO: to be later changed to a proper entity
 
@@ -113,6 +114,11 @@ public class Recipe {
         total.divide(servings);
 
         return total;
+    }
+
+    public List<FoodAmount> getIngredientsPerServing() {
+        return getIngredients().stream().map(ingredient -> new FoodAmount(ingredient.getFood(), ingredient.getAmount() / getServings()))
+                .collect(Collectors.toList());
     }
 
 }

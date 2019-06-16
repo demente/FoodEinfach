@@ -52,6 +52,27 @@ public class MealPlanTest {
         assertThat(mealPlan.getDailyAverageNutrition().getMinerals()).extracting(MineralAmount::getAmount).containsExactly(200L);
     }
 
+    @Test
+    public void calculatesIngredientList() {
+        Ingredient ingredient = anIngredient().withFood(aFood().withId(1L).build())
+                .withAmount(1000000000L).build();
+
+        Ingredient ingredient2 = anIngredient().withFood(aFood().withId(2L).build())
+                .withAmount(20000000000L).build();
+
+        MealPlan mealPlan = aMealPlan().withRecipes(asList(aMealPlanRecipe()
+                        .withRecipe(aRecipe().withServings(1L)
+                                .withIngredients(asList(ingredient)).build()
+                        ).build(),
+                aMealPlanRecipe()
+                        .withRecipe(aRecipe().withServings(2L)
+                                .withIngredients(asList(ingredient2, ingredient)).build()
+                        ).build())).build();
+
+        assertThat(mealPlan.getIngredients()).extracting(FoodAmount::getAmount).containsExactly(1500000000L, 10000000000L);
+        assertThat(mealPlan.getIngredients()).extracting(FoodAmount::getFood).extracting(Food::getId).containsExactly(1L, 2L);
+    }
+
     private NutritionalInformation getNutritionalInfo(List<VitaminAmount> vitamins, List<MineralAmount> minerals, Long calories, Long protein, Long carbs, Long fat, Long fibre, Long sugar) {
         return aNutritionalInformation()
                 .withVitamins(vitamins)
