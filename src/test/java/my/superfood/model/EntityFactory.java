@@ -63,4 +63,8 @@ public class EntityFactory {
     }
 
 
+    @GeneratePojoBuilder(withGenerationGap = true)
+    public static User newUser() {
+        return new User();
+    }
 }
